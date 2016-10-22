@@ -13,7 +13,8 @@
     </head>
     <body>
          <h3>Read that Book</h3>
-         <p>Welcome <c:out value="${user.firstName}" ></c:out></p>  
+         <p>Welcome <c:out value="${user.firstName}" ></c:out></p> 
+         
     </body>
 </html>
 

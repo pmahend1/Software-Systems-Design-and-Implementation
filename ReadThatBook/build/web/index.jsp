@@ -23,7 +23,8 @@
             <label>Password</label>
             <input name="passWord" type="password" /><br></br>
             <input type="submit" value="Login"/>
-        </form>
+        </form><br/>
+        <br/>
         <form name="register" action="LoginServlet" method="post">
             <input type="submit" name="register" value="Register"/>
             <input type="hidden" name="action" value="register"/>

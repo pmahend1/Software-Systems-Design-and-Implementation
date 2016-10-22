@@ -18,9 +18,9 @@ import static org.junit.Assert.*;
  *
  * @author Prateek
  */
-public class LoginServletTest {
+public class AuthenticationServletTest {
     
-    public LoginServletTest() {
+    public AuthenticationServletTest() {
     }
     
     @BeforeClass
@@ -40,28 +40,28 @@ public class LoginServletTest {
     }
 
     /**
-     * Test of doGet method, of class LoginServlet.
+     * Test of doGet method, of class AuthenticationServlet.
      */
     @Test
     public void testDoGet() throws Exception {
         System.out.println("doGet");
         HttpServletRequest request = null;
         HttpServletResponse response = null;
-        LoginServlet instance = new LoginServlet();
+        AuthenticationServlet instance = new AuthenticationServlet();
         instance.doGet(request, response);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of doPost method, of class LoginServlet.
+     * Test of doPost method, of class AuthenticationServlet.
      */
     @Test
     public void testDoPost() throws Exception {
         System.out.println("doPost");
         HttpServletRequest request = null;
         HttpServletResponse response = null;
-        LoginServlet instance = new LoginServlet();
+        AuthenticationServlet instance = new AuthenticationServlet();
         instance.doPost(request, response);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
