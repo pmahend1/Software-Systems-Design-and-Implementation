@@ -50,7 +50,7 @@ public class BookDB {
             Book book = null;
             if (rs.next()) {
                 book = new Book();
-                ps.setString(1, book.getBookID());
+                ps.setInt(1, book.getBookID());
                 ps.setString(2, book.getTitle());
                 ps.setString(3, book.getAuthor());
                 ps.setString(4, book.getISBN_10());
