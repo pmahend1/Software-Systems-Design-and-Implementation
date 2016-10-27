@@ -48,9 +48,14 @@ public class HomeServlet extends HttpServlet {
             
             String url = "/viewBook.jsp";
             String bookIdstring = request.getParameter("bookid");
+            if(bookIdstring==null){
+                bookIdstring="nothing";
+            }
             int bookId=0;
+            
             bookId=Integer.parseInt(bookIdstring);
-            Book book = BookDB.selectBook(bookId);
+            System.out.println("admin.HomeServlet.doPost() bookIdstring"+bookIdstring +" int "+ bookId);
+            Book book = BookDB.viewBook(bookId);
             request.setAttribute("book", book);
             request.getServletContext().getRequestDispatcher(url).forward(request, response);
             }

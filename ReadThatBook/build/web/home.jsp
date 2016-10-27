@@ -17,7 +17,7 @@
          <p>Welcome <c:out value="${user.firstName}" ></c:out></p> 
          <form name="viewBook" action="HomeServlet" method="post">
               <input type="hidden" name="action" value="viewBook">
-             <input name="bookid" type="number" getBookID/><br></br>
+             <input name="bookid" type="number"/><br></br>
             <input type="submit" value="View Details"/>
          </form>
          <a href="">Check Account</a>
