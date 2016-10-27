@@ -5,7 +5,6 @@
  */
 package admin;
 
-
 import business.Book;
 import data.BookDB;
 import java.io.IOException;
@@ -101,9 +100,28 @@ public class BookManager extends HttpServlet {
 
             Book newBook = new Book(title, author, ISBN_10, ISBN_13, genre, edition, publisher, description);
             BookDB.addBook(newBook);
-            url="/index.jsp";
+            url = "/index.jsp";
             request.setAttribute("newBook", newBook);
             getServletContext().getRequestDispatcher(url).forward(request, response);
+        } else if (action.equals("deleteBook")) {
+            String bookIDStr=request.getParameter("bookID");
+            System.out.println("admin.BookManager.doPost()"+ " bookID = " + bookIDStr);
+            int bookID=-1;
+            System.out.println("admin.BookManager.doPost()"+" deleteBook");
+            try {
+                 bookID= Integer.parseInt(bookIDStr);
+                 System.out.println("admin.BookManager.doPost()"+ " bookIDInt = " + bookID);
+            } catch (Exception e) {
+                System.out.println(e);
+                url = "/index.jsp";
+                //request.setAttribute("booklist", booklist);
+                getServletContext().getRequestDispatcher(url).forward(request, response);
+            }
+            BookDB.deleteBook(bookID);
+            url = "/index.jsp";
+            //request.setAttribute("booklist", booklist);
+            getServletContext().getRequestDispatcher(url).forward(request, response);
+
         }
     }
 

@@ -20,5 +20,7 @@
         <input id="search" placeholder="Title or Author"/>
         <button id="button" type="button">Search</button>
         <div id="results"></div>
+        <a href="BookManager?action=deleteBook&bookID=2">Delete Books</a>
+        
     </body>
 </html>

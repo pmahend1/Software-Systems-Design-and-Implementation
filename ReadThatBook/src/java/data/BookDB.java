@@ -71,5 +71,28 @@ public class BookDB {
             pool.freeConnection(connection);
         }
     }
+    
+    public static int deleteBook(int bookID) {
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        PreparedStatement ps = null;
+        System.out.println("data.BookDB.deleteBook()");
+        String query
+                    = "DELETE from Book where "
+                + "bookID = ?";
+        try {
+            ps = connection.prepareStatement(query);
+           
+            ps.setInt(1, bookID);
+            
+            return ps.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
+            return 0;
+        } finally {
+            DBUtil.closePreparedStatement(ps);
+            pool.freeConnection(connection);
+        }
+    }
      
 }
