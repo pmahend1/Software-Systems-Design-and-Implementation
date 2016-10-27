@@ -13,8 +13,8 @@ public class Book {
     private int bookID;
     private String title;
     private String author;
-    private String ISBN_10;
-    private String ISBN_13;
+    private int ISBN_10;
+    private int ISBN_13;
     private String genre;
     private String edition;
     private String publisher;
@@ -23,7 +23,7 @@ public class Book {
     public Book() {
     }
 
-    public Book( String title, String author, String ISBN_10, String ISBN_13, String genre, String edition, String publisher, String description) {
+    public Book( String title, String author, int ISBN_10, int ISBN_13, String genre, String edition, String publisher, String description) {
 
         this.title = title;
         this.author = author;
@@ -59,12 +59,12 @@ public class Book {
         return genre;
     }
 
-    public String getISBN_10() {
+    public int getISBN_10() {
         return ISBN_10;
     }
 
     
-    public String getISBN_13() {
+    public int getISBN_13() {
         return ISBN_13;
     }
 
@@ -92,11 +92,11 @@ public class Book {
         this.edition = edition;
     }
 
-    public void setISBN_10(String ISBN_10) {
+    public void setISBN_10(int ISBN_10) {
         this.ISBN_10 = ISBN_10;
     }
 
-    public void setISBN_13(String ISBN_13) {
+    public void setISBN_13(int ISBN_13) {
         this.ISBN_13 = ISBN_13;
     }
 

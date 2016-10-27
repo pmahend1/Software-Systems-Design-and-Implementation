@@ -15,9 +15,8 @@
          <h3>Read that Book</h3>
          <p>Welcome <c:out value="${user.firstName}" ></c:out></p> 
          
-         <a href="">Check Account</a>
-         
-         
+         <a href="">Check Account</a><br/>
+         <a href="BookManager?action=manageBooks">Manage Books</a><br/>
     </body>
 </html>
 

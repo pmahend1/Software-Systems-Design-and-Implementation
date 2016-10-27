@@ -14,7 +14,7 @@
     </head>
     <body>
         <h1>Add A Book Manually</h1>
-        <form action="BookManager" method="POST">
+        <form action="BookManager" enctype="multipart/form-data" method="POST">
             <input type="hidden" name="action" value="addBook"/>
             <table>
                 <tbody>
@@ -59,6 +59,11 @@
                         <td><textarea rows="4" cols="21" name="description"></textarea></td>
                     </tr>
                     <tr>
+                        <td>Image</td>
+                        <td>:</td>
+                        <td><input type="file" name="photo"/></td>
+                    </tr>
+                    <tr>
                         <td><input type="submit" /></td>
                         <td>  </td>
                         <td><input type="reset" /></td>
@@ -66,7 +71,7 @@
                 </tbody>
             </table>
 
-            
+
         </form>
     </body>
 </html>
