@@ -12,7 +12,7 @@ public class BookDB {
         PreparedStatement ps = null;
         System.out.println("data.BookDB.addBook()");
         String query
-                    = "INSERT INTO Book ( Title , Author, ISBN10, ISBN13, Genre ,Edition, Publisher ,Description ) "
+                    = "INSERT INTO Book ( Title , Author, ISBN10, , Genre ,Edition, Publisher ,Description ) "
                 + "VALUES (?, ?, ? , ?, ?, ? ,? ,?)";
         try {
             ps = connection.prepareStatement(query);
@@ -43,7 +43,7 @@ public class BookDB {
         ResultSet rs = null;
 
         String query = "SELECT * FROM Book "
-                + "WHERE BookName = ?";
+                + "WHERE BookID = ?";
         try {
             ps = connection.prepareStatement(query);
             ps.setInt(1, bookID);
