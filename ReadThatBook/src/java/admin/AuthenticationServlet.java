@@ -103,7 +103,15 @@ public class AuthenticationServlet extends HttpServlet {
                 User user = UserDB.selectUser(userName);
                 request.setAttribute("user", user);
                 getServletContext().getRequestDispatcher(url).forward(request, response);
-            }
+            }else if (action.equals("logout")) {
+            session=request.getSession();  
+            session.invalidate();  
+            System.out.println("Log out successful "); 
+            message = "You are successfully logged out!";
+            url = "/index.jsp";
+            request.setAttribute("message", message);
+            request.getServletContext().getRequestDispatcher(url).forward(request, response);
+        }
 
         }
 

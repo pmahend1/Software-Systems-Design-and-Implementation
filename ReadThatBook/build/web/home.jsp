@@ -16,7 +16,10 @@
          <p>Welcome <c:out value="${user.firstName}" ></c:out></p> 
          
          <a href="">Check Account</a>
-         
+         <form name="logout" action="LoginServlet" method="post">
+            <input type="submit" name="logout" value="logout"/>
+            <input type="hidden" name="action" value="logout"/>
+        </form>
          
     </body>
 </html>
