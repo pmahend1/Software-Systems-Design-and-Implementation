@@ -131,8 +131,15 @@ public class BookManager extends HttpServlet {
             if(inputStream!=null){
                 BookDB.addBookImage(1, inputStream);
             }
-            url = "/index.jsp";
-            request.setAttribute("newBook", newBook);
+            url = "/manageBooks.jsp";
+            List<Book> booklist =  BookDB.selectAllBooks();
+            request.setAttribute("booklist", booklist);
+            //byte[] imageBytes = getImageAsBytes();
+
+//            response.setContentType("image/jpeg");
+//            response.setContentLength(imageBytes.length);
+//
+//            response.getOutputStream().write(imageBytes);
             getServletContext().getRequestDispatcher(url).forward(request, response);
         } else if (action.equals("deleteBook")) {
             String bookIDStr = request.getParameter("bookID");

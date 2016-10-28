@@ -2,6 +2,12 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/Prateek/Documents/NetBeansProjects1/SSDI/ReadThatBook/web/manageBooks.jsp</file>
+            <file>file:/C:/Users/Prateek/Documents/NetBeansProjects1/SSDI/ReadThatBook/src/java/business/iUSer.java</file>
+            <file>file:/C:/Users/Prateek/Documents/NetBeansProjects1/SSDI/ReadThatBook/web/home.jsp</file>
+            <file>file:/C:/Users/Prateek/Documents/NetBeansProjects1/SSDI/ReadThatBook/src/java/admin/AuthenticationServlet.java</file>
+            <file>file:/C:/Users/Prateek/Documents/NetBeansProjects1/SSDI/ReadThatBook/web/index.jsp</file>
+        </group>
     </open-files>
 </project-private>

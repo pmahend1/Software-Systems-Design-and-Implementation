@@ -56,6 +56,10 @@ public class AuthenticationServlet extends HttpServlet {
             }
             if (user == null) {
                 System.out.println("admin.LoginServlet.doPost()" + "User Does not exist");
+                url = "/index.jsp";
+                message= "User Does not exist";
+                request.setAttribute("message", message);
+                request.getServletContext().getRequestDispatcher(url).forward(request, response);
             } else if (passWord.equals(user.getPassWord())) {
                 //user is registered
                 url = "/home.jsp";
