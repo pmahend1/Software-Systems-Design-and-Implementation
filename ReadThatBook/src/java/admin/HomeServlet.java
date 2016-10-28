@@ -44,7 +44,7 @@ public class HomeServlet extends HttpServlet {
 
         if (action == null) {
             action = "viewHome";
-        } else if (action.equals("viewBook")) {
+        } else if (action.equals("viewBook1")) {
             
             String url = "/viewBook.jsp";
             String bookIdstring = request.getParameter("bookid");

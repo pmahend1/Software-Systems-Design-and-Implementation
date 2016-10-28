@@ -20,7 +20,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Sweet_Home
  */
-@WebServlet(name = "HomeServlet", urlPatterns = {"/BookListServlet"})
+@WebServlet(name = "BookListServlet", urlPatterns = {"/BookListServlet"})
 public class BookListServlet extends HttpServlet {
 
     @Override
@@ -41,19 +41,33 @@ public class BookListServlet extends HttpServlet {
         System.out.println("admin.BookListServlet.doPost()" + action);
 
         if (action == null) {
-            action = "viewHome";
-        } else if (action.equals("viewBook")) {
             
-            String url = "/viewBook.jsp";
+           
+            String url = "/guestHome.jsp";
            
             int bookId=1;
-            
            
             //System.out.println("admin.BookListServlet.doPost() bookIdstring"+bookIdstring +" int "+ bookId);
             Book book = BookDB.viewBook(bookId);
             request.setAttribute("book", book);
             request.getServletContext().getRequestDispatcher(url).forward(request, response);
             }
+            else if (action.equals("viewBook")) {
+            
+                String url = "/viewBook.jsp";
+                String bookIdstring = request.getParameter("bookid");
+                if(bookIdstring==null){
+                    bookIdstring="nothing";
+                }
+                int bookId=0;
+
+                bookId=Integer.parseInt(bookIdstring);
+                System.out.println("admin.HomeServlet.doPost() bookIdstring"+bookIdstring +" int "+ bookId);
+                Book book = BookDB.viewBook(bookId);
+                request.setAttribute("book", book);
+                request.getServletContext().getRequestDispatcher(url).forward(request, response);
+                }
            
         }
+}
 
