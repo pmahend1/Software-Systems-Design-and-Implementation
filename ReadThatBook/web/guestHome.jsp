@@ -135,61 +135,31 @@
 
                 <div class="row">
 
-                 
+                  <c:forEach items="${books}" var="item">
                     <div class="col-sm-4 col-lg-4 col-md-4">
                         <div class="thumbnail">
                             <img src="http://placehold.it/320x150" alt="">
                             <div class="caption">
                                 
-                                <h1 align="center"><c:out value="${book.getTitle()}"></c:out></h1>
-                                <h4 align="center">By: <c:out value="${book.getAuthor()}"></c:out></h4>
-                                
-                            </div>
-                            <form name="viewBook" action="BookListServlet" method="post" align="center">
-                                <input type="hidden" name="action" value="viewBook">
-                                <input type="hidden" name="bookid" value=${book.getBookID()}>
-                                <input type="submit" value="View Details" />
-                            </form>
-                                <br/>
-                        </div>
-                    </div>
-
-                    
-
-                    <div class="col-sm-4 col-lg-4 col-md-4">
-                        <div class="thumbnail">
-                            <img src="http://placehold.it/320x150" alt="">
-                            <div class="caption">
-                                <h4 class="pull-right">$94.99</h4>
-                                <h4><a href="#">Sixth Product</a>
-                                </h4>
-                                <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </div>
-                            <form name="viewBook" action="HomeServlet" method="post">
-                                <input type="hidden" name="action" value="viewBook">
-                                <input name="bookid" type="number"/><br></br>
-                                <input type="submit" value="View Details"/>
-                            </form>
-                            <div class="ratings">
-                                <p class="pull-right">18 reviews</p>
-                                <p>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                </p>
+                                <h3 align="center">${item.title}</h3>
+                                <h4 align="center">By:${item.author}</h4> 
+                                <form name="viewBook" action="BookListServlet" method="post" align="center">
+                                    <input type="hidden" name="action" value="viewBook">
+                                    <input type="hidden" name="bookid" value=${item.bookID}>
+                                    <input type="submit" value="View Details" />
+                                </form>
                             </div>
                         </div>
                     </div>
-
+                    </c:forEach>   
                 </div>
-
+ 
             </div>
 
         </div>
 
     </div>
+ 
     <!-- /.container -->
 
     <div class="container">

@@ -4,6 +4,8 @@ import java.sql.*;
 
 import business.Book;
 import business.User;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BookDB {
 
@@ -132,4 +134,38 @@ public static Book viewBook(int bookID) {
             pool.freeConnection(connection);
         }
     }
+public static List<Book> selectAllBooks() {
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String query = "SELECT * FROM Book";
+
+        try {
+            ps = connection.prepareStatement(query);
+            rs = ps.executeQuery();
+            List<Book> bookList=new ArrayList<Book>();
+            while (rs.next()) {
+                Book book = new Book();
+                book.setAuthor(rs.getString("Author"));
+                book.setBookID(rs.getInt("BookID"));
+                book.setTitle(rs.getString("Title"));
+                //book.setPublisher(rs.getString("Publisher"));
+                //book.setDescription(rs.getString("Description"));
+                //book.setISBN10(rs.getInt("ISBN10"));
+                //book.setISBN13(rs.getInt("ISBN13"));
+                bookList.add(book);
+            }
+            return bookList;
+        } catch (SQLException e) {
+            System.out.println(e);
+            return null;
+        } finally {
+            DBUtil.closeResultSet(rs);
+            DBUtil.closePreparedStatement(ps);
+            pool.freeConnection(connection);
+        }
+    }
+
 }

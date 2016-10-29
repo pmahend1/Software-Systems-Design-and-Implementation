@@ -9,6 +9,7 @@ import business.Book;
 import data.BookDB;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -42,14 +43,12 @@ public class BookListServlet extends HttpServlet {
 
         if (action == null) {
             
-           
             String url = "/guestHome.jsp";
-           
-            int bookId=1;
-           
-            //System.out.println("admin.BookListServlet.doPost() bookIdstring"+bookIdstring +" int "+ bookId);
-            Book book = BookDB.viewBook(bookId);
-            request.setAttribute("book", book);
+            //Book books = BookDB.viewBook(1);
+            
+            List<Book> books = BookDB.selectAllBooks();
+            
+            request.setAttribute("books", books);
             request.getServletContext().getRequestDispatcher(url).forward(request, response);
             }
             else if (action.equals("viewBook")) {
