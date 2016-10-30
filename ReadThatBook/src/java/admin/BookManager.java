@@ -269,6 +269,13 @@ public class BookManager extends HttpServlet {
 //            os.close();
 
         }
+        else if (action.equals("searchBook")) {
+            String bookName = request.getParameter("searchString");
+            Book book = BookDB.searchBook(bookName);
+            url="/viewBook.jsp";
+            request.setAttribute("book", book);
+            getServletContext().getRequestDispatcher(url).forward(request, response);
+        }
     }
 
     /**

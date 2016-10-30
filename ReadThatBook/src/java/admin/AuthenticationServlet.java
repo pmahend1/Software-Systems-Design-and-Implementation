@@ -5,10 +5,13 @@
  */
 package admin;
 
+import business.Book;
 import business.User;
+import data.BookDB;
 import data.UserDB;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -69,6 +72,9 @@ public class AuthenticationServlet extends HttpServlet {
                 userCookie.setPath("/");
                 response.addCookie(userCookie);
                 request.setAttribute("user", user);
+
+                List<Book> books = BookDB.selectAllBooks();   
+                request.setAttribute("books", books);
                 request.getServletContext().getRequestDispatcher(url).forward(request, response);
             } else {
                 message = "Incorrect username or password";
@@ -119,7 +125,21 @@ public class AuthenticationServlet extends HttpServlet {
                 request.setAttribute("user", user);
                 getServletContext().getRequestDispatcher(url).forward(request, response);
             }
-
+        }else if (action.equals("logout")) {
+            session=request.getSession();  
+            session.invalidate();  
+            System.out.println("Log out successful "); 
+            message = "You are successfully logged out!";
+            url = "/guestHome.jsp";
+            request.setAttribute("message", message);
+            
+            List<Book> books = BookDB.selectAllBooks();   
+            request.setAttribute("books", books);
+            request.getServletContext().getRequestDispatcher(url).forward(request, response);
+        }else if (action.equals("viewProfile")) {
+            url = "/userHomePage.jsp";
+            //request.setAttribute("user", user);
+            request.getServletContext().getRequestDispatcher(url).forward(request, response);
         }
 
     }

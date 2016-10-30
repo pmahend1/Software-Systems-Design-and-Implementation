@@ -50,5 +50,40 @@ body {
 }
 
 footer {
-    margin: 50px 0;
+    margin-bottom: 10px;
+}
+
+th, td {
+    padding: 10px;
+}
+
+th {
+    text-align: left;
+    color:black; 
+    font-weight:bold;  
+    font-family: Georgia; 
+    font-size: 200%;
+}
+
+register{
+    color:brown; 
+    font-weight:bold;  
+    font-size: 150%;
+    text-align:right;
+    padding-right:10px;
+    float:left;
+    margin-left: 150px;
+}
+
+input[type=searchText] {
+    width: 300px;
+    height: 20px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    padding: 12px 10px 12px 10px;
 }

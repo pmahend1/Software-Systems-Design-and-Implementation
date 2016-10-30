@@ -1,7 +1,7 @@
 <%-- 
-    Document   : guestHome
-    Created on : Oct 28, 2016, 3:28:28 PM
-    Author     : Sweet_Home
+    Document   : userHome
+    Created on : Oct 29, 2016, 3:17:45 PM
+    Author     : ashwini
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -18,7 +18,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Login Page</title>
+    <title>User Home Page</title>
     <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
    
     <!-- Bootstrap Core CSS -->
@@ -63,20 +63,16 @@
                     </li>
                 </ul>
                 <p style="color:red;"><c:if test="${not empty message}"><c:out value="${message}"/></c:if></p>
-        <form name="login" action="LoginServlet" method="post" align="right">
-            <input type="hidden" name="action" value="login">   
-            <label style="color: white;">User Name</label>
-            <input name="userName" type="text"/>
-            <label style="color: white;">Password</label>
-            <input name="passWord" type="password" />
-            <input type="submit" value="Login"/>
-        </form>
-        
-        <form name="register" action="LoginServlet" method="post" align="right">
-            <input type="submit" name="register" value="Register" />
-            <input type="hidden" name="action" value="register"/>
-        </form>
-        <br/>
+                <p style="color:red; font-weight:bold; text-align:right;">Welcome <c:out value="${user.firstName}" ></c:out></p>
+                <form name="register" action="LoginServlet" method="post" align="right">
+                    <input type="button" name="View Profile" value="View Profile" />
+                    <input type="hidden" name="action" value="viewProfile"/>
+                </form>
+                <form name="logout" action="LoginServlet" method="post" align="right">
+                    <input type="submit" name="logout" value="logout"/>
+                    <input type="hidden" name="action" value="logout"/>
+                </form>
+                <br/>
             </div>
             <!-- /.navbar-collapse -->
         </div>
@@ -85,8 +81,9 @@
 <br/>
 <br/>
     <!-- Page Content -->
+    <br/>                
     <form name="login" action="BookManager" method="post">
-        <div style="text-align:center; margin:0 80px;"/>
+        <div style="text-align:center; margin:10px 80px;"/>
         <input type="searchText" name="searchString" placeholder="Search.." align="center">
         <input type = "Submit" name="submit" value="Search"/>
         <input type="hidden" name="action" value="searchBook">
@@ -110,7 +107,6 @@
                 
             <input type="hidden" name="action" value="bookList">
                 <div class="row carousel-holder">
-
                     <div class="col-md-12">
                         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                             <ol class="carousel-indicators">
@@ -137,19 +133,17 @@
                             </a>
                         </div>
                     </div>
-
                 </div>
-
+            
                 <div class="row">
-
                   <c:forEach items="${books}" var="item">
                     <div class="col-sm-4 col-lg-4 col-md-4">
                         <div class="thumbnail">
                             <img src="http://placehold.it/320x150" alt="">
                             <div class="caption">
                                 
-                                <h4 align="center">${item.title}</h4>
-                                <h5 align="center">By:${item.author}</h5> 
+                                <h3 align="center">${item.title}</h3>
+                                <h4 align="center">By:${item.author}</h4> 
                                 <form name="viewBook" action="BookListServlet" method="post" align="center">
                                     <input type="hidden" name="action" value="viewBook">
                                     <input type="hidden" name="bookid" value=${item.bookID}>
@@ -160,19 +154,15 @@
                     </div>
                     </c:forEach>   
                 </div>
- 
+            
             </div>
-
         </div>
-
     </div>
  
     <!-- /.container -->
 
     <div class="container">
-
         <hr>
-
         <!-- Footer -->
         <footer>
             <div class="row">
