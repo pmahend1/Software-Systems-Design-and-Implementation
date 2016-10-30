@@ -15,13 +15,11 @@
     <body>
          <h3>Read that Book</h3>
          <p>Welcome <c:out value="${user.firstName}" ></c:out></p> 
-         <form name="viewBook" action="HomeServlet" method="post">
-              <input type="hidden" name="action" value="viewBook">
-             <input name="bookid" type="number"/><br></br>
-            <input type="submit" value="View Details"/>
-         </form>
-         <a href="">Check Account</a>
-         
+        
+          <a href="">Check Account</a><br/>
+         <c:if test="${user.getRole()=='admin'}">
+         <a href="BookManager?action=manageBooks&user=${cookie.userCookie.value}">Manage Books</a><br/>
+         </c:if> 
          
     </body>
 </html>
