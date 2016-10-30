@@ -20,7 +20,6 @@
                 font-size: 16px;
                 border: none;
                 cursor: pointer;
-
             }
 
             .dropdown {
@@ -75,8 +74,11 @@
         <script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/jquery-ui.js" type="text/javascript"></script>
         <link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/themes/blitzer/jquery-ui.css"
         rel="stylesheet" type="text/css" />
+<link href="css/bootstrap.min.css" rel="stylesheet">
 
-        <form name="ProfileView" action="UserProfileManager" method="post">
+    <!-- Custom CSS -->
+    <link href="css/shop-homepage.css" rel="stylesheet">
+        
             <script type="text/javascript">
             $(function () {
                 $("#dialog").dialog({
@@ -108,24 +110,64 @@
             });
         </script>
     </head>
-    <body>
-        <h3>Read that Book</h3>
-            <input type="hidden" name="username" value="${user.getUserName()}"</input>
-            <div class="dropdown">
-                <button class="dropbtn">Profile</button>
-                <div class="dropdown-content">
-                    <button type="submit" name="action" value="viewprofile" >View profile</button>
-                    <button type="submit" name="action" value="editprofile" >Edit profile</button>
-                    <input type="button" id="btnShow" value="Delete Account" />
-                    <div id="dialog" style="display: none" align = "center">
-                        Are you sure you want to delete your account?
-                    </div>
-                </div>
-            </div> 
-        </form>
-        <p>Welcome <c:out value="${user.firstName}" ></c:out></p> 
-         <c:if test="${user.getRole()=='admin'}">
-         <a href="BookManager?action=manageBooks&user=${cookie.userCookie.value}">Manage Books</a><br/>
-         </c:if> 
+    <body style="background-color:#FFF791;">
+    
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <label style="color:white;"><h1>ReadThatBook &emsp;&emsp;&emsp;</h1></label>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    
+                    <li>
+                        <a href="#">About</a>
+                    </li>
+                    <li>
+                        <a href="#">Contact</a>
+                    </li>
+                </ul>
+                <p style="color:red;"><c:if test="${not empty message}"><c:out value="${message}"/></c:if></p>
+                <p style="color:red; font-weight:bold; text-align:right;">Welcome <c:out value="${user.firstName}" ></c:out></p>
+                <form name="logout" action="LoginServlet" method="post" >
+                    <input type="submit" name="logout" value="logout" style="float: right;"/>
+                    <input type="hidden" name="action" value="logout"/>
+                </form>
+                <br/>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+<br/>
+<br/>
+    <c:if test="${user.getRole()=='admin'}">
+    <a class ="dropbtn" style="text-decoration:none; color:white;"
+       href="BookManager?action=manageBooks&user=${cookie.userCookie.value}">Manage Books</a><br/>
+    </c:if> 
+    <br/>
+    <form name="ProfileView" action="UserProfileManager" method="post">
+    <input type="hidden" name="username" value="${user.getUserName()}"</input>
+    <div class="dropdown">
+        <button class="dropbtn">Profile</button>
+        <div class="dropdown-content">
+            <button type="submit" name="action" value="viewprofile" >View profile</button>
+            <button type="submit" name="action" value="editprofile" >Edit profile</button>
+            <input type="button" id="btnShow" value="Delete Account" />
+            <div id="dialog" style="display: none" align = "center">
+                Are you sure you want to delete your account?
+            </div>
+        </div>
+    </div>
+    </form>      
     </body>
 </html>
