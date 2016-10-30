@@ -60,9 +60,11 @@ public class AuthenticationServlet extends HttpServlet {
             }
             if (user == null) {
                 System.out.println("admin.LoginServlet.doPost()" + "User Does not exist");
-                url = "/index.jsp";
+                url = "/guestHome.jsp";
                 message= "User Does not exist";
                 request.setAttribute("message", message);
+                List<Book> books = BookDB.selectAllBooks();   
+                request.setAttribute("books", books);
                 request.getServletContext().getRequestDispatcher(url).forward(request, response);
             } else if (passWord.equals(user.getPassWord())&& userName.equals(user.getUserName())) {
                 //user is registered
@@ -78,7 +80,9 @@ public class AuthenticationServlet extends HttpServlet {
                 request.getServletContext().getRequestDispatcher(url).forward(request, response);
             } else {
                 message = "Incorrect username or password";
-                url = "/index.jsp";
+                url = "/guestHome.jsp";
+                List<Book> books = BookDB.selectAllBooks();   
+                request.setAttribute("books", books);
                 request.setAttribute("message", message);
                 request.getServletContext().getRequestDispatcher(url).forward(request, response);
             }
