@@ -141,8 +141,8 @@
                             <img src="http://placehold.it/320x150" alt="">
                             <div class="caption">
                                 
-                                <h3 align="center">${item.title}</h3>
-                                <h4 align="center">By:${item.author}</h4> 
+                                <h4 align="center">${item.title}</h4>
+                                <h5 align="center">By:${item.author}</h5> 
                                 <form name="viewBook" action="BookListServlet" method="post" align="center">
                                     <input type="hidden" name="action" value="viewBook">
                                     <input type="hidden" name="bookid" value=${item.bookID}>

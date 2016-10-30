@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -56,9 +57,17 @@ public class AuthenticationServlet extends HttpServlet {
             }
             if (user == null) {
                 System.out.println("admin.LoginServlet.doPost()" + "User Does not exist");
-            } else if (passWord.equals(user.getPassWord())) {
+                url = "/index.jsp";
+                message= "User Does not exist";
+                request.setAttribute("message", message);
+                request.getServletContext().getRequestDispatcher(url).forward(request, response);
+            } else if (passWord.equals(user.getPassWord())&& userName.equals(user.getUserName())) {
                 //user is registered
                 url = "/home.jsp";
+                Cookie userCookie = new Cookie("userCookie", userName);
+                userCookie.setMaxAge(1*60*60);
+                userCookie.setPath("/");
+                response.addCookie(userCookie);
                 request.setAttribute("user", user);
                 request.getServletContext().getRequestDispatcher(url).forward(request, response);
             } else {
@@ -101,6 +110,10 @@ public class AuthenticationServlet extends HttpServlet {
                 UserDB.insert(newUser);
                 url = "/home.jsp";
                 User user = UserDB.selectUser(userName);
+                Cookie userCookie = new Cookie("userCookie", userName);
+                userCookie.setMaxAge(1*60*60);
+                userCookie.setPath("/");
+                response.addCookie(userCookie);
                 request.setAttribute("user", user);
                 getServletContext().getRequestDispatcher(url).forward(request, response);
             }

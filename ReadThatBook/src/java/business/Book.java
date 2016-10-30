@@ -10,11 +10,11 @@ package business;
  * @author Prateek
  */
 public class Book {
-    private int bookID;
+    private  int bookID;
     private String title;
     private String author;
-    private String ISBN10;
-    private String ISBN13;
+    private String ISBN_10;
+    private String ISBN_13;
     private String genre;
     private String edition;
     private String publisher;
@@ -23,12 +23,12 @@ public class Book {
     public Book() {
     }
 
-    public Book( String title, String author, String ISBN10, String ISBN13, String genre, String edition, String publisher, String description) {
+    public Book( String title, String author, String ISBN_10, String ISBN_13, String genre, String edition, String publisher, String description) {
 
         this.title = title;
         this.author = author;
-        this.ISBN10 = ISBN10;
-        this.ISBN13 = ISBN13;
+        this.ISBN_10 = ISBN_10;
+        this.ISBN_13 = ISBN_13;
         this.genre = genre;
         this.edition = edition;
         this.publisher = publisher;
@@ -59,12 +59,13 @@ public class Book {
         return genre;
     }
 
-    public String getISBN10() {
-        return ISBN10;
+    public String getISBN_10() {
+        return ISBN_10;
     }
 
-    public String getISBN13() {
-        return ISBN13;
+    
+    public String getISBN_13() {
+        return ISBN_13;
     }
 
     public String getPublisher() {
@@ -91,12 +92,12 @@ public class Book {
         this.edition = edition;
     }
 
-    public void setISBN10(String ISBN10) {
-        this.ISBN10 = ISBN10;
+    public void setISBN_10(String ISBN_10) {
+        this.ISBN_10 = ISBN_10;
     }
 
-    public void setISBN13(String ISBN13) {
-        this.ISBN13 = ISBN13;
+    public void setISBN_13(String ISBN_13) {
+        this.ISBN_13 = ISBN_13;
     }
 
     public void setGenre(String genre) {

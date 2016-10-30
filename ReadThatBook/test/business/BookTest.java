@@ -129,7 +129,7 @@ public class BookTest {
         System.out.println("getISBN_10");
         Book instance = new Book();
         String expResult = "";
-        String result = instance.getISBN_10();
+        String result = instance.getISBN10();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -143,7 +143,7 @@ public class BookTest {
         System.out.println("getISBN_13");
         Book instance = new Book();
         String expResult = "";
-        String result = instance.getISBN_13();
+        String result = instance.getISBN13();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -236,7 +236,7 @@ public class BookTest {
         System.out.println("setISBN_10");
         String ISBN_10 = "";
         Book instance = new Book();
-        instance.setISBN_10(ISBN_10);
+        instance.setISBN10(ISBN_10);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -249,7 +249,7 @@ public class BookTest {
         System.out.println("setISBN_13");
         String ISBN_13 = "";
         Book instance = new Book();
-        instance.setISBN_13(ISBN_13);
+        instance.setISBN13(ISBN_13);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

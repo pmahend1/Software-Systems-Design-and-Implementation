@@ -55,7 +55,7 @@ public class HomeServlet extends HttpServlet {
             
             bookId=Integer.parseInt(bookIdstring);
             System.out.println("admin.HomeServlet.doPost() bookIdstring"+bookIdstring +" int "+ bookId);
-            Book book = BookDB.viewBook(bookId);
+            Book book = BookDB.selectBook(bookId);
             request.setAttribute("book", book);
             request.getServletContext().getRequestDispatcher(url).forward(request, response);
             }
