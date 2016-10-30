@@ -4,6 +4,7 @@ import java.sql.*;
 
 import business.Book;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +18,27 @@ public class BookDB {
         try {
             ps = connection.prepareStatement(imageSql);
             ps.setBlob(1, inputStream);
+            return ps.executeUpdate();
+        } catch (Exception e) {
+            System.out.println(e);
+            return 0;
+        } finally {
+            DBUtil.closePreparedStatement(ps);
+            pool.freeConnection(connection);
+        }
+
+    }
+    public static int updateBookImage(int bookID, InputStream inputStream) {
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        PreparedStatement ps = null;
+        String imageSql = "UPDATE Bookimage set "+
+                           "image = ? "+
+                           "where book_ID=?";
+        try {
+            ps = connection.prepareStatement(imageSql);
+            ps.setBlob(1, inputStream);
+            ps.setInt (2, bookID);
             return ps.executeUpdate();
         } catch (Exception e) {
             System.out.println(e);
@@ -41,8 +63,46 @@ public class BookDB {
 
             ps.setString(1, book.getTitle());
             ps.setString(2, book.getAuthor());
-            ps.setInt(3, book.getISBN_10());
-            ps.setInt(4, book.getISBN_13());
+            ps.setString(3, book.getISBN_10());
+            ps.setString(4, book.getISBN_13());
+            ps.setString(5, book.getGenre());
+            ps.setString(6, book.getEdition());
+            ps.setString(7, book.getPublisher());
+            ps.setString(8, book.getDescription());
+            return ps.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println(e);
+            return 0;
+        } finally {
+            DBUtil.closePreparedStatement(ps);
+            pool.freeConnection(connection);
+        }
+    }
+
+    public static int updateBook(Book book) {
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        PreparedStatement ps = null;
+        System.out.println("data.BookDB.updateBook()");
+        String query
+                = "UPDATE Book set" +
+                            "Title = ? ,"+
+                            "Author =  ? ,"+
+                            "ISBN10 = ? ,"+
+                            "ISBN13 = ? ,"+
+                            "Genre = ?,"+
+                            "Edition = ?,"+
+                            "Publisher = ?,"+
+                            "Description =? " +
+                            "WHERE bookID = ?";
+        try {
+            ps = connection.prepareStatement(query);
+
+            ps.setString(1, book.getTitle());
+            ps.setString(2, book.getAuthor());
+            ps.setString(3, book.getISBN_10());
+            ps.setString(4, book.getISBN_13());
             ps.setString(5, book.getGenre());
             ps.setString(6, book.getEdition());
             ps.setString(7, book.getPublisher());
@@ -65,7 +125,7 @@ public class BookDB {
         ResultSet rs = null;
 
         String query = "SELECT * FROM Book "
-                + "WHERE BookName = ?";
+                + "WHERE BookID = ?";
         try {
             ps = connection.prepareStatement(query);
             ps.setInt(1, bookID);
@@ -73,15 +133,16 @@ public class BookDB {
             Book book = null;
             if (rs.next()) {
                 book = new Book();
-                ps.setInt(1, book.getBookID());
-                ps.setString(2, book.getTitle());
-                ps.setString(3, book.getAuthor());
-                ps.setInt(4, book.getISBN_10());
-                ps.setInt(5, book.getISBN_13());
-                ps.setString(6, book.getGenre());
-                ps.setString(7, book.getEdition());
-                ps.setString(8, book.getPublisher());
-                ps.setString(9, book.getDescription());
+                book.setBookID(rs.getInt("BookID"));
+                book.setTitle(rs.getString("title"));
+                book.setAuthor(rs.getString("Author"));
+                book.setISBN_10(rs.getString("ISBN10"));
+                book.setISBN_13(rs.getString("ISBN13"));
+                book.setGenre(rs.getString("Genre"));
+                book.setEdition(rs.getString("Edition"));
+                book.setPublisher(rs.getString("Publisher"));
+                book.setDescription(rs.getString("Description"));
+               
             }
             return book;
         } catch (SQLException e) {
@@ -132,18 +193,54 @@ public class BookDB {
             ArrayList bookList = new ArrayList();
             while (rs.next()) {
                 book = new Book();
-                book.setAuthor(rs.getString("Author"));
                 book.setBookID(rs.getInt("BookID"));
+                book.setTitle(rs.getString("title"));
+                book.setAuthor(rs.getString("Author"));
+                book.setISBN_10(rs.getString("ISBN10"));
+                book.setISBN_13(rs.getString("ISBN13"));
+                book.setGenre(rs.getString("Genre"));
                 book.setEdition(rs.getString("Edition"));
                 book.setPublisher(rs.getString("Publisher"));
-                book.setDescription(rs.getString("Description"));
-                book.setISBN_10(rs.getInt("ISBN10"));
-                book.setISBN_13(rs.getInt("ISBN13"));
                 book.setDescription(rs.getString("Description"));
                 bookList.add(book);
             }
             return bookList;
         } catch (SQLException e) {
+            System.out.println(e);
+            return null;
+        } finally {
+            DBUtil.closeResultSet(rs);
+            DBUtil.closePreparedStatement(ps);
+            pool.freeConnection(connection);
+        }
+    }
+
+    public static byte[] getBookImage(int bookID) {
+        //int img_id = bookID;
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        OutputStream oImage;
+        try {
+            ps = connection.prepareStatement("select * from BookImage where book_ID = ?");
+            ps.setInt(1, bookID);
+
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                byte barray[] = rs.getBytes("image");
+                //Blob blob=rs.getBlob("image");
+                //response.setContentType("image/gif");
+                //oImage = response.getOutputStream();
+                //oImage.write(barray);
+                //oImage.flush();
+                //oImage.close();
+                return barray;
+            }
+            return null;
+        } catch (Exception e) {
             System.out.println(e);
             return null;
         } finally {

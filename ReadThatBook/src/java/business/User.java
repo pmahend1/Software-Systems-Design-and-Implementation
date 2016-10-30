@@ -7,7 +7,7 @@ package business;
 
 import java.io.Serializable;
 
-public class User implements Serializable {
+public class User implements iUser {
 
     private String userName;
     private String firstName;

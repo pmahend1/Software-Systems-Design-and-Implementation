@@ -14,21 +14,35 @@
         <script src="scripts/angular.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
         <script src="js/manageBooks.js"></script>
+        <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        </style>
         <title>Manage Books</title>
     </head>
     <body>
-        <h1>Add book from Google Books</h1>
+        <h2>Add book from Google Books</h2>
         <input id="search" placeholder="Title or Author"/>
         <button id="button" type="button">Search</button>
         <div id="results"></div>
+        <br>
+        <h2>Book Details </h2>
+        <div><a href="BookManager?action=addBookPage">Add Books Manually</a></div>
+        <br>
+        <br>
+        <div>
         <table>
                 <tr>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Edition</th>
+                    <th>Genre</th>
+                    <th>ISBN10</th>
+                    <th>ISBN13</th>
+                    <th>Update</th>
+                    <th>Delete</th>
                 </tr>
                 <c:forEach items="${bookList}" var="book">
                     <tr>
@@ -38,13 +52,18 @@
                         <td><c:out value="${book.getGenre()}"/></td>
                         <td><c:out value="${book.getISBN_10()}"/></td>
                         <td><c:out value="${book.getISBN_13()}"/></td>
-                        </tr>
+                        <td><a href="<c:url value="BookManager?action=updateBookPage&bookID=${book.getBookID()}"/>">Edit</a></td>
+                        <td><a href="<c:url value="BookManager?action=deleteBook&bookID=${book.getBookID()}"/>">Delete</a></td>
+                    </tr>
                 </c:forEach>
+                    
         </table>
-
-
-        <a href="BookManager?action=deleteBook&bookID=2">Delete Books</a>
-        <a href="BookManager?action=addBookPage">Add Books</a>
+            
+                
+        </div>
+        <br>
+        
+        
 
     </body>
 </html>

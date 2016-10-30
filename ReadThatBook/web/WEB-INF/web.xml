@@ -8,6 +8,14 @@
         <servlet-name>BookManager</servlet-name>
         <servlet-class>admin.BookManager</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ImageServlet</servlet-name>
+        <servlet-class>ImageServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BookImageServlet</servlet-name>
+        <servlet-class>admin.BookImageServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -15,6 +23,14 @@
     <servlet-mapping>
         <servlet-name>BookManager</servlet-name>
         <url-pattern>/BookManager</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ImageServlet</servlet-name>
+        <url-pattern>/ImageServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BookImageServlet</servlet-name>
+        <url-pattern>/BookImageServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -16,7 +16,9 @@
          <p>Welcome <c:out value="${user.firstName}" ></c:out></p> 
          
          <a href="">Check Account</a><br/>
-         <a href="BookManager?action=manageBooks">Manage Books</a><br/>
+         <c:if test="${user.getRole()=='admin'}">
+         <a href="BookManager?action=manageBooks&user=${cookie.userCookie.value}">Manage Books</a><br/>
+         </c:if>
     </body>
 </html>
 

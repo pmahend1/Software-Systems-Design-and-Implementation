@@ -6,15 +6,23 @@
 package admin;
 
 import business.Book;
+import business.User;
 import data.BookDB;
+import data.UserDB;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.nio.file.Paths;
+import java.sql.Blob;
+import java.sql.SQLException;
 import java.util.Collection;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,62 +36,30 @@ import javax.servlet.http.Part;
 @MultipartConfig
 public class BookManager extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet BookManager</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet BookManager at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         doPost(request, response);
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getParameter("action");
+        //String userStr = request.getParameter("user");
         HttpSession session = request.getSession();
+
+        Cookie[] cookies = request.getCookies();
+        for (Cookie cookie : cookies) {
+            String name = cookie.getName();
+            String value = cookie.getValue();
+            System.out.println(name + " " + value);
+        }
+        
         String url = "/index.jsp";
         String message = "";
+        //User user = UserDB.selectUser(userStr);
+        //System.out.println(user.getUserName() + " " + user.getRole());
         System.out.println("admin.BookManager.doPost()" + action);
         if (action == null) {
             action = "viewHome";
@@ -92,12 +68,14 @@ public class BookManager extends HttpServlet {
             String description = request.getParameter("description");
             String ISBN_13Str = request.getParameter("ISBN_13");
             String ISBN_10Str = request.getParameter("ISBN_10");
-            
-            int ISBN_10 = 0,ISBN_13 = 0;
-            InputStream inputStream = null; 
+            System.out.println("admin.BookManager.doPost()" + ISBN_13Str);
+            System.out.println("admin.BookManager.doPost()" + ISBN_10Str);
+            int ISBN_10 = 0;
+            long ISBN_13 = 0;
+            InputStream inputStream = null;
             //Collection coll = request.getParts();
             Part filePart = request.getPart("photo");
-            String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString(); 
+            String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
             if (filePart != null) {
                 System.out.println(filePart.getName());
                 System.out.println(filePart.getContentType());
@@ -105,9 +83,15 @@ public class BookManager extends HttpServlet {
                 inputStream = filePart.getInputStream();
             }
             try {
-                 ISBN_10 = Integer.parseInt(ISBN_10Str);
-                 ISBN_13 = Integer.parseInt(ISBN_13Str);
-                 System.out.println("inside try");
+                ISBN_10 = Integer.parseInt(ISBN_10Str);
+                System.out.println("inside try for ISBN_10Str");
+
+            } catch (Exception e) {
+                System.out.println("admin.BookManager.doPost()" + e);
+            }
+            try {
+                ISBN_13 = Long.parseLong(ISBN_13Str);
+                System.out.println("inside try for ISBN_13Str");
 
             } catch (Exception e) {
                 System.out.println("admin.BookManager.doPost()" + e);
@@ -125,15 +109,15 @@ public class BookManager extends HttpServlet {
             System.out.println("admin.BookManager.doPost()" + edition);
             System.out.println("admin.BookManager.doPost()" + publisher);
 
-            Book newBook = new Book(title, author, ISBN_10, ISBN_13, genre, edition, publisher, description);
+            Book newBook = new Book(title, author, ISBN_10Str, ISBN_13Str, genre, edition, publisher, description);
             BookDB.addBook(newBook);
-           // String addedBookID = BookDB.selectBook(ISBN_13)
-            if(inputStream!=null){
+            // String addedBookID = BookDB.selectBook(ISBN_13)
+            if (inputStream != null) {
                 BookDB.addBookImage(1, inputStream);
             }
             url = "/manageBooks.jsp";
-            List<Book> booklist =  BookDB.selectAllBooks();
-            request.setAttribute("booklist", booklist);
+            List<Book> bookList = BookDB.selectAllBooks();
+            request.setAttribute("bookList", bookList);
             //byte[] imageBytes = getImageAsBytes();
 
 //            response.setContentType("image/jpeg");
@@ -151,24 +135,139 @@ public class BookManager extends HttpServlet {
                 System.out.println("admin.BookManager.doPost()" + " bookIDInt = " + bookID);
             } catch (Exception e) {
                 System.out.println(e);
-                url = "/index.jsp";
+                url = "/home.jsp";
                 //request.setAttribute("booklist", booklist);
                 getServletContext().getRequestDispatcher(url).forward(request, response);
             }
             BookDB.deleteBook(bookID);
-            url = "/index.jsp";
-            //request.setAttribute("booklist", booklist);
+            url = "/manageBooks.jsp";
+            //request.setAttribute("user", user);
+            List<Book> booklist = BookDB.selectAllBooks();
+            request.setAttribute("bookList", booklist);
             getServletContext().getRequestDispatcher(url).forward(request, response);
 
         } else if (action.equals("manageBooks")) {
             url = "/manageBooks.jsp";
             List<Book> bookList = BookDB.selectAllBooks();
-            System.out.println(bookList.get(0).getAuthor());
+
             request.setAttribute("bookList", bookList);
             getServletContext().getRequestDispatcher(url).forward(request, response);
         } else if (action.equals("addBookPage")) {
             url = "/addBooks.jsp";
             getServletContext().getRequestDispatcher(url).forward(request, response);
+        }else if(action.equals("updateBookPage")){
+            url="/updateBook.jsp";
+            String bookIDStr = request.getParameter("bookID");
+            System.out.println("Inside updateBookPage" );
+            System.out.println("bookID is "+bookIDStr );
+            int bookID=0;
+            try {
+                bookID = Integer.parseInt(bookIDStr);
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+            Book updatableBook = BookDB.selectBook(bookID);
+            System.out.println("book selected for update"+ updatableBook.getTitle());
+            request.setAttribute("book", updatableBook);
+            getServletContext().getRequestDispatcher(url).forward(request, response);
+        }
+        else if(action.equals("updateBook")){
+            String title = request.getParameter("title");
+            String description = request.getParameter("description");
+            String ISBN_13Str = request.getParameter("ISBN_13");
+            String ISBN_10Str = request.getParameter("ISBN_10");
+            System.out.println("admin.BookManager.doPost()" + ISBN_13Str);
+            System.out.println("admin.BookManager.doPost()" + ISBN_10Str);
+            int ISBN_10 = 0;
+            long ISBN_13 = 0;
+            InputStream inputStream = null;
+            //Collection coll = request.getParts();
+            Part filePart = request.getPart("photo");
+            String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
+            if (filePart != null) {
+                System.out.println(filePart.getName());
+                System.out.println(filePart.getContentType());
+
+                inputStream = filePart.getInputStream();
+            }
+            try {
+                ISBN_10 = Integer.parseInt(ISBN_10Str);
+                System.out.println("inside try for ISBN_10Str");
+
+            } catch (Exception e) {
+                System.out.println("admin.BookManager.doPost()" + e);
+            }
+            try {
+                ISBN_13 = Long.parseLong(ISBN_13Str);
+                System.out.println("inside try for ISBN_13Str");
+
+            } catch (Exception e) {
+                System.out.println("admin.BookManager.doPost()" + e);
+            }
+            String author = request.getParameter("author");
+            String genre = request.getParameter("genre");
+            String edition = request.getParameter("edition");
+            String publisher = request.getParameter("publisher");
+            System.out.println("admin.BookManager.doPost()" + title);
+            System.out.println("admin.BookManager.doPost()" + description);
+            System.out.println("admin.BookManager.doPost()" + ISBN_13);
+            System.out.println("admin.BookManager.doPost()" + ISBN_10);
+            System.out.println("admin.BookManager.doPost()" + author);
+            System.out.println("admin.BookManager.doPost()" + genre);
+            System.out.println("admin.BookManager.doPost()" + edition);
+            System.out.println("admin.BookManager.doPost()" + publisher);
+
+            Book updateBook = new Book(title, author, ISBN_10Str, ISBN_13Str, genre, edition, publisher, description);
+            BookDB.updateBook(updateBook);
+            // String addedBookID = BookDB.selectBook(ISBN_13)
+            if (inputStream != null) {
+                BookDB.addBookImage(1, inputStream);
+            }
+            url = "/manageBooks.jsp";
+            List<Book> bookList = BookDB.selectAllBooks();
+            request.setAttribute("bookList", bookList);
+            //byte[] imageBytes = getImageAsBytes();
+
+//            response.setContentType("image/jpeg");
+//            response.setContentLength(imageBytes.length);
+//
+//            response.getOutputStream().write(imageBytes);
+            getServletContext().getRequestDispatcher(url).forward(request, response);
+        }
+        
+        else if (action.equals("viewBooks")) {
+            byte[] b = BookDB.getBookImage(8);
+            OutputStream img = null;
+            response.setContentType("image/png");
+            img = response.getOutputStream();
+            img.write(b);
+            img.flush();
+            img.close();
+//                 request.setAttribute("param", 1);
+//               response.setContentType("image/jpeg");
+//            try {
+//                response.setContentLength( (int) b.length());
+//            } catch (SQLException ex) {
+//                Logger.getLogger(BookManager.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//           // response.setContentLength(10);
+//            InputStream is = null;
+//            try {
+//                is = b.getBinaryStream();
+//            } catch (SQLException ex) {
+//                Logger.getLogger(BookManager.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//            OutputStream os = response.getOutputStream();
+//            byte buf[] = null;
+//            try {
+//                buf = new byte[(int) b.length()];
+//            } catch (SQLException ex) {
+//                Logger.getLogger(BookManager.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//            is.read(buf);
+//            os.write(buf);
+//            os.close();
+
         }
     }
 
