@@ -105,6 +105,8 @@ public class AuthenticationServlet extends HttpServlet {
                 email = "dummy";
                 firstName = "dummy";
                 lastName = "dummy";
+                url="/guestHome.jsp";
+                getServletContext().getRequestDispatcher(url).forward(request, response);
             } else if (passWord.equals(rePassWord)) {
                 User newUser = new User(userName, firstName, lastName, email, passWord, "user");
                 UserDB.insert(newUser);
