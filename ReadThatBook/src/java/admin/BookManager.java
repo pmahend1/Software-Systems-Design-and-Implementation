@@ -7,7 +7,9 @@ package admin;
 
 
 import business.Book;
+import business.User;
 import data.BookDB;
+import data.UserDB;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -103,6 +105,12 @@ public class BookManager extends HttpServlet {
             BookDB.addBook(newBook);
             url="/index.jsp";
             request.setAttribute("newBook", newBook);
+            getServletContext().getRequestDispatcher(url).forward(request, response);
+        }else if (action.equals("searchBook")) {
+            String bookName = request.getParameter("searchString");
+            Book book = BookDB.searchBook(bookName);
+            url="/viewBook.jsp";
+            request.setAttribute("book", book);
             getServletContext().getRequestDispatcher(url).forward(request, response);
         }
     }
