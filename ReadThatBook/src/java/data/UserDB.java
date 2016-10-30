@@ -34,6 +34,52 @@ public class UserDB {
         }
     }
 
+     public static int update(User user) {
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        PreparedStatement ps = null;
+
+        String query
+                = "Update User "
+                + "SET FirstName = ?, LastName = ?, PassWord = ?, Email = ? Where UserName = ?";
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setString(1, user.getFirstName());
+            ps.setString(2, user.getLastName());
+            ps.setString(3, user.getPassWord());
+            ps.setString(4, user.getEmail());
+            ps.setString(5, user.getUserName());
+            return ps.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
+            return 0;
+        } finally {
+            DBUtil.closePreparedStatement(ps);
+            pool.freeConnection(connection);
+        }
+    }
+     
+     public static int delete(String username) {
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        PreparedStatement ps = null;
+
+        String query
+                = "Delete from user "
+                + "Where UserName = ?";
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setString(1, username);
+            return ps.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
+            return 0;
+        } finally {
+            DBUtil.closePreparedStatement(ps);
+            pool.freeConnection(connection);
+        }
+    }
+     
     public static User selectUser(String userName) {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
