@@ -143,6 +143,8 @@ public class AuthenticationServlet extends HttpServlet {
         }else if (action.equals("viewProfile")) {
             url = "/userHomePage.jsp";
             //request.setAttribute("user", user);
+            List<Book> books = BookDB.selectAllBooks();
+            request.setAttribute("books", books);
             request.getServletContext().getRequestDispatcher(url).forward(request, response);
         }
 

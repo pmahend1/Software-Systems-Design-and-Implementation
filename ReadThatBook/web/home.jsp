@@ -74,6 +74,7 @@
         <script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/jquery-ui.js" type="text/javascript"></script>
         <link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/themes/blitzer/jquery-ui.css"
         rel="stylesheet" type="text/css" />
+      
 <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
@@ -156,7 +157,7 @@
     </c:if> 
     <br/>
     <form name="ProfileView" action="UserProfileManager" method="post">
-    <input type="hidden" name="username" value="${user.getUserName()}"</input>
+    <input type="hidden" name="username" value="${user.getUserName()}"/>
     <div class="dropdown">
         <button class="dropbtn">Profile</button>
         <div class="dropdown-content">
@@ -168,6 +169,26 @@
             </div>
         </div>
     </div>
-    </form>      
+    </form>  
+
+    <div class="row">
+                  <c:forEach items="${books}" var="item">
+                    <div class="col-sm-4 col-lg-4 col-md-4">
+                        <div class="thumbnail">
+                            <img src="http://placehold.it/320x150" alt="">
+                            <div class="caption">
+                                
+                                <h3 align="center">${item.title}</h3>
+                                <h4 align="center">By:${item.author}</h4> 
+                                <form name="viewBook" action="BookListServlet" method="post">
+                                    <input type="hidden" name="action" value="viewBook"/>
+                                    <input type="hidden" name="bookid" value="${item.bookID}"/>
+                                    <input type="submit" value="View Details" />
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    </c:forEach>   
+                </div>    
     </body>
 </html>
