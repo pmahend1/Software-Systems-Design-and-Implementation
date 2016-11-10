@@ -25,6 +25,9 @@
             .dropdown {
                 position: relative;
                 display: inline-block;
+                top: 30px;
+                left: 1400px;
+
             }
 
             .dropdown-content {
@@ -150,15 +153,9 @@
         <!-- /.container -->
     </nav>
 <br/>
-<br/>
-    <c:if test="${user.getRole()=='admin'}">
-    <a class ="dropbtn" style="text-decoration:none; color:white;"
-       href="BookManager?action=manageBooks&user=${cookie.userCookie.value}">Manage Books</a><br/>
-    </c:if> 
-    <br/>
-    <form name="ProfileView" action="UserProfileManager" method="post">
+<form name="ProfileView" action="UserProfileManager" method="post">
     <input type="hidden" name="username" value="${user.getUserName()}"/>
-    <div class="dropdown">
+    <div class="dropdown" style="z-index:1">
         <button class="dropbtn">Profile</button>
         <div class="dropdown-content">
             <button type="submit" name="action" value="viewprofile" >View profile</button>
@@ -169,7 +166,14 @@
             </div>
         </div>
     </div>
-    </form>  
+</form>  
+    <br/>
+    <c:if test="${user.getRole()=='admin'}">
+    <a class ="dropbtn" style="text-decoration:none; color:white;"
+       href="BookManager?action=manageBooks&user=${cookie.userCookie.value}">Manage Books</a><br/>
+    </c:if> 
+    <br/>
+    
 
     <div class="row">
                   <c:forEach items="${books}" var="item">
