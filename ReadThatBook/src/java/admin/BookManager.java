@@ -6,8 +6,10 @@
 package admin;
 
 import business.Book;
+import business.Rating;
 import business.User;
 import data.BookDB;
+import data.RatingDB;
 import data.UserDB;
 import java.io.IOException;
 import java.io.InputStream;
@@ -275,7 +277,7 @@ public class BookManager extends HttpServlet {
             url="/viewBook.jsp";
             request.setAttribute("book", book);
             getServletContext().getRequestDispatcher(url).forward(request, response);
-        }
+        }       
     }
 
     /**
