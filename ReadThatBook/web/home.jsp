@@ -155,7 +155,8 @@
        href="BookManager?action=manageBooks&user=${cookie.userCookie.value}">Manage Books</a><br/>
     </c:if> 
     <br/>
-    <form name="ProfileView" action="UserProfileManager" method="post">
+    
+    <form name="ProfileView" action="UserProfileManager" method="post" align="left">
     <input type="hidden" name="username" value="${user.getUserName()}"</input>
     <div class="dropdown">
         <button class="dropbtn">Profile</button>
@@ -168,6 +169,48 @@
             </div>
         </div>
     </div>
-    </form>      
+    </form>   
+    <form name="viewWishlist" action="WishlistServlet" method="post" ">
+        <input type="hidden" name="action" value="viewWishlist">
+        <input type="hidden" name="username" value="${user.getUserName()}"</input>
+        <input type="submit" value="View wishlist" 
+               style="background-color: #4CAF50; 
+                        border: none;
+                        color: white;
+                        padding: 15px 32px;
+                        text-align: center;
+                        text-decoration: none;
+                        display: inline-block;
+                        font-size: 16px;
+                        margin: 4px 2px;
+                        cursor: pointer;"/>
+    </form>
+    <br/><br/><br/><br/>
+    
+     <c:forEach items="${books}" var="item">
+                            <div class="col-sm-4 col-lg-4 col-md-4">
+                                <div class="thumbnail">
+                                    <img src="http://placehold.it/320x150" alt="">
+                                    <div class="caption">
+
+                                        <h4 align="center">${item.title}</h4>
+                                        <h5 align="center">By:${item.author}</h5> 
+                                        <form name="viewBook" action="BookListServlet" method="post" align="center">
+                                            <input type="hidden" name="action" value="viewBook">
+                                            <input type="hidden" name="bookid" value=${item.bookID}>
+                                            <input type="submit" value="View Details" />
+                                        </form>
+                                        <form name="addToWishlist" action="WishlistServlet" method="post" align="center">
+                                            <input type="hidden" name="action" value="addToWishlist">
+                                            <input type="hidden" name="username" value="${user.getUserName()}"</input>
+                                            <input type="hidden" name="bookid" value=${item.bookID}>
+                                            <input type="submit" value="Add to wishlist" />
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </c:forEach>
+                        
+    </form>
     </body>
 </html>

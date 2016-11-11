@@ -12,6 +12,10 @@
         <servlet-name>UserProfileManager</servlet-name>
         <servlet-class>admin.UserProfileManager</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>WishlistServlet</servlet-name>
+        <servlet-class>admin.WishlistServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -23,6 +27,10 @@
     <servlet-mapping>
         <servlet-name>UserProfileManager</servlet-name>
         <url-pattern>/UserProfileManager</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>WishlistServlet</servlet-name>
+        <url-pattern>/WishlistServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

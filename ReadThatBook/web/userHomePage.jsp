@@ -149,6 +149,7 @@
                                     <input type="hidden" name="bookid" value=${item.bookID}>
                                     <input type="submit" value="View Details" />
                                 </form>
+                               
                             </div>
                         </div>
                     </div>
