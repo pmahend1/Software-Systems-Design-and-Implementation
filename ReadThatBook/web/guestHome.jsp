@@ -161,7 +161,7 @@ loginForm.passWord.$dirty && loginForm.passWord.$invalid"/>
                         <c:forEach items="${books}" var="item">
                             <div class="col-sm-4 col-lg-4 col-md-4">
                                 <div class="thumbnail">
-                                    <img src="http://placehold.it/320x150" alt="">
+                                    <img src="${pageContext.request.contextPath}/images/${item.bookID}" alt="No image"/>
                                     <div class="caption">
 
                                         <h4 align="center">${item.title}</h4>
