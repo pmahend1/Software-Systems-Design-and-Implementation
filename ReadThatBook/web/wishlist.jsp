@@ -13,7 +13,7 @@
         <title>Wishlist Page</title>
     </head>
     <body>
-        
+     
     <h1 align="center">Your Wishlist</h1>
     <table style="width:100%; border:1px solid black;">
   <tr>
@@ -43,6 +43,22 @@
                             </tr>           
                                       
                         </c:forEach>   
-    </table>       
+    </table> 
+    
+    <form name="viewhome" action="WishlistServlet" method="post">
+        <input type="hidden" name="username" value="${user.getUserName()}"</input>
+        <input type="hidden" name="action" value="backHome">
+        <input type="submit" value="Back to homepage" 
+               style="background-color: #4CAF50; 
+                        border: none;
+                        color: white;
+                        padding: 15px 32px;
+                        text-align: center;
+                        text-decoration: none;
+                        display: inline-block;
+                        font-size: 16px;
+                        margin: 4px 2px;
+                        cursor: pointer;"/>
+    </form>
     </body>
 </html>

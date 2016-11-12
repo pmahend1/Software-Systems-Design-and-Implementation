@@ -170,9 +170,9 @@
         </div>
     </div>
     </form>   
-    <form name="viewWishlist" action="WishlistServlet" method="post" ">
+    <form name="viewWishlist" action="WishlistServlet" method="post">
         <input type="hidden" name="action" value="viewWishlist">
-        <input type="hidden" name="username" value="${user.getUserName()}"</input>
+        <input type="hidden" name="username" value="${user.getUserName()}"></input>
         <input type="submit" value="View wishlist" 
                style="background-color: #4CAF50; 
                         border: none;
@@ -204,6 +204,7 @@
                                             <input type="hidden" name="action" value="addToWishlist">
                                             <input type="hidden" name="username" value="${user.getUserName()}"</input>
                                             <input type="hidden" name="bookid" value=${item.bookID}>
+                                            <input type="hidden" name="books" value="${books}">
                                             <input type="submit" value="Add to wishlist" />
                                         </form>
                                     </div>

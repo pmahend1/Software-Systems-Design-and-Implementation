@@ -92,7 +92,7 @@ public class WishlistDB {
             ps.setString(2, username);
             System.out.println(ps.toString());
             return ps.executeUpdate();
-        } catch (SQLException e) {
+        } catch (Exception e) {
             System.out.println(e);
             return 0;
         } finally {

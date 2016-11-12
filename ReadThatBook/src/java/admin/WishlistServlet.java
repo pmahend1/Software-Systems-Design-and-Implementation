@@ -17,6 +17,7 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.nio.file.Paths;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -60,20 +61,25 @@ public class WishlistServlet extends HttpServlet {
         } else if (action.equals("addToWishlist")) {
             url = "/home.jsp";
             String username= request.getParameter("username");
+            User user = UserDB.selectUser(username);
+            List<Book> books = BookDB.selectAllBooks();   
+            
             String bookIdstring = request.getParameter("bookid");
             if(bookIdstring==null){
                 bookIdstring="nothing";
             }
             int bookId=0;
             bookId=Integer.parseInt(bookIdstring);
-            //System.out.println("admin.HomeServlet.doPost() bookIdstring"+bookIdstring +" int "+ bookId);
             WishlistDB.addBook(username,bookId);
             System.out.println("Added to wishlist");
+            request.setAttribute("books", books);
+            request.setAttribute("username", username);
+            request.setAttribute("user", user);
             request.getServletContext().getRequestDispatcher(url).forward(request, response);
         } else if (action.equals("viewWishlist")) {
             url = "/wishlist.jsp";
             String username= request.getParameter("username");
-            System.out.println(username);
+            System.out.println("inside wishlistservlet-viewwishlist action"+username);
             User user = UserDB.selectUser(username);
             try {
                 List<Book> books =WishlistDB.viewWishlist(username);
@@ -90,17 +96,43 @@ public class WishlistServlet extends HttpServlet {
             
         } else if (action.equals("deleteWishlist")) {
             url="/wishlist.jsp";
+            System.out.println("Inside deleteWishlist action : WishlistServlet");
             String username= request.getParameter("username");
+            User user = UserDB.selectUser(username);
             String bookIdstring = request.getParameter("bookid");
             if(bookIdstring==null){
                 bookIdstring="nothing";
             }
+            if(username==null){
+                username="";
+            }
+            System.out.println("username : " + username );
             int bookId=0;
             bookId=Integer.parseInt(bookIdstring);
             WishlistDB.deleteWishlist(username,bookId);
-            //request.setAttribute("books", books);
+            List<Book> wishlist = new ArrayList();
+            try {
+                 wishlist = WishlistDB.viewWishlist(username);
+            } catch (SQLException ex) {
+                Logger.getLogger(WishlistServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            request.setAttribute("books", wishlist);
+            request.setAttribute("username", username);
+            request.setAttribute("user", user);
             System.out.println("Removed from wishlist");
             request.getServletContext().getRequestDispatcher(url).forward(request, response);
-        }  
+        }
+        else if (action.equals("backHome")) {
+            url="/home.jsp";
+            String username= request.getParameter("username");
+            User user = UserDB.selectUser(username);
+            List<Book> books = BookDB.selectAllBooks();   
+            request.setAttribute("books", books);
+            request.setAttribute("username", username);
+            request.setAttribute("user", user);
+            System.out.println("Back to homepage");
+            request.getServletContext().getRequestDispatcher(url).forward(request, response);
+            
+        }
     }
 }
