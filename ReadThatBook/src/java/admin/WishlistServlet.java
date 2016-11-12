@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import static java.lang.System.out;
 import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -60,6 +61,7 @@ public class WishlistServlet extends HttpServlet {
             action = "viewHome";
         } else if (action.equals("addToWishlist")) {
             url = "/home.jsp";
+            String message;
             String username= request.getParameter("username");
             User user = UserDB.selectUser(username);
             List<Book> books = BookDB.selectAllBooks();   
@@ -70,8 +72,14 @@ public class WishlistServlet extends HttpServlet {
             }
             int bookId=0;
             bookId=Integer.parseInt(bookIdstring);
-            WishlistDB.addBook(username,bookId);
-            System.out.println("Added to wishlist");
+            int s=WishlistDB.addBook(username,bookId);
+            if(s==0)
+            { message="This book has been already added to your wishlist.";}
+            else
+            {
+                message="Book has been successfully added to your wishlist.";
+            }
+            request.setAttribute("message", message);
             request.setAttribute("books", books);
             request.setAttribute("username", username);
             request.setAttribute("user", user);

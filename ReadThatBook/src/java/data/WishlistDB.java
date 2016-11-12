@@ -17,6 +17,7 @@ import java.util.List;
  */
 public class WishlistDB {
     public static int addBook(String username,int bookid) {
+        String status="This book has been already added to your wishlist.";
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
         PreparedStatement ps = null;
@@ -30,11 +31,6 @@ public class WishlistDB {
           
             return ps.executeUpdate();
         } catch (SQLException e) {
-            out.println("<script type=\"text/javascript\">");
-            out.println("alert('This book has been already added to your wishlist.');");
-            out.println("location='index.jsp';");
-            out.println("</script>");
-            
             return 0;
         } finally {
             DBUtil.closePreparedStatement(ps);
