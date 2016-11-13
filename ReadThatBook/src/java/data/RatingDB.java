@@ -150,6 +150,7 @@ public class RatingDB {
                 System.out.println("votes " +rs.getInt(2));
                 
                 averageArray[0] = rs.getDouble(1);
+               
                averageArray[1] = rs.getDouble(2);
               
                 System.out.println("values exist");

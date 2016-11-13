@@ -123,7 +123,11 @@ public class BookListServlet extends HttpServlet {
             }
                 request.setAttribute("reviewlist", reviews);
                 
-                request.setAttribute("avgRating", averageArray[0]);
+                String avgRating = String.format("%.2f", averageArray[0]);
+                System.out.println("avgRating : " + avgRating);
+                request.setAttribute("avgRating", avgRating);
+                
+                request.setAttribute("avgRatinginDouble", Math.round(averageArray[0]));
                 request.setAttribute("votes", votes);
                 request.setAttribute("bookResult", bookList);
                 request.setAttribute("book", book);

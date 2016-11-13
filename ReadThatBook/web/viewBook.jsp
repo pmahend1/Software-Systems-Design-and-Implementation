@@ -61,14 +61,15 @@
                     <td><img src="${pageContext.request.contextPath}/images/${book.bookID}" style="width:200px;height: 300px" alt="No image"/></td>
                     <td>
                         <table align="center">
-                                <tr>
-                                    <td>Autdor </td>
-                                    <td><c:out value="${book.getAuthor()}"></c:out></td>
-                                </tr>   
+                                  
                                 <tr>
                                     <td>Title</td>
                                     <td><c:out value="${book.getTitle()}"></c:out></td>
                                 </tr>
+                                <tr>
+                                    <td>Author </td>
+                                    <td><c:out value="${book.getAuthor()}"></c:out></td>
+                                </tr> 
                                 <tr>
                                     <td>Genre </td>
                                     <td><c:out value="${book.getGenre()}"></c:out></td>
@@ -83,13 +84,21 @@
                                 </tr>
                                 <tr>
                                     <td> Rating</td>
+                                <c:if test="${not empty user}">
                                     <td><input type="number" name="rating"  value="${rating}" id="rating-empty-clearable" class="rating" data-clearable/></td>  
-
+                                </c:if>
+                                <c:if test="${empty user}">
+                                <td><input type="number" name="rating" value="${avgRatinginDouble}" id="rating-readonly" class="rating" data-clearable="remove" data-readonly /></td> 
+                                </c:if>
                             </tr>
-                            <tr>
-                               
-                                <td><input type="submit" name="Submit" value="Rate"/></td>
-                            </tr>
+                            <c:if test="${not empty user}">
+                                <tr>
+                                   <input type="hidden" name="bookID" value="${book.getBookID()}" />
+                                    <td><input type="submit" name="Submit" value="Rate"/></td>
+                                </tr>
+                            </c:if>
+                                
+                            
                         </table>
                     </td>
                 </tr>
@@ -98,7 +107,9 @@
 
        </form>
 
-
+<c:if test="${not empty user}">
+                               
+                            
         <c:choose>
 
             <c:when test="${showtextarea}">
@@ -135,7 +146,7 @@
                 </form>
             </c:otherwise>
         </c:choose>
-
+</c:if>
         <div >
             <c:if test="${not empty reviewlist}"><table style="background-color:cornsilk;padding:20px;width: 50%; " align="center">
                 <th>Reviews:</th>

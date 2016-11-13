@@ -36,8 +36,8 @@ public class RatingManager extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        if (request == null || response == null)
-            return;
+//        if (request == null || response == null)
+//            return;
         String action = request.getParameter("action");
         String url = "/viewBook.jsp";
         //String userStr = request.getParameter("user");
@@ -114,8 +114,9 @@ public class RatingManager extends HttpServlet {
                         double[] averageArray = RatingDB.getAverageRating(bookID);
                         System.out.println("avgRating " + averageArray[0]);
                         System.out.println("votes " + averageArray[1]);
-
-                        request.setAttribute("avgRating", averageArray[0]);
+                        
+                        String avgRating = String.format("%.2f", averageArray[0]);
+                        request.setAttribute("avgRating", avgRating);
                         request.setAttribute("votes", (int) averageArray[1]);
                         request.setAttribute("rating", rating);
                         request.setAttribute("book", book);

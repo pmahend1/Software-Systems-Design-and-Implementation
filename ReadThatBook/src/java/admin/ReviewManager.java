@@ -162,7 +162,8 @@ public class ReviewManager extends HttpServlet {
                 System.out.println("votes " + averageArray[1]);
 
                 int rating = RatingDB.getUserRating(bookID, userCookievalue);
-                request.setAttribute("avgRating", averageArray[0]);
+                String avgRating = String.format("%.2f", averageArray[0]);
+                request.setAttribute("avgRating", avgRating);
                 request.setAttribute("votes", (int) averageArray[1]);
                 request.setAttribute("review", newReview);
                 request.setAttribute("rating", rating);
