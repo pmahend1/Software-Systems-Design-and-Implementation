@@ -118,7 +118,7 @@
                         <tr>
                             <td>
                                 <input type="hidden" name="bookID" value="${book.getBookID()}" />
-                                <textarea name='review' id='review' class="textarea" value="${editreviewvalue}"></textarea><br />
+                                <textarea name='review' id='review' class="textarea">${editreviewvalue}</textarea><br />
                                 <input type="submit" name="Submit" value="edit review"/>
                             </td>
                         </tr>    
@@ -163,7 +163,7 @@
                             <form name="editreview" action="ReviewManager" method="post">
                                 <input type="hidden" name="action" value="editreview" />
                                 <input type="hidden" name="bookID" value="${book.getBookID()}" />
-                                <td><input type="submit" name="Submit" value="edit review"/></td>
+                                <td><input type="submit" name="Submit" value="Edit review"/></td>
                             </form>
 
                         </c:when>

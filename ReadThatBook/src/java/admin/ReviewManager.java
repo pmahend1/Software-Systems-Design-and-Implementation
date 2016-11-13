@@ -87,6 +87,7 @@ public class ReviewManager extends HttpServlet {
             return;
         String action = request.getParameter("action");
         String url = "/viewBook.jsp";
+        String reviewStr = null;
         //String userStr = request.getParameter("user");
         System.out.println("action=" +action);
   
@@ -106,7 +107,7 @@ public class ReviewManager extends HttpServlet {
             action = "dummy";
         } else if (action.equals("reviewBook") || action.equals("editreview") || action.equals("editreviewBook")) {
             String bookIDStr = request.getParameter("bookID");
-            String reviewStr = request.getParameter("review");
+            reviewStr = request.getParameter("review");
             request.setAttribute("showtextarea", false);
             int bookID = 0;
             System.out.println("bookIDStr : " + bookIDStr);
@@ -151,7 +152,8 @@ public class ReviewManager extends HttpServlet {
                 {
                     Review review = (Review)reviews.get(i);
                     System.out.println("Review id : " + review.getReview());
-
+                    if (review.getUserName().compareTo(userCookievalue) == 0)
+                        reviewStr = review.getReview();
                     int userRating = RatingDB.getUserRating(bookID, review.getUserName());
                     review.setUserrating(userRating);
                 }
@@ -166,6 +168,12 @@ public class ReviewManager extends HttpServlet {
                 request.setAttribute("avgRating", avgRating);
                 request.setAttribute("votes", (int) averageArray[1]);
                 request.setAttribute("review", newReview);
+                System.out.println("action:"+action);
+                if (action.equals("editreview"))
+                {
+                    System.out.println("admin.ReviewManager.doPost()" +reviewStr);
+                    request.setAttribute("editreviewvalue", reviewStr);
+                }
                 request.setAttribute("rating", rating);
                 request.setAttribute("book", book);
                 request.setAttribute("user", userCookievalue);
