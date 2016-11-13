@@ -4,6 +4,7 @@
     Author     : ashwini
 --%>
 
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
