@@ -49,8 +49,6 @@ public class RatingManagerTest {
         HttpServletResponse response = null;
         RatingManager instance = new RatingManager();
         instance.doGet(request, response);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -63,8 +61,5 @@ public class RatingManagerTest {
         HttpServletResponse response = null;
         RatingManager instance = new RatingManager();
         instance.doPost(request, response);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-    
+    }   
 }

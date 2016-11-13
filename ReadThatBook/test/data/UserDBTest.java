@@ -48,8 +48,6 @@ public class UserDBTest {
         int expResult = 0;
         int result = UserDB.insert(user);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
     }
 
     /**
@@ -62,8 +60,6 @@ public class UserDBTest {
         int expResult = 0;
         int result = UserDB.update(user);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
     }
 
     /**
@@ -76,8 +72,6 @@ public class UserDBTest {
         int expResult = 0;
         int result = UserDB.delete(username);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
     }
 
     /**
@@ -90,8 +84,6 @@ public class UserDBTest {
         User expResult = null;
         User result = UserDB.selectUser(userName);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
     }
     
 }

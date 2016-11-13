@@ -49,8 +49,6 @@ public class BookManagerTest {
         HttpServletResponse response = null;
         BookManager instance = new BookManager();
         instance.doGet(request, response);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -63,8 +61,6 @@ public class BookManagerTest {
         HttpServletResponse response = null;
         BookManager instance = new BookManager();
         instance.doPost(request, response);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
 }

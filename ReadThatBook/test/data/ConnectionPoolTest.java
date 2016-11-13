@@ -61,8 +61,6 @@ public class ConnectionPoolTest {
         Connection expResult = null;
         Connection result = instance.getConnection();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
     }
 
     /**
@@ -73,9 +71,6 @@ public class ConnectionPoolTest {
         System.out.println("freeConnection");
         Connection c = null;
         ConnectionPool instance = null;
-        //instance.freeConnection(c);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
     }
     
 }

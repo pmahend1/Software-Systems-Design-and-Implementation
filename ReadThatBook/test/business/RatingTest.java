@@ -47,8 +47,6 @@ public class RatingTest {
         int expResult = 0;
         int result = instance.getBookID();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -60,8 +58,6 @@ public class RatingTest {
         int bookID = 0;
         Rating instance = new Rating();
         instance.setBookID(bookID);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -74,8 +70,6 @@ public class RatingTest {
         String expResult = "";
         String result = instance.getUserName();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -87,8 +81,6 @@ public class RatingTest {
         String userName = "";
         Rating instance = new Rating();
         instance.setUserName(userName);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -101,8 +93,6 @@ public class RatingTest {
         int expResult = 0;
         int result = instance.getRating();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -114,8 +104,6 @@ public class RatingTest {
         int rating = 0;
         Rating instance = new Rating();
         instance.setRating(rating);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
 }

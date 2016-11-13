@@ -60,8 +60,6 @@ public class ReviewTest {
         int bookID = 0;
         Review instance = new Review();
         instance.setBookID(bookID);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -74,8 +72,6 @@ public class ReviewTest {
         String expResult = "";
         String result = instance.getUserName();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -87,8 +83,6 @@ public class ReviewTest {
         String userName = "";
         Review instance = new Review();
         instance.setUserName(userName);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -101,8 +95,6 @@ public class ReviewTest {
         String expResult = "";
         String result = instance.getReview();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -114,8 +106,6 @@ public class ReviewTest {
         String review = "";
         Review instance = new Review();
         instance.setReview(review);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -128,8 +118,6 @@ public class ReviewTest {
         int expResult = 0;
         int result = instance.getUserrating();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -141,9 +129,7 @@ public class ReviewTest {
         int userrating = 0;
         Review instance = new Review();
         instance.setUserrating(userrating);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+   }
 
     /**
      * Test of toString method, of class Review.
@@ -155,8 +141,6 @@ public class ReviewTest {
         String expResult = "";
         String result = instance.toString();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
 }

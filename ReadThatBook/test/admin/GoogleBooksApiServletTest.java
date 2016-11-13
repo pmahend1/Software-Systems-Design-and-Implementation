@@ -49,8 +49,6 @@ public class GoogleBooksApiServletTest {
         HttpServletResponse response = null;
         GoogleBooksApiServlet instance = new GoogleBooksApiServlet();
         instance.doGet(request, response);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -63,8 +61,5 @@ public class GoogleBooksApiServletTest {
         HttpServletResponse response = null;
         GoogleBooksApiServlet instance = new GoogleBooksApiServlet();
         instance.doPost(request, response);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-    
+    } 
 }

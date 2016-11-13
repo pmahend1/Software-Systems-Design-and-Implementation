@@ -52,8 +52,6 @@ public class BookDBTest {
         int expResult = 0;
         int result = BookDB.addBookImage(bookID, inputStream);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
     }
 
     /**
@@ -67,8 +65,6 @@ public class BookDBTest {
         int expResult = 0;
         int result = BookDB.updateBookImage(bookID, inputStream);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
     }
 
     /**
@@ -81,8 +77,6 @@ public class BookDBTest {
         int expResult = 0;
         int result = BookDB.addBook(book);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
     }
 
     /**
@@ -109,8 +103,6 @@ public class BookDBTest {
         Book expResult = null;
         Book result = BookDB.selectBook(bookID);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
     }
 
     /**
@@ -123,8 +115,6 @@ public class BookDBTest {
         int expResult = 0;
         int result = BookDB.deleteBook(bookID);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
     }
 
     /**
@@ -136,8 +126,6 @@ public class BookDBTest {
         List<Book> expResult = null;
         List<Book> result = BookDB.selectAllBooks();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
     }
 
     /**
@@ -150,8 +138,6 @@ public class BookDBTest {
         byte[] expResult = null;
         byte[] result = BookDB.getBookImage(bookID);
         assertArrayEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
     }
 
     /**
@@ -164,8 +150,6 @@ public class BookDBTest {
         Book expResult = null;
         List<Book> result = BookDB.searchBook(bookTitle);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
     }
 
     /**
@@ -178,8 +162,6 @@ public class BookDBTest {
         boolean expResult = false;
         boolean result = BookDB.checkBookImageExists(bookID);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -192,8 +174,6 @@ public class BookDBTest {
         int expResult = 0;
         int result = BookDB.getBookIDByISBN(ISBN);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
 }

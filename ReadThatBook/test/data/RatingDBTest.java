@@ -47,9 +47,6 @@ public class RatingDBTest {
         Rating rating = null;
         int expResult = 0;
         int result = RatingDB.insertRating(rating);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -62,8 +59,6 @@ public class RatingDBTest {
         boolean expResult = false;
         boolean result = RatingDB.checkRatingExists(rating);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -76,8 +71,6 @@ public class RatingDBTest {
         int expResult = 0;
         int result = RatingDB.updateRating(rating);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -90,8 +83,6 @@ public class RatingDBTest {
         double[] expResult = null;
         double[] result = RatingDB.getAverageRating(bookID);
         assertArrayEquals(expResult, result, bookID);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -105,8 +96,6 @@ public class RatingDBTest {
         int expResult = 0;
         int result = RatingDB.getUserRating(bookID, userName);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -119,8 +108,5 @@ public class RatingDBTest {
         int expResult = 0;
         int result = RatingDB.deleteRating(rating);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
-    
 }

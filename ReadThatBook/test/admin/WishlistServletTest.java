@@ -49,8 +49,6 @@ public class WishlistServletTest {
         HttpServletResponse response = null;
         WishlistServlet instance = new WishlistServlet();
         instance.doGet(request, response);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -63,8 +61,6 @@ public class WishlistServletTest {
         HttpServletResponse response = null;
         WishlistServlet instance = new WishlistServlet();
         instance.doPost(request, response);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
 }

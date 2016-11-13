@@ -47,8 +47,6 @@ public class WishlistTest {
         String expResult = "";
         String result = instance.getUsername();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -61,8 +59,6 @@ public class WishlistTest {
         int expResult = 0;
         int result = instance.getBookID();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -74,8 +70,6 @@ public class WishlistTest {
         String username = "";
         Wishlist instance = new Wishlist();
         instance.setUsername(username);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -87,8 +81,6 @@ public class WishlistTest {
         int bookID = 0;
         Wishlist instance = new Wishlist();
         instance.setBookID(bookID);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
 }

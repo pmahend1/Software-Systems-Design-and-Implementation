@@ -49,8 +49,6 @@ public class ReviewDBTest {
         int expResult = 0;
         int result = ReviewDB.insertReview(review);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -64,8 +62,6 @@ public class ReviewDBTest {
         boolean expResult = false;
         boolean result = ReviewDB.checkReviewExists(bookID, userName);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -78,8 +74,6 @@ public class ReviewDBTest {
         int expResult = 0;
         int result = ReviewDB.updateReview(review);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -93,9 +87,7 @@ public class ReviewDBTest {
         List<Review> expResult = null;
         List<Review> result = ReviewDB.getUsersReview(bookID, userName);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+     }
 
     /**
      * Test of getReviewsFromBookID method, of class ReviewDB.
@@ -107,8 +99,6 @@ public class ReviewDBTest {
         List<Review> expResult = null;
         List<Review> result = ReviewDB.getReviewsFromBookID(bookID);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -121,8 +111,6 @@ public class ReviewDBTest {
         int expResult = 0;
         int result = ReviewDB.deleteReview(review);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
 }

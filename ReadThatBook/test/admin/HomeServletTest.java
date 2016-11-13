@@ -49,8 +49,6 @@ public class HomeServletTest {
         HttpServletResponse response = null;
         HomeServlet instance = new HomeServlet();
         instance.doGet(request, response);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -63,8 +61,5 @@ public class HomeServletTest {
         HttpServletResponse response = null;
         HomeServlet instance = new HomeServlet();
         instance.doPost(request, response);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-    
+    }   
 }

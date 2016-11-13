@@ -49,8 +49,6 @@ public class UserProfileManagerTest {
         HttpServletResponse response = null;
         UserProfileManager instance = new UserProfileManager();
         instance.processRequest(request, response);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -63,8 +61,6 @@ public class UserProfileManagerTest {
         HttpServletResponse response = null;
         UserProfileManager instance = new UserProfileManager();
         instance.doGet(request, response);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -77,8 +73,6 @@ public class UserProfileManagerTest {
         HttpServletResponse response = null;
         UserProfileManager instance = new UserProfileManager();
         instance.doPost(request, response);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -91,8 +85,6 @@ public class UserProfileManagerTest {
         String expResult = "";
         String result = instance.getServletInfo();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
 }
