@@ -89,7 +89,7 @@ public class RatingDBTest {
         int bookID = 0;
         double[] expResult = null;
         double[] result = RatingDB.getAverageRating(bookID);
-        assertArrayEquals(expResult, result);
+        assertArrayEquals(expResult, result, bookID);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
