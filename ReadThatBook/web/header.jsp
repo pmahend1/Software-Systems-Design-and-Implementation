@@ -14,5 +14,6 @@
             <ul class="nav navbar-nav">
                 <li><a href="#">About</a></li>
                 <li><a href="#">Contact</a></li>
+                <li><a href="<c:url value="LoginServlet?action=backHome"/>">Home</a></li>
             </ul>
 
