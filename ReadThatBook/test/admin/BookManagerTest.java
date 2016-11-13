@@ -7,6 +7,8 @@ package admin;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.apache.catalina.connector.Request;
+import org.apache.catalina.connector.Response;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -49,7 +51,7 @@ public class BookManagerTest {
         HttpServletResponse response = null;
         BookManager instance = new BookManager();
         instance.doGet(request, response);
-    }
+   }
 
     /**
      * Test of doPost method, of class BookManager.

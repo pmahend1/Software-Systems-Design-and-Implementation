@@ -42,6 +42,8 @@ public class BookListServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request,
             HttpServletResponse response)
             throws ServletException, IOException {
+        if (request == null || response == null)
+            return;
         HttpSession session = request.getSession();
         String action = request.getParameter("action");
         

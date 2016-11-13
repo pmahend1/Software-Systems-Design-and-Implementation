@@ -20,6 +20,8 @@ import java.util.List;
  */
 public class ReviewDB {
     public static int insertReview(Review review) {
+        if (review == null)
+            return 0;
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
         PreparedStatement ps = null;
@@ -87,6 +89,8 @@ public class ReviewDB {
     }
 
     public static int updateReview(Review review) {
+        if (review == null)
+            return 0;
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
         PreparedStatement ps = null;
@@ -190,6 +194,8 @@ public class ReviewDB {
     }
     
     public static int deleteReview(Review review) {
+        if (review == null)
+            return 0;
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
         PreparedStatement ps = null;

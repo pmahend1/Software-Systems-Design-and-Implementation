@@ -17,6 +17,8 @@ import java.sql.ResultSet;
 public class RatingDB {
 
     public static int insertRating(Rating rating) {
+        if (rating == null)
+            return 0;
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
         PreparedStatement ps = null;
@@ -46,6 +48,8 @@ public class RatingDB {
     }
 
     public static boolean checkRatingExists(Rating rating) {
+        if (rating == null)
+            return false;
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
         PreparedStatement ps = null;
@@ -85,6 +89,8 @@ public class RatingDB {
     }
 
     public static int updateRating(Rating rating) {
+        if (rating == null)
+            return 0;
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
         PreparedStatement ps = null;
@@ -117,6 +123,9 @@ public class RatingDB {
     }
 
     public static double[] getAverageRating(int bookID) {
+        
+        if (bookID < 0)
+            return null;
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
         PreparedStatement ps = null;
@@ -192,6 +201,8 @@ public class RatingDB {
     }
     
     public static int deleteRating(Rating rating) {
+        if (rating == null)
+            return 0;
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
         PreparedStatement ps = null;

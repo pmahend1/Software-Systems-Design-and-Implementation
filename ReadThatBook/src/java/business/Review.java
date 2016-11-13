@@ -22,6 +22,8 @@ public class Review {
     }
 
     public Review() {
+        userName = "";
+        review = "";
     }
 
     public int getBookID() {

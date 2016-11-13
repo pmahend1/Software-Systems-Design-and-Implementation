@@ -22,6 +22,7 @@ public class Rating {
     }
 
     public Rating() {
+        userName="";
     }
 
     public int getBookID() {

@@ -38,6 +38,8 @@ public class WishlistDB {
         }
     }
     public static List<Book> viewWishlist(String username) throws Exception {
+        if (username == null || username.length() == 0)
+            return null;
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
         PreparedStatement ps = null;

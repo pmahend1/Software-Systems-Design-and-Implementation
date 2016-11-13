@@ -54,6 +54,8 @@ public class BookSearch {
     public static java.util.List<Book> queryGoogleBooks(JsonFactory jsonFactory, String query) throws Exception {
         ClientCredentials.errorIfNotSpecified();
 
+        if (jsonFactory == null || query.length() == 0)
+            return null;
         // Set up Books client.
         final Books books = new Books.Builder(GoogleNetHttpTransport.newTrustedTransport(), jsonFactory, null)
                 .setApplicationName(APPLICATION_NAME)

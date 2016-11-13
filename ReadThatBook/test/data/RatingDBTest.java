@@ -79,7 +79,7 @@ public class RatingDBTest {
     @Test
     public void testGetAverageRating() {
         System.out.println("getAverageRating");
-        int bookID = 0;
+        int bookID = -1;
         double[] expResult = null;
         double[] result = RatingDB.getAverageRating(bookID);
         assertArrayEquals(expResult, result, bookID);

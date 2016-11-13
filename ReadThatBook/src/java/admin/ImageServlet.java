@@ -35,6 +35,8 @@ public class ImageServlet extends HttpServlet {
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        if (request == null || response == null)
+            return;
         String imageIDstr = request.getPathInfo().substring(1); // Returns "foo.png".
         System.out.println(request);
         System.out.println(request.getPathInfo());

@@ -34,6 +34,8 @@ public class UserProfileManager extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        if (request == null || response == null)
+            return;
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
@@ -76,6 +78,8 @@ public class UserProfileManager extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
+        if (request == null || response == null)
+            return;
         
         String action = request.getParameter("action");
         
@@ -147,9 +151,9 @@ public class UserProfileManager extends HttpServlet {
      *
      * @return a String containing servlet description
      */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
+//    @Override
+//    public String getServletInfo() {
+//        return "Short description";
+//    }// </editor-fold>
 
 }

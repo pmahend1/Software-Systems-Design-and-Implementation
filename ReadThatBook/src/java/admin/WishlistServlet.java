@@ -45,6 +45,9 @@ public class WishlistServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        if (request == null || response == null)
+            return;
         String action = request.getParameter("action");
         //String userStr = request.getParameter("user");
         HttpSession session = request.getSession();
@@ -97,7 +100,7 @@ public class WishlistServlet extends HttpServlet {
                 request.setAttribute("user", user);
                 System.out.println("Sent to wishlist");
                 request.getServletContext().getRequestDispatcher(url).forward(request, response);
-            } catch (SQLException ex) {
+            } catch (Exception ex) {
                 Logger.getLogger(WishlistServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
            
@@ -121,7 +124,7 @@ public class WishlistServlet extends HttpServlet {
             List<Book> wishlist = new ArrayList();
             try {
                  wishlist = WishlistDB.viewWishlist(username);
-            } catch (SQLException ex) {
+            } catch (Exception ex) {
                 Logger.getLogger(WishlistServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
             request.setAttribute("books", wishlist);

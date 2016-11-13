@@ -47,6 +47,10 @@ public class BookManager extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        if (request == null || response == null){
+            return;
+        }
+            
         String action = request.getParameter("action");
         //String userStr = request.getParameter("user");
         HttpSession session = request.getSession();

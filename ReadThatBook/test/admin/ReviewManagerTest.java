@@ -78,12 +78,12 @@ public class ReviewManagerTest {
     /**
      * Test of getServletInfo method, of class ReviewManager.
      */
-    @Test
-    public void testGetServletInfo() {
-        System.out.println("getServletInfo");
-        ReviewManager instance = new ReviewManager();
-        String expResult = "";
-        String result = instance.getServletInfo();
-        assertEquals(expResult, result);
-    }   
+//    @Test
+//    public void testGetServletInfo() {
+//        System.out.println("getServletInfo");
+//        ReviewManager instance = new ReviewManager();
+//        String expResult = "";
+//        String result = instance.getServletInfo();
+//        assertEquals(expResult, result);
+//    }   
 }

@@ -38,6 +38,8 @@ public class AuthenticationServlet extends HttpServlet {
             HttpServletResponse response)
             throws ServletException, IOException {
 
+        if (request == null || response == null)
+            return;
         String action = request.getParameter("action");
         HttpSession session = request.getSession();
         String url = "/index.jsp";

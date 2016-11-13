@@ -30,6 +30,15 @@ public class Book {
     }
     
     public Book() {
+        title = "";
+        author = "";
+        ISBN10 = "";
+        ISBN13 = "";
+        genre = "";
+        edition = "";
+        publisher = "";
+        description = "";
+        imageLink = "";
     }
 
     public Book( String title, String author, String ISBN10, String ISBN13, String genre, String edition, String publisher, String description) {

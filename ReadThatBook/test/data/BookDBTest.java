@@ -162,6 +162,7 @@ public class BookDBTest {
         boolean expResult = false;
         boolean result = BookDB.checkBookImageExists(bookID);
         assertEquals(expResult, result);
+
     }
 
     /**
@@ -174,6 +175,7 @@ public class BookDBTest {
         int expResult = 0;
         int result = BookDB.getBookIDByISBN(ISBN);
         assertEquals(expResult, result);
+
     }
     
 }

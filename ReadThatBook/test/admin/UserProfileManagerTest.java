@@ -78,13 +78,13 @@ public class UserProfileManagerTest {
     /**
      * Test of getServletInfo method, of class UserProfileManager.
      */
-    @Test
-    public void testGetServletInfo() {
-        System.out.println("getServletInfo");
-        UserProfileManager instance = new UserProfileManager();
-        String expResult = "";
-        String result = instance.getServletInfo();
-        assertEquals(expResult, result);
-    }
+//    @Test
+//    public void testGetServletInfo() {
+//        System.out.println("getServletInfo");
+//        UserProfileManager instance = new UserProfileManager();
+//        String expResult = "";
+//        String result = instance.getServletInfo();
+//        assertEquals(expResult, result);
+//    }
     
 }

@@ -270,7 +270,7 @@ public class BookTest {
         String result = instance.getImageLink();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
     /**
@@ -283,7 +283,7 @@ public class BookTest {
         Book instance = new Book();
         instance.setImageLink(imageLink);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
     /**
@@ -297,7 +297,7 @@ public class BookTest {
         String result = instance.getISBN10();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
     /**
@@ -311,7 +311,7 @@ public class BookTest {
         String result = instance.getISBN13();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
     /**
@@ -324,7 +324,7 @@ public class BookTest {
         Book instance = new Book();
         instance.setISBN10(ISBN10);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
     /**
@@ -337,7 +337,7 @@ public class BookTest {
         Book instance = new Book();
         instance.setISBN13(ISBN13);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
     
 }

@@ -15,6 +15,7 @@ public class Wishlist {
     private String username;
     
     public Wishlist() {
+        username = "";
     }
     public Wishlist(String username,int bookID ) {
 

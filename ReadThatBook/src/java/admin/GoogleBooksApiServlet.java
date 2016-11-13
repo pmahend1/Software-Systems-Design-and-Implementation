@@ -38,6 +38,8 @@ public class GoogleBooksApiServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        if (request == null || response == null)
+            return;
         System.out.println("Inside GoogleBooksApiServlet");
         String queryString = request.getParameter("query");
         String action = request.getParameter("action");
