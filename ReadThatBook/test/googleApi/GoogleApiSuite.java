@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package business;
+package googleApi;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -14,11 +14,11 @@ import org.junit.runners.Suite;
 
 /**
  *
- * @author akshay
+ * @author sanju
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({UserTest.class, RatingTest.class, BookTest.class, ReviewTest.class, iUserTest.class, WishlistTest.class})
-public class BusinessSuite {
+@Suite.SuiteClasses({googleApi.BookSearchTest.class, googleApi.ClientCredentialsTest.class})
+public class GoogleApiSuite {
 
     @BeforeClass
     public static void setUpClass() throws Exception {

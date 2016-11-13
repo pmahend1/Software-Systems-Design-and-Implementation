@@ -258,5 +258,86 @@ public class BookTest {
         instance.setPublisher(publisher);
         assertEquals(publisher, instance.getPublisher());
     }
+
+    /**
+     * Test of getImageLink method, of class Book.
+     */
+    @Test
+    public void testGetImageLink() {
+        System.out.println("getImageLink");
+        Book instance = new Book();
+        String expResult = "";
+        String result = instance.getImageLink();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of setImageLink method, of class Book.
+     */
+    @Test
+    public void testSetImageLink() {
+        System.out.println("setImageLink");
+        String imageLink = "";
+        Book instance = new Book();
+        instance.setImageLink(imageLink);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getISBN10 method, of class Book.
+     */
+    @Test
+    public void testGetISBN10() {
+        System.out.println("getISBN10");
+        Book instance = new Book();
+        String expResult = "";
+        String result = instance.getISBN10();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getISBN13 method, of class Book.
+     */
+    @Test
+    public void testGetISBN13() {
+        System.out.println("getISBN13");
+        Book instance = new Book();
+        String expResult = "";
+        String result = instance.getISBN13();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of setISBN10 method, of class Book.
+     */
+    @Test
+    public void testSetISBN10() {
+        System.out.println("setISBN10");
+        String ISBN10 = "";
+        Book instance = new Book();
+        instance.setISBN10(ISBN10);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of setISBN13 method, of class Book.
+     */
+    @Test
+    public void testSetISBN13() {
+        System.out.println("setISBN13");
+        String ISBN13 = "";
+        Book instance = new Book();
+        instance.setISBN13(ISBN13);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
     
 }

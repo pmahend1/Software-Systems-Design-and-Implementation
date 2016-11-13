@@ -4,6 +4,10 @@
  * and open the template in the editor.
  */
 
+import admin.AdminSuite;
+import business.BusinessSuite;
+import data.DataSuite;
+import googleApi.GoogleApiSuite;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -16,7 +20,7 @@ import org.junit.runners.Suite;
  * @author akshay
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({data.DataSuite.class, business.BusinessSuite.class, admin.AdminSuite.class})
+@Suite.SuiteClasses({AdminSuite.class, GoogleApiSuite.class, BusinessSuite.class, DataSuite.class})
 public class RootSuite {
 
     @BeforeClass

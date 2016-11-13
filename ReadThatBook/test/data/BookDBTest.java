@@ -167,5 +167,33 @@ public class BookDBTest {
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }
+
+    /**
+     * Test of checkBookImageExists method, of class BookDB.
+     */
+    @Test
+    public void testCheckBookImageExists() {
+        System.out.println("checkBookImageExists");
+        int bookID = 0;
+        boolean expResult = false;
+        boolean result = BookDB.checkBookImageExists(bookID);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getBookIDByISBN method, of class BookDB.
+     */
+    @Test
+    public void testGetBookIDByISBN() {
+        System.out.println("getBookIDByISBN");
+        String ISBN = "";
+        int expResult = 0;
+        int result = BookDB.getBookIDByISBN(ISBN);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
     
 }
