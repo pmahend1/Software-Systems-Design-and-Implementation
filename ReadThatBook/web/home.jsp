@@ -26,7 +26,7 @@
                 position: fixed;
                 display: inline-block;
                 top: 0px;
-                left: 1700px;
+                left: 0px;
 
             }
 
