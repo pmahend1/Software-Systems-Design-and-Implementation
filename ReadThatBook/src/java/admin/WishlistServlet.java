@@ -133,17 +133,5 @@ public class WishlistServlet extends HttpServlet {
             System.out.println("Removed from wishlist");
             request.getServletContext().getRequestDispatcher(url).forward(request, response);
         }
-        else if (action.equals("backHome")) {
-            url="/home.jsp";
-            String username= request.getParameter("username");
-            User user = UserDB.selectUser(username);
-            List<Book> books = BookDB.selectAllBooks();   
-            request.setAttribute("books", books);
-            request.setAttribute("username", username);
-            request.setAttribute("user", user);
-            System.out.println("Back to homepage");
-            request.getServletContext().getRequestDispatcher(url).forward(request, response);
-            
-        }
     }
 }
