@@ -7,10 +7,13 @@ package admin;
 
 import business.Book;
 import business.Rating;
+import business.Review;
 import data.BookDB;
 import data.RatingDB;
+import data.ReviewDB;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
@@ -42,10 +45,16 @@ public class RatingManager extends HttpServlet {
         System.out.println("admin.RatingManager.doPost()");
 
         Cookie[] cookies = request.getCookies();
+        String userCookievalue = null;
+
         for (Cookie cookie : cookies) {
             String name = cookie.getName();
-            String value = cookie.getValue();
-            System.out.println("Cookie : " + name + " - " + value);
+            if(name.equals("userCookie"))
+            {
+                userCookievalue = cookie.getValue();
+                System.out.println("Cookie : " + name + " - " + userCookievalue);
+            }
+
         }
         if (action.equals("")) {
             action = "dummy";
@@ -74,10 +83,15 @@ public class RatingManager extends HttpServlet {
             } catch (Exception e) {
                 System.out.println(e);
             }
-            String userCookie = cookies[1].getValue();
-            System.out.println("userCoookie : " + userCookie);
-            if (userCookie != null) {
-                Rating newRating = new Rating(bookID, userCookie, rating);
+
+            if (userCookievalue != null) {
+                Rating newRating = new Rating(bookID, userCookievalue, rating);
+                
+                
+                boolean reviewExists = ReviewDB.checkReviewExists(bookID, userCookievalue);
+                System.out.println("reviewExists " + reviewExists + " User name " +userCookievalue+ " bookId " +bookID);
+                request.setAttribute("reviewexists", reviewExists);
+   
                 if (RatingDB.checkRatingExists(newRating)) {
                     
                     if (rating == 0) {
@@ -90,7 +104,7 @@ public class RatingManager extends HttpServlet {
                         request.setAttribute("votes", (int) averageArray[1]);
                         request.setAttribute("rating", rating);
                         request.setAttribute("book", book);
-                        getServletContext().getRequestDispatcher(url).forward(request, response);
+                        //getServletContext().getRequestDispatcher(url).forward(request, response);
                     } else {
                         RatingDB.updateRating(newRating);
                         url = "/viewBook.jsp";
@@ -103,7 +117,7 @@ public class RatingManager extends HttpServlet {
                         request.setAttribute("votes", (int) averageArray[1]);
                         request.setAttribute("rating", rating);
                         request.setAttribute("book", book);
-                        getServletContext().getRequestDispatcher(url).forward(request, response);
+                        //getServletContext().getRequestDispatcher(url).forward(request, response);
                     }
 
                 } else {
@@ -118,9 +132,20 @@ public class RatingManager extends HttpServlet {
                         request.setAttribute("votes", (int) averageArray[1]);
                         request.setAttribute("rating", rating);
                     request.setAttribute("book", book);
-                    getServletContext().getRequestDispatcher(url).forward(request, response);
+                    //getServletContext().getRequestDispatcher(url).forward(request, response);
                 }
+                List<Review> reviews = ReviewDB.getReviewsFromBookID(bookID);
+                for (int i =0; i < reviews.size(); i++)
+                {
+                    Review review = (Review)reviews.get(i);
+                    System.out.println("Review id : " + review.getReview());
 
+                    int userRating = RatingDB.getUserRating(bookID, review.getUserName());
+                    review.setUserrating(userRating);
+                }
+                request.setAttribute("reviewlist", reviews);
+                request.setAttribute("user", userCookievalue);
+                getServletContext().getRequestDispatcher(url).forward(request, response);
             }
 
         }

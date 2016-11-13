@@ -7,8 +7,10 @@ package admin;
 
 import business.Book;
 import business.Rating;
+import business.Review;
 import data.BookDB;
 import data.RatingDB;
+import data.ReviewDB;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -77,11 +79,39 @@ public class BookListServlet extends HttpServlet {
                 System.out.println("avgRating " + averageArray[0]);
                 System.out.println("votes " + votes);
                 
+            String userCookievalue = null;
+
+            for (Cookie cookie : cookies) {
+                String name = cookie.getName();
+                if(name.equals("userCookie"))
+                {
+                    userCookievalue = cookie.getValue();
+                    System.out.println("Cookie : " + name + " - " + userCookievalue);
+                }
+
+            }
+            boolean reviewExists = ReviewDB.checkReviewExists(bookId, userCookievalue);
+            System.out.println("reviewExists " + reviewExists + " User name " +userCookievalue+ " bookId " +bookId);
+            request.setAttribute("reviewexists", reviewExists);
+            
+            List<Review> reviews = ReviewDB.getReviewsFromBookID(bookId);
+            for (int i =0; i < reviews.size(); i++)
+            {
+                Review review = (Review)reviews.get(i);
+                System.out.println("Review id : " + review.getReview());
+
+                int userRating = RatingDB.getUserRating(bookId, review.getUserName());
+                review.setUserrating(userRating);
+            }
+                request.setAttribute("reviewlist", reviews);
+                
                 request.setAttribute("avgRating", averageArray[0]);
                 request.setAttribute("votes", votes);
                 
                 request.setAttribute("book", book);
                 request.setAttribute("rating", rating);
+                request.setAttribute("user", userCookievalue);
+                
                 request.getServletContext().getRequestDispatcher(url).forward(request, response);
                 }
            
