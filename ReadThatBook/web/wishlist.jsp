@@ -33,7 +33,7 @@
                     <td style="border:1px solid black;">
                         <form name="viewBook" action="BookListServlet" method="post" align="center">
                             <input type="hidden" name="action" value="viewBook">
-                            <input type="hidden" name="bookid" value=${item.bookID}/>
+                            <input type="hidden" name="bookid" value=${item.bookID}>
                             <input type="submit" value="View" />
                         </form>
                     </td>
@@ -41,7 +41,7 @@
                         <form name="deleteWishlist" action="WishlistServlet" method="post" align="center">
                             <input type="hidden" name="action" value="deleteWishlist"/>
                             <input type="hidden" name="username" value="${user.getUserName()}"/>
-                            <input type="hidden" name="bookid" value=${item.bookID}/>
+                            <input type="hidden" name="bookid" value=${item.bookID}>
                             <input type="hidden" name="books" value="${books}"/>
                             <input type="submit" value="Remove" />
                         </form>
