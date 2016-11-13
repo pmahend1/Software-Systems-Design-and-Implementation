@@ -20,6 +20,10 @@
         <servlet-name>WishlistServlet</servlet-name>
         <servlet-class>admin.WishlistServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GoogleBooksApiServlet</servlet-name>
+        <servlet-class>admin.GoogleBooksApiServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -35,6 +39,10 @@
     <servlet-mapping>
         <servlet-name>RatingManager</servlet-name>
         <url-pattern>/RatingManager</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GoogleBooksApiServlet</servlet-name>
+        <url-pattern>/GoogleBooksApiServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>WishlistServlet</servlet-name>
