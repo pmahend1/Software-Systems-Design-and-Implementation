@@ -62,7 +62,7 @@
                     <td>
                         <table align="center">
                                 <tr>
-                                    <td>Autdor </td>
+                                    <td>Author </td>
                                     <td><c:out value="${book.getAuthor()}"></c:out></td>
                                 </tr>   
                                 <tr>
