@@ -4,6 +4,7 @@
     Author     : ashwini
 --%>
 
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -14,5 +15,6 @@
             <ul class="nav navbar-nav">
                 <li><a href="#">About</a></li>
                 <li><a href="#">Contact</a></li>
+                <li><a href="<c:url value="LoginServlet?action=backHome"/>">Home</a></li>
             </ul>
 

@@ -61,7 +61,6 @@
                     <td><img src="${pageContext.request.contextPath}/images/${book.bookID}" style="width:200px;height: 300px" alt="No image"/></td>
                     <td>
                         <table align="center">
-                                  
                                 <tr>
                                     <td>Title</td>
                                     <td><c:out value="${book.getTitle()}"></c:out></td>

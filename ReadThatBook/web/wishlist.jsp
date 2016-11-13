@@ -51,7 +51,7 @@
             </c:forEach>   
         </table> 
 
-        <form name="viewhome" action="WishlistServlet" method="post">
+        <form name="viewhome" action="LoginServlet" method="post">
             <input type="hidden" name="username" value="${user.getUserName()}"</input>
             <input type="hidden" name="action" value="backHome">
             <center><input type="submit" value="Back to homepage" 
