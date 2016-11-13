@@ -13,7 +13,7 @@
         <link href="css/shop-homepage.css" rel="stylesheet">
         <title>Update Book</title>
     </head>
-    <body style="background-color:#FFF791;">
+    <body  style="background-color: #e3e8f8">
         <%@ include file="header.jsp" %>
         <%@ include file="userLogout.jsp" %> 
         <%@ include file="headerClose.jsp" %>

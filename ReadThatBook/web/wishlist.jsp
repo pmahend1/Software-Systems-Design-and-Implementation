@@ -12,7 +12,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Wishlist Page</title>
     </head>
-    <body style="background-color:#FFF791;">
+    <body  style="background-color: #e3e8f8">
         <%@ include file="header.jsp" %>>
         <%@ include file="headerClose.jsp" %>
     <h1 align="center">Your Wishlist</h1>

@@ -37,7 +37,8 @@ public class WishlistDB {
             pool.freeConnection(connection);
         }
     }
-    public static List<Book> viewWishlist(String username) throws Exception {
+
+    public static List<Book> viewWishlist(String username) throws SQLException {
         if (username == null || username.length() == 0)
             return null;
         ConnectionPool pool = ConnectionPool.getInstance();

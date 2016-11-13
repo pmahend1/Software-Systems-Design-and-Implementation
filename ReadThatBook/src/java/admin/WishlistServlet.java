@@ -82,7 +82,7 @@ public class WishlistServlet extends HttpServlet {
             {
                 message="Book has been successfully added to your wishlist.";
             }
-            request.setAttribute("message", message);
+            request.setAttribute("wishMessage", message);
             request.setAttribute("books", books);
             request.setAttribute("username", username);
             request.setAttribute("user", user);
