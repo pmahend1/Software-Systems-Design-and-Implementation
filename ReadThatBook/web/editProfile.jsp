@@ -21,24 +21,43 @@
         <%@ include file="userLogout.jsp" %>
         <%@ include file="headerClose.jsp" %>
         <br/><br/>
-        <h3 style="margin-left: 250px">Edit Profile</h3><br/>
-        <form name="editProfile" action="UserProfileManager" method="post">
-            <register>
-            <label> Password :  </label>
-            <input type="password" name="passWord" value="${user.getPassWord()}"/><br/>
-            <label> Re enter Password :</label>
-            <input type="password" name="rePassword" value="${user.getPassWord()}"/><br/>
-            <label> First Name :</label>
-            <input type="text" name="firstName" value="${user.getFirstName()}"/><br/>
-            <label> Last Name:</label>
-            <input type="text" name="lastName" value="${user.getLastName()}"/><br/>
-            <label> Email :</label>
-            <input type="email" name="email" value="${user.getEmail()}"/><br/>
-            <input type="hidden" name="username" value="${user.getUserName()}"</input>
-            <input type="hidden" name="action" value="updateProfile" />
-            <input type="submit"/>
-            </register>
-        </form>
+        <center>
+        <h3>Edit Profile</h3><br/>
+        <table>
+            <tr>
+                <td><b>Password</b></td>
+                <td>:</td>
+                <td><input type="password" name="passWord" value="${user.getPassWord()}"/></td>    
+            </tr>
+            <tr>
+                <td><b>Re enter Password</b></td>
+                <td>:</td>
+                <td><input type="password" name="rePassword" value="${user.getPassWord()}"/></td>
+            </tr>
+            <tr>
+                <td><b>First Name</b></td>
+                <td>:</td>
+                <td><input type="text" name="firstName" value="${user.getFirstName()}"/></td>  
+            </tr>
+            <tr>
+                <td><b>Last Name</b></td>
+                <td>:</td>
+                <td><input type="text" name="lastName" value="${user.getLastName()}"/></td>  
+            </tr>
+            <tr>
+                <td><b>Email</b></td>
+                <td>:</td>
+                <td><input type="email" name="email" value="${user.getEmail()}"/></td>  
+            </tr>
+            <tr>
+                <form name="editProfile" action="UserProfileManager" method="post">
+                <td><input type="hidden" name="username" value="${user.getUserName()}"</input></td>   
+                <td><input type="hidden" name="action" value="updateProfile" /></td>   
+                <td><input type="submit"/></td>   
+                </form>
+            </tr>
+        </table>
+        </center>
         <br/><br/><br/><br/><br/><br/><br/><br/><br/>
         <%@ include file="footer.jsp" %>
     </body>

@@ -22,61 +22,68 @@
          <form action="BookManager" enctype="multipart/form-data" method="POST">
             <input type="hidden" name="action" value="updateBook"/>
             <input type="hidden" name="bookID" value="${book.getBookID()}"/>
-            <table align="center" style="font-weight:bold;">
+            <table align="center">
+                <td><img src="${pageContext.request.contextPath}/images/${book.getBookID()}" style="width:320px;height: 420px" alt="No image"/></td>
+                <td>
+                    <table align="center">
                 <tbody>
                     <tr>
-                        <td>Book Title</td>
+                        <td style="font-weight: bold">Book Title</td>
                         <td>:</td>
                         <td><input type="text" name="title" value="${book.getTitle()}"/></td>
                     </tr>
                     <tr>
-                        <td>ISBN-13</td>
+                        <td style="font-weight: bold">ISBN-13</td>
                         <td>:</td>
                         <td><input type="text" name="ISBN_13" value="${book.getISBN13()}"/></td>
                     </tr>
                     <tr>
-                        <td>ISBN-10</td>
+                        <td style="font-weight: bold">ISBN-10</td>
                         <td>:</td>
                         <td><input type="text" name="ISBN_10" value="${book.getISBN10()}"/></td>
                     </tr>
                     <tr>
-                        <td>Author</td>
+                        <td style="font-weight: bold">Author</td>
                         <td>:</td>
                         <td><input type="text" name="author" value="${book.getAuthor()}"/></td>
                     </tr>
                     <tr>
-                        <td>Genre</td>
+                        <td style="font-weight: bold">Genre</td>
                         <td>:</td>
                         <td><input type="text" name="genre" value="${book.getGenre()}"/></td>
                     </tr>
                     <tr>
-                        <td>Edition</td>
+                        <td style="font-weight: bold">Edition</td>
                         <td>:</td>
                         <td><input type="text" name="edition" value="${book.getEdition()}"/></td>
                     </tr>
                     <tr>
-                        <td>Publisher</td>
+                        <td style="font-weight: bold">Publisher</td>
                         <td>:</td>
                         <td><input type="text" name="publisher" value="${book.getPublisher()}"/></td>
                     </tr>
                     <tr>
-                        <td>Description</td>
+                        <td style="font-weight: bold">Description</td>
                         <td>:</td>
                         <td><textarea rows="3" cols="21" name="description">${book.getDescription()}</textarea></td>
                     </tr>
                     <tr>
-                        <td>Image</td>
+                        <td style="font-weight: bold">Image</td>
                         <td>:</td>
-                        <td><input type="file" name="photo"/>* Choose JPG,PNG</td>
+                        <td><input type="file" name="photo"/><p style="color:red">* Choose JPG,PNG </p></td>
                     </tr>
                 <br>
                     <tr>
-                        <td><input type="submit" name="Update" value="Update" style="color:black"/></td>
                         <td>  </td>
-                        <td><input type="reset" name="Reset" style="color:black"/></td>
+                        <td style="font-weight: bold"><input type="submit" name="Update" value="Update" style="color:black"/></td>
+                        <td></td>
+<!--                        <td style="font-weight: bold"><input type="reset" name="Reset" style="color:black"/></td>-->
                     </tr>
                 </tbody>
             </table>
+                </td>
+            </table>
+            
 
 
         </form>
