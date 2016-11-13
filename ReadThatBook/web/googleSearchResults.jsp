@@ -13,7 +13,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
-    <body>
+    <body >
         <h2>Books</h2>
         <p style="color:red;"><c:if test="${not empty message}"><c:out value="${message}"/></c:if></p>
         <form action="GoogleBooksApiServlet" method="POST">

@@ -36,7 +36,7 @@
 
 </head>
 
-<body style="background-color:#FFF791;">
+<body  style="background-color: #e3e8f8">
     <%@ include file="header.jsp" %>
                 <p style="color:red;"><c:if test="${not empty message}"><c:out value="${message}"/></c:if></p>
                 <p style="color:red; font-weight:bold; text-align:right;">Welcome <c:out value="${user.firstName}" ></c:out></p>
