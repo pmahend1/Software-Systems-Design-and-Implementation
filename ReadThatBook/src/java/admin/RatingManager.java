@@ -36,8 +36,8 @@ public class RatingManager extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        if (request == null || response == null)
-//            return;
+        if (request == null || response == null)
+            return;
         String action = request.getParameter("action");
         String url = "/viewBook.jsp";
         //String userStr = request.getParameter("user");
