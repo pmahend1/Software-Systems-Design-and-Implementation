@@ -171,6 +171,10 @@ public class AuthenticationServlet extends HttpServlet {
                     }
                 }
             }
+            
+            if(username == null)
+                url="/guestHome.jsp";
+            
             User user = UserDB.selectUser(username);
             List<Book> books = BookDB.selectAllBooks();   
             request.setAttribute("books", books);
