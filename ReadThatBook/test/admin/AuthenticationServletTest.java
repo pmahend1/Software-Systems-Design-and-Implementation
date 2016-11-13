@@ -37,6 +37,53 @@ import org.mockito.MockitoAnnotations;
  * @author Prateek
  */
 public class AuthenticationServletTest extends Mockito {
+    
+    public AuthenticationServletTest() {
+    }
+    
+    @BeforeClass
+    public static void setUpClass() {
+    }
+    
+    @AfterClass
+    public static void tearDownClass() {
+    }
+    
+//    @Before
+//    public void setUp() {
+//    }
+    
+    @After
+    public void tearDown() {
+    }
+
+    /**
+     * Test of doGet method, of class AuthenticationServlet.
+     */
+    @Test
+    public void testDoGet() throws Exception {
+        System.out.println("doGet");
+        HttpServletRequest request = null;
+        HttpServletResponse response = null;
+        AuthenticationServlet instance = new AuthenticationServlet();
+        instance.doGet(request, response);
+        // TODO review the generated test code and remove the default call to fail.
+        //fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of doPost method, of class AuthenticationServlet.
+     */
+    @Test
+    public void testDoPost() throws Exception {
+        System.out.println("doPost");
+        HttpServletRequest request = null;
+        HttpServletResponse response = null;
+        AuthenticationServlet instance = new AuthenticationServlet();
+        instance.doPost(request, response);
+        // TODO review the generated test code and remove the default call to fail.
+        //("The test case is a prototype.");
+    }
 
     @Mock
     HttpServletRequest request;
