@@ -26,38 +26,11 @@
         <title>Manage Books</title>
     </head>
     <body style="background-color:#FFF791;">
-    
-    <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <label style="color:white;"><h1>ReadThatBook &emsp;&emsp;&emsp;</h1></label>
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">                  
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-                <p style="color:red;"><c:if test="${not empty message}"><c:out value="${message}"/></c:if></p>
-                <p style="color:red; font-weight:bold; text-align:right;">Welcome <c:out value="${user.firstName}" ></c:out></p>
-                <form name="logout" action="LoginServlet" method="post" align="right">
-                    <input type="submit" name="logout" value="logout"/>
-                    <input type="hidden" name="action" value="logout"/>
-                </form>
-                <br/>
-            </div>
-        </div>
-    </nav>
-<br/>
-<br/>
+	<%@ include file="header.jsp" %>
+        <p style="color:red; font-weight:bold; text-align:right;">Welcome <c:out value="${user.firstName}" ></c:out></p>
+        <%@ include file="userLogout.jsp" %>
+        <%@ include file="headerClose.jsp" %>
+	<br/><br/>
     <h2>Add book from Google Books</h2>
     <form action="GoogleBooksApiServlet" method="POST">
         <input type="text" placeholder="Title or Author" name="query"/>
@@ -98,4 +71,5 @@
         </div>
         <br>
     </body>
+    <%@ include file="footer.jsp" %>
 </html>

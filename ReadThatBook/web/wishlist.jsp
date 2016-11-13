@@ -12,8 +12,9 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Wishlist Page</title>
     </head>
-    <body>
-     
+    <body style="background-color:#FFF791;">
+        <%@ include file="header.jsp" %>>
+        <%@ include file="headerClose.jsp" %>
     <h1 align="center">Your Wishlist</h1>
     <table style="width:100%; border:1px solid black;">
   <tr>
@@ -61,4 +62,5 @@
                         cursor: pointer;"/>
     </form>
     </body>
+    <%@ include file="footer.jsp" %>
 </html>

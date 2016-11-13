@@ -287,45 +287,46 @@ public class BookDB {
             pool.freeConnection(connection);
         }
     }
+    public static List<Book> searchBook(String bookTitle) {
+            ConnectionPool pool = ConnectionPool.getInstance();
+            Connection connection = pool.getConnection();
+            PreparedStatement ps = null;
+            ResultSet rs = null;
 
-    public static Book searchBook(String bookTitle) {
-        ConnectionPool pool = ConnectionPool.getInstance();
-        Connection connection = pool.getConnection();
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-
-        String query = "SELECT * FROM book"
-                + " where upper(title) like ?";
-        System.out.println("data.BookDB.searchBook()" + " query :" + query);
-        System.out.println("bookTitle " + bookTitle);
-        try {
-            ps = connection.prepareStatement(query);
-            ps.setString(1, "%" + bookTitle.toUpperCase() + "%");
-            rs = ps.executeQuery();
-            Book book = null;
-            if (rs.next()) {
-                book = new Book();
-                System.out.println("data.BookDB.searchBook()" + "search Book method");
-                book.setAuthor(rs.getString("Author"));
-                book.setBookID(rs.getInt("BookID"));
-                book.setTitle(rs.getString("title"));
-                book.setDescription(rs.getString("Description"));
-                book.setEdition(rs.getString("Edition"));
-                book.setISBN10(rs.getString("ISBN10"));
-                book.setISBN13(rs.getString("ISBN13"));
-                book.setGenre(rs.getString("Genre"));
+            String query = "SELECT * FROM book"+
+                    " where upper(title) like ? || upper(Author) like ?";
+            System.out.println("data.BookDB.searchBook()"+ " query :" +query);
+            System.out.println("bookTitle " + bookTitle);
+            try {
+                ps = connection.prepareStatement(query);
+                ps.setString(1, "%"+bookTitle.toUpperCase()+"%");
+                ps.setString(2, "%"+bookTitle.toUpperCase()+"%");
+                rs = ps.executeQuery();
+                ArrayList bookList = new ArrayList();
+                Book book = null;
+                while (rs.next()) {
+                    book = new Book();
+                    book.setBookID(rs.getInt("BookID"));
+                    book.setTitle(rs.getString("title"));
+                    book.setAuthor(rs.getString("Author"));
+                    book.setISBN10(rs.getString("ISBN10"));
+                    book.setISBN13(rs.getString("ISBN13"));
+                    book.setGenre(rs.getString("Genre"));
+                    book.setEdition(rs.getString("Edition"));
+                    book.setPublisher(rs.getString("Publisher"));
+                    book.setDescription(rs.getString("Description"));
+                    bookList.add(book);
+                }
+                return bookList;
+            }catch (SQLException e) {
+                System.out.println(e);
+                return null;
+            } finally {
+                DBUtil.closeResultSet(rs);
+                DBUtil.closePreparedStatement(ps);
+                pool.freeConnection(connection);
             }
-
-            return book;
-        } catch (SQLException e) {
-            System.out.println(e);
-            return null;
-        } finally {
-            DBUtil.closeResultSet(rs);
-            DBUtil.closePreparedStatement(ps);
-            pool.freeConnection(connection);
         }
-    }
     public static int getBookIDByISBN(String ISBN) {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();

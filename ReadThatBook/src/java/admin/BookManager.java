@@ -305,10 +305,31 @@ public class BookManager extends HttpServlet {
         }
         else if (action.equals("searchBook")) {
             String bookName = request.getParameter("searchString");
-            Book book = BookDB.searchBook(bookName);
-            url="/viewBook.jsp";
-            request.setAttribute("book", book);
+            List<Book> bookList = BookDB.searchBook(bookName);
+            if(bookList.size() == 0){
+                System.out.println("admin.BookManager.doPost()" + "Book Does not exist");
+                cookies = request.getCookies();
+                
+                for (Cookie cookie : cookies) {
+                if(cookie.getName().equals("userCookie")){
+                    url = "/home.jsp";
+                    User user = UserDB.selectUser(cookie.getValue());
+                    request.setAttribute("user", user);
+                }
+                else 
+                    url = "/guestHome.jsp";
+                }
+                
+                message= "Book does not exist with this title or author.";
+                request.setAttribute("searchErrorMessage", message);
+                List<Book> books = BookDB.selectAllBooks();   
+                request.setAttribute("books", books);
+                request.getServletContext().getRequestDispatcher(url).forward(request, response);
+            }else{
+            url="/viewSearchResult.jsp";
+            request.setAttribute("bookResult", bookList);
             getServletContext().getRequestDispatcher(url).forward(request, response);
+            }
         }       
     }
 

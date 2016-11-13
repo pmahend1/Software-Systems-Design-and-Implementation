@@ -62,38 +62,9 @@
     </head>
 
     <body style="background-color:#FFF791;">
-
-        <!-- Navigation -->
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <div class="container">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <label style="color:white;"><h1>ReadThatBook &emsp;&emsp;&emsp;</h1></label>
-                </div>
-                <!-- Collect tde nav links, forms, and otder content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav">
-
-                        <li>
-                            <a href="#">About</a>
-                        </li>
-                        <li>
-                            <a href="#">Contact</a>
-                        </li>
-                    </ul>
-                </div>
-                <!-- /.navbar-collapse -->
-            </div>
-            <!-- /.container -->
-        </nav>
-        <br/>
-        <br/>
+        <%@ include file="header.jsp" %>
+        <%@ include file="headerClose.jsp" %>
+        <br/><br/>
         <!-- Page Content -->
         <form name="rate" action="RatingManager" method="post">
             <input type="hidden" name="action" value="rateBook" />
@@ -225,6 +196,6 @@
         <!-- Bootstrap Core JavaScript -->
         <script src="js/bootstrap.min.js"></script>
     </body>
-
+    <%@ include file="footer.jsp" %>
 </html>
 
