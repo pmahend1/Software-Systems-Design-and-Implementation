@@ -17,8 +17,8 @@
         <servlet-class>admin.RatingManager</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>GoogleBooksApiServlet</servlet-name>
-        <servlet-class>admin.GoogleBooksApiServlet</servlet-class>
+        <servlet-name>WishlistServlet</servlet-name>
+        <servlet-class>admin.WishlistServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
@@ -37,8 +37,8 @@
         <url-pattern>/RatingManager</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>GoogleBooksApiServlet</servlet-name>
-        <url-pattern>/GoogleBooksApiServlet</url-pattern>
+        <servlet-name>WishlistServlet</servlet-name>
+        <url-pattern>/WishlistServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

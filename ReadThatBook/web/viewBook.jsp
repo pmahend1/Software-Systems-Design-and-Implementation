@@ -14,7 +14,7 @@
 
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="widtd=device-widtd, initial-scale=1">
         <meta name="description" content="">
         <meta name="autdor" content="">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -22,10 +22,10 @@
         <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
 
         <!-- Bootstrap Core CSS -->
-        <link href="css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
 
         <!-- Custom CSS -->
-        <link href="css/shop-homepage.css" rel="stylesheet"/>
+        <link href="css/shop-homepage.css" rel="stylesheet">
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view tde page via file:// -->
@@ -40,13 +40,25 @@
         <!-- <script src="src/bootstrap-rating-input.js"></script> -->
         <script src="js/bootstrap-rating-input.min.js"></script>
         <script>
-            $(function(){
-              $('input').on('change', function(){
-                alert("Changed: " + $(this).val())
-              });
+            $(function () {
+                $('input').on('change', function () {
+                    alert("Changed: " + $(this).val())
+                });
             });
-          </script>
+        </script>
 
+        <style>
+            textarea {
+	width: 750px;
+	height: 120px;
+	border: 3px solid #cccccc;
+	padding: 5px;
+	font-family: Tahoma, sans-serif;
+	background-image: url(bg.gif);
+	background-position: bottom right;
+	background-repeat: no-repeat;
+}
+        </style>
     </head>
 
     <body style="background-color:#FFF791;">
@@ -124,9 +136,77 @@
 
         </form>
 
-        <!-- /.container -->
+                    
+    <c:choose>
 
-        <div class="container">
+        <c:when test="${showtextarea}">
+            <form name="review" action="ReviewManager" method="post">
+            <input type="hidden" name="action" value="editreviewBook" />
+            <table align="center" style="width:50%">
+                <tr>
+                    <td>
+                        <input type="hidden" name="bookID" value="${book.getBookID()}" />
+                        <textarea name='review' id='review' class="textarea" value="${editreviewvalue}"></textarea><br />
+                        <input type="submit" name="Submit" value="edit review"/>
+                    </td>
+                </tr>    
+                
+            </table>
+            </form>
+        </c:when>
+        <c:when test = "${reviewexists}" >
+            
+        </c:when>
+        <c:otherwise>
+            <form name="review" action="ReviewManager" method="post">
+            <input type="hidden" name="action" value="reviewBook" />
+            <table align="center" style="width:50%">
+                <tr>
+                    <td>
+                        <input type="hidden" name="bookID" value="${book.getBookID()}" />
+                        <textarea name='review' id='review' class="textarea"></textarea><br />
+                        <input type="submit" name="Submit" value="AddReview"/>
+                    </td>
+                </tr>    
+                
+            </table>
+            </form>
+        </c:otherwise>
+    </c:choose>
+    
+                    <div >
+            
+        <table style="background-color:cornsilk;padding:20px;width: 50%; " align="center">
+            <th>Reviews:</th>
+            <c:forEach items="${reviewlist}" var="review">  
+              <tr>
+                  <td><b><c:out value="${review.getUserName()}" /></b>
+                  <input type="number" name="rating" value="${review.getUserrating()}" id="rating-readonly" class="rating" data-clearable="remove" data-readonly /></td> 
+              </tr>
+                <tr>
+                    <td ><font color="blue"><c:out value="${review.getReview()}"/></font></td>
+                    
+                    <c:choose>
+                        <c:when test = "${review.getUserName() eq user}" >
+                            
+                            <form name="editreview" action="ReviewManager" method="post">
+                            <input type="hidden" name="action" value="editreview" />
+                            <input type="hidden" name="bookID" value="${book.getBookID()}" />
+                            <td><input type="submit" name="Submit" value="edit review"/></td>
+                            </form>
+
+                        </c:when>
+                        <c:otherwise>
+                            
+                        </c:otherwise>
+                    </c:choose>
+                    
+              </tr>
+            </c:forEach>
+        </table>
+        </div> 
+                    
+    <div class="container">
             <hr>
             <!-- Footer -->
             <footer>
