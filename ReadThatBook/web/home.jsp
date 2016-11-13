@@ -23,10 +23,10 @@
             }
 
             .dropdown {
-                position: relative;
+                position: fixed;
                 display: inline-block;
-                top: 30px;
-                left: 1400px;
+                top: 0px;
+                left: 1700px;
 
             }
 
