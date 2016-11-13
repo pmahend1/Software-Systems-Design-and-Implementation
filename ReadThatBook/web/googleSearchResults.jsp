@@ -3,19 +3,26 @@
     Created on : 11 Nov, 2016, 11:47:41 PM
     Author     : Prateek
 --%>
-
-<%@page import="business.Book"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
+<%@page import="business.Book"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/shop-homepage.css" rel="stylesheet">
+<link href="css/userProfile.css" rel="stylesheet">
+
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
-    <body >
-        <h2>Books</h2>
-        <p style="color:red;"><c:if test="${not empty message}"><c:out value="${message}"/></c:if></p>
+    <body style="background-color:#F1F4FF;">
+        <%@ include file="header.jsp" %>
+    <%@ include file="userLogout.jsp" %>
+    <%@ include file="headerClose.jsp" %>
+  
+        <h3>Books from Google</h3>
+        <p style="color:white;"><c:if test="${not empty message}"><c:out value="${message}"/></c:if></p>
         <form action="GoogleBooksApiServlet" method="POST">
             <input type="hidden" name="action" value="addGoogleBook"/>
             <table>
@@ -24,13 +31,13 @@
                         <td><img src="${book.getImageLink()}" alt="${book.getTitle()}"></td>
                         <td>
                             <b>Title :</b><c:out value="${book.getTitle()}"/><br/>
-                            Author(s) : ${book.getAuthor()}<br/>
-                            Publisher : ${book.getPublisher()}<br/>
-                            ISBN10 : ${book.getISBN10()}<br/>
-                            ISBN13 : ${book.getISBN13()}<br/>
-                            Genre : ${book.getGenre()}<br/>
-                            Edition :${book.getEdition()}<br/>
-                            Description :${book.getDescription()}<br/>
+                            <b>Author(s) :</b> ${book.getAuthor()}<br/>
+                            <b>Publisher :</b> ${book.getPublisher()}<br/>
+                            <b>ISBN10 :</b> ${book.getISBN10()}<br/>
+                            <b>ISBN13 :</b> ${book.getISBN13()}<br/>
+                            <b>Genre :</b> ${book.getGenre()}<br/>
+                            <b>Edition :</b>${book.getEdition()}<br/>
+                            <b>Description :</b>${book.getDescription()}<br/>
                         </td>
 
 

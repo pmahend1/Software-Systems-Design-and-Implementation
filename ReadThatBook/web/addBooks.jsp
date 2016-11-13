@@ -16,13 +16,13 @@
 
         <title>Add a Book</title>
     </head>
-    <body style="background-color:#e3e8f8;">
+    <body style="background-color:#F1F4FF;">
         <%@ include file="header.jsp" %>
         <%@ include file="userLogout.jsp" %>        
         <%@ include file="headerClose.jsp" %>
         <br/>
         <h3><center>Add A Book Manually</center></h3>
-        <p style="color:red;" align="center"><c:if test="${not empty messageText}"><c:out value="${messageText}"/></c:if></p>
+        <p style="color:white;" align="center"><c:if test="${not empty messageText}"><c:out value="${cookie['userCookie'].value}" /></c:if></p>
         <form action="BookManager" enctype="multipart/form-data" method="POST">
             <input type="hidden" name="action" value="addBook"/>
             <table align="center" style="font-weight:bold;">

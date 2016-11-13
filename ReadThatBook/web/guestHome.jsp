@@ -21,7 +21,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
         <script src="js/guestHome.js"></script>
     </head>
-    <body  style="background-color: #e3e8f8">
+    <body style="background-color:#F1F4FF;">
         <%@ include file="header.jsp" %>
         <c:if test="${message != null}">
             <p style="color:red; font-weight:lighter; text-align:center;">${message}</p>
@@ -138,9 +138,8 @@
 
 
         <!-- Bootstrap Core JavaScript -->
-        <script src="js/bootstrap.min.js"></script>
-        <%@ include file="footer.jsp" %>
+        <script src="js/bootstrap.min.js"></script>  
     </body>
-
+<%@ include file="footer.jsp" %>
 </html>
 

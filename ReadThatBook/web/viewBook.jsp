@@ -38,18 +38,18 @@
 
         <style>
             textarea {
-	width: 750px;
-	height: 120px;
-	border: 3px solid #cccccc;
-	padding: 5px;
-	font-family: Tahoma, sans-serif;
-	background-image: url(bg.gif);
-	background-position: bottom right;
-	background-repeat: no-repeat;
-}
+                width: 750px;
+                height: 120px;
+                border: 3px solid #cccccc;
+                padding: 5px;
+                font-family: Tahoma, sans-serif;
+                background-image: url(bg.gif);
+                background-position: bottom right;
+                background-repeat: no-repeat;
+            }
         </style>
     </head>
-<body  style="background-color: #e3e8f8">
+    <body style="background-color:#F1F4FF;">
         <%@ include file="header.jsp" %>
         <%@ include file="headerClose.jsp" %>
         <br/><br/>
@@ -58,126 +58,115 @@
             <input type="hidden" name="action" value="rateBook" />
             <table align="center">
                 <tr>
-                    <td>BookID </td>
-                    <td><c:out value="${book.getBookID()}"></c:out><input type="hidden" name="bookID" value="${book.getBookID()}" /></td>
-                    </tr>
-                    <tr>
-                        <td>Autdor </td>
-                        <td><c:out value="${book.getAuthor()}"></c:out></td>
-                    </tr>   
-                    <tr>
-                        <td>Title</td>
-                        <td><c:out value="${book.getTitle()}"></c:out></td>
-                    </tr>
-                    <tr>
-                        <td>Genre </td>
-                        <td><c:out value="${book.getGenre()}"></c:out></td>
-                    </tr>
-                    <tr>
-                        <td>Description </td>
-                        <td><c:out value="${book.getDescription()}"></c:out></td>
-                    </tr>
-                    <tr>
-                        <td>Edition </td>
-                        <td><c:out value="${book.getEdition()}"></c:out></td>
-                    </tr>
-                    <tr>
-                        <td> Rating</td>
-                        <td><input type="number" name="rating"  value="${rating}" id="rating-empty-clearable" class="rating" data-clearable/></td>  
-
-                </tr>
-                <tr>
-                    <td><h3>${avgRating}</h3> <h5>/10</h5> <h6> ${votes} votes</h6> </td>
-                    <td><input type="submit" name="Submit" value="Rate"/></td>
-                </tr>
-            </table>
-
-
-        </form>
-
-                    
-    <c:choose>
-
-        <c:when test="${showtextarea}">
-            <form name="review" action="ReviewManager" method="post">
-            <input type="hidden" name="action" value="editreviewBook" />
-            <table align="center" style="width:50%">
-                <tr>
+                    <td><img src="${pageContext.request.contextPath}/images/${book.bookID}" style="width:200px;height: 300px" alt="No image"/></td>
                     <td>
-                        <input type="hidden" name="bookID" value="${book.getBookID()}" />
-                        <textarea name='review' id='review' class="textarea" value="${editreviewvalue}"></textarea><br />
-                        <input type="submit" name="Submit" value="edit review"/>
+                        <table align="center">
+                                <tr>
+                                    <td>Autdor </td>
+                                    <td><c:out value="${book.getAuthor()}"></c:out></td>
+                                </tr>   
+                                <tr>
+                                    <td>Title</td>
+                                    <td><c:out value="${book.getTitle()}"></c:out></td>
+                                </tr>
+                                <tr>
+                                    <td>Genre </td>
+                                    <td><c:out value="${book.getGenre()}"></c:out></td>
+                                </tr>
+                                <tr>
+                                    <td>Description </td>
+                                    <td><c:out value="${book.getDescription()}"></c:out></td>
+                                </tr>
+                                <tr>
+                                    <td>Edition </td>
+                                    <td><c:out value="${book.getEdition()}"></c:out></td>
+                                </tr>
+                                <tr>
+                                    <td> Rating</td>
+                                    <td><input type="number" name="rating"  value="${rating}" id="rating-empty-clearable" class="rating" data-clearable/></td>  
+
+                            </tr>
+                            <tr>
+                               
+                                <td><input type="submit" name="Submit" value="Rate"/></td>
+                            </tr>
+                        </table>
                     </td>
-                </tr>    
-                
+                </tr>
             </table>
-            </form>
-        </c:when>
-        <c:when test = "${reviewexists}" >
-            
-        </c:when>
-        <c:otherwise>
-            <form name="review" action="ReviewManager" method="post">
-            <input type="hidden" name="action" value="reviewBook" />
-            <table align="center" style="width:50%">
-                <tr>
-                    <td>
-                        <input type="hidden" name="bookID" value="${book.getBookID()}" />
-                        <textarea name='review' id='review' class="textarea"></textarea><br />
-                        <input type="submit" name="Submit" value="AddReview"/>
-                    </td>
-                </tr>    
-                
-            </table>
-            </form>
-        </c:otherwise>
-    </c:choose>
-    
-                    <div >
-            
-        <table style="background-color:cornsilk;padding:20px;width: 50%; " align="center">
-            <th>Reviews:</th>
-            <c:forEach items="${reviewlist}" var="review">  
-              <tr>
-                  <td><b><c:out value="${review.getUserName()}" /></b>
-                  <input type="number" name="rating" value="${review.getUserrating()}" id="rating-readonly" class="rating" data-clearable="remove" data-readonly /></td> 
-              </tr>
-                <tr>
-                    <td ><font color="blue"><c:out value="${review.getReview()}"/></font></td>
-                    
-                    <c:choose>
-                        <c:when test = "${review.getUserName() eq user}" >
-                            
+                                    <center><h4>Average Rating :${avgRating}/10</h4> <h5> ${votes} votes</h5></center>
+
+       </form>
+
+
+        <c:choose>
+
+            <c:when test="${showtextarea}">
+                <form name="review" action="ReviewManager" method="post">
+                    <input type="hidden" name="action" value="editreviewBook" />
+                    <table align="center" style="width:50%">
+                        <tr>
+                            <td>
+                                <input type="hidden" name="bookID" value="${book.getBookID()}" />
+                                <textarea name='review' id='review' class="textarea" value="${editreviewvalue}"></textarea><br />
+                                <input type="submit" name="Submit" value="edit review"/>
+                            </td>
+                        </tr>    
+
+                    </table>
+                </form>
+            </c:when>
+            <c:when test = "${reviewexists}" >
+
+            </c:when>
+            <c:otherwise>
+                <form name="review" action="ReviewManager" method="post">
+                    <input type="hidden" name="action" value="reviewBook" />
+                    <table align="center" style="width:50%">
+                        <tr>
+                            <td>
+                                <input type="hidden" name="bookID" value="${book.getBookID()}" />
+                                <textarea name='review' id='review' class="textarea"></textarea><br />
+                                <input type="submit" name="Submit" value="AddReview"/>
+                            </td>
+                        </tr>    
+
+                    </table>
+                </form>
+            </c:otherwise>
+        </c:choose>
+
+        <div >
+            <c:if test="${not empty reviewlist}"><table style="background-color:cornsilk;padding:20px;width: 50%; " align="center">
+                <th>Reviews:</th>
+                    <c:forEach items="${reviewlist}" var="review">  
+                    <tr>
+                        <td><b><c:out value="${review.getUserName()}" /></b>
+                            <input type="number" name="rating" value="${review.getUserrating()}" id="rating-readonly" class="rating" data-clearable="remove" data-readonly /></td> 
+                    </tr>
+                    <tr>
+                        <td ><font color="blue"><c:out value="${review.getReview()}"/></font></td>
+
+                        <c:choose>
+                            <c:when test = "${review.getUserName() eq user}" >
+
                             <form name="editreview" action="ReviewManager" method="post">
-                            <input type="hidden" name="action" value="editreview" />
-                            <input type="hidden" name="bookID" value="${book.getBookID()}" />
-                            <td><input type="submit" name="Submit" value="edit review"/></td>
+                                <input type="hidden" name="action" value="editreview" />
+                                <input type="hidden" name="bookID" value="${book.getBookID()}" />
+                                <td><input type="submit" name="Submit" value="edit review"/></td>
                             </form>
 
                         </c:when>
                         <c:otherwise>
-                            
+
                         </c:otherwise>
                     </c:choose>
-                    
-              </tr>
-            </c:forEach>
-        </table>
-        </div> 
-                    
-    <div class="container">
-            <hr>
-            <!-- Footer -->
-            <footer>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <p align="center">Copyright &copy; ReadThatBook 2016</p>
-                    </div>
-                </div>
-            </footer>
-        </div>
-        <!-- /.container -->
 
+                    </tr>
+                </c:forEach>
+            </table></c:if>
+            
+        </div> 
         <!-- jQuery -->
         <script src="js/jquery.js"></script>
 

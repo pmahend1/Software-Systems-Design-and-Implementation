@@ -26,7 +26,7 @@
 
     </head>
 
-    <body  style="background-color: #e3e8f8">
+    <body style="background-color:#F1F4FF;">
         <%@ include file="header.jsp" %>
         <%@ include file="headerClose.jsp" %>
         <br/>

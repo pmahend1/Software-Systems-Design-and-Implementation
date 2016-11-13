@@ -25,16 +25,16 @@
         </style>
         <title>Manage Books</title>
     </head>
-    <body  style="background-color: #ffffff">
+    <body style="background-color:#F1F4FF;">
         <!--#e3e8f8-->
 	<%@ include file="header.jsp" %>
-        <p style="color:red; font-weight:bold; text-align:right;">Welcome <c:out value="${user.firstName}" ></c:out></p>
+        <p style="color:white; font-weight:bold; text-align:right;"><c:out value="${cookie['userCookie'].value}" ></c:out></p>
         <%@ include file="userLogout.jsp" %>
         <%@ include file="headerClose.jsp" %>
-	<br/><br/>
-    <h2>Add book from Google Books</h2>
+	<br/>
+    <h4>Add book from Google Books</h4>
     <form action="GoogleBooksApiServlet" method="POST">
-        <input type="text" placeholder="Title or Author" name="query"/>
+        <input type="text" placeholder="Title or Author" name="query" style="width: 450px"/>
         <input type="submit" name="Search" value="Search"/>
         <p style="color:red;"><c:if test="${not empty messageText}"><c:out value="${messageText}"/></c:if></p>
     </form>
@@ -42,7 +42,7 @@
         <br>
         <div><a class="btn" href="BookManager?action=addBookPage">Add Books Manually</a></div>
         <br>
-        <h2>Book Details </h2>
+        <h3 align="center">Book Details </h3>
         <br>
         <div>
         <table>

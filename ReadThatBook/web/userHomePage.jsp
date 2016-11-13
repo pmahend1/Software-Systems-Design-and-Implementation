@@ -36,10 +36,10 @@
 
 </head>
 
-<body  style="background-color: #e3e8f8">
+<body style="background-color:#F1F4FF;">
     <%@ include file="header.jsp" %>
                 <p style="color:red;"><c:if test="${not empty message}"><c:out value="${message}"/></c:if></p>
-                <p style="color:red; font-weight:bold; text-align:right;">Welcome <c:out value="${user.firstName}" ></c:out></p>
+                <p style="color:white; font-weight:bold; text-align:right;">Welcome <c:out value="${cookie['userCookie'].value}"  ></c:out></p>
                 <form name="register" action="LoginServlet" method="post" align="right">
                     <input type="button" name="View Profile" value="View Profile" />
                     <input type="hidden" name="action" value="viewProfile"/>

@@ -15,19 +15,42 @@
         <link href="css/shop-homepage.css" rel="stylesheet">
         <title>Profile</title>
     </head>
-    <body  style="background-color: #e3e8f8">
+    <body style="background-color:#F1F4FF;">
         <%@ include file="header.jsp" %>
-        <p style="color:red; font-weight:bold; text-align:right;">Welcome <c:out value="${user.firstName}" ></c:out></p>
+        <p style="color:white; font-weight:bold; text-align:right;"><c:out value="${cookie['userCookie'].value}"  ></c:out></p>
         <%@ include file="userLogout.jsp" %>
         <%@ include file="headerClose.jsp" %>
         <br/><br/>
-        <profile>
-        <p><b>First Name:</b> <c:out value="${user.getFirstName()}" ></c:out></p>
-        <p><b>Last Name:</b> <c:out value="${user.getLastName()}" ></c:out></p>
-        <p><b>Email:</b> <c:out value="${user.getEmail()}" ></c:out></p> 
-        <p><b>Books in your wishlist:</b></p>
-        </profile>
+    <center>
+        <table>
+            <tr>
+                <td><b>First Name</b></td>
+                <td>:</td>
+                <td><c:out value="${user.getFirstName()}" ></c:out></td>    
+                </tr>
+                <tr>
+                    <td><b>Last Name</b></td>
+                    <td>:</td>
+                    <td><c:out value="${user.getLastName()}" ></c:out></td>
+                </tr>
+                <tr>
+                    <td><b>Username</b></td>
+                    <td>:</td>
+                    <td><c:out value="${user.getUserName()}" ></c:out></td>  
+                </tr>
+                <tr>
+                    <td><b>Email</b></td>
+                    <td>:</td>
+                    <td><c:out value="${user.getEmail()}" ></c:out></td>  
+                </tr>
+                <tr>
+                    <td><b>Role</b></td>
+                    <td>:</td>
+                    <td><c:out value="${user.getRole()}" ></c:out></td>  
+                </tr>
+            </table>
+        </center>
         <br/><br/> <br/><br/><br/><br/><br/><br/>   
     </body>
-    <%@ include file="footer.jsp" %>
+<%@ include file="footer.jsp" %>
 </html>

@@ -19,9 +19,9 @@
         <link href="css/userProfile.css" rel="stylesheet">
         <script src="js/userProfile.js"></script>
     </head>
-    <body  style="background-color: #e3e8f8"> 
+    <body style="background-color:#F1F4FF;">
         <%@ include file="header.jsp" %>
-        <p style="color:white; font-weight:bold; text-align:right;"><c:out value="${user.firstName}" ></c:out></p>
+        <p style="color:white; font-weight:bold; text-align:right;">Welcome <c:out value="${cookie['userCookie'].value}"  ></c:out></p>
         <%@ include file="userLogout.jsp" %>
         <%@ include file="headerClose.jsp" %>
         <table>

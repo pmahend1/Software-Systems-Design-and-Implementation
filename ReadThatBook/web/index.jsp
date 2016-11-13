@@ -15,7 +15,7 @@
     <title>Index Page</title>
 </head>
 
-<body  style="background-color: #e3e8f8">
+<body style="background-color:#F1F4FF;">
     <c:redirect url="/BookListServlet"></c:redirect>
     
 </body>
