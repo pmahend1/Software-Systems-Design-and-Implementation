@@ -104,8 +104,9 @@ public class BookDB {
             ps.setString(6, book.getEdition());
             ps.setString(7, book.getPublisher());
             ps.setString(8, book.getDescription());
+            System.out.println("Add book query is : " + ps.toString());
             return ps.executeUpdate();
-        } catch (SQLException e) {
+        } catch (Exception e) {
             System.out.println(e);
             return 0;
         } finally {
@@ -225,6 +226,7 @@ public class BookDB {
         try {
             ps = connection.prepareStatement(query);
             rs = ps.executeQuery();
+            System.out.println("Select all books query : " + ps.toString());
             Book book = null;
             ArrayList bookList = new ArrayList();
             while (rs.next()) {
@@ -318,6 +320,42 @@ public class BookDB {
         } catch (SQLException e) {
             System.out.println(e);
             return null;
+        } finally {
+            DBUtil.closeResultSet(rs);
+            DBUtil.closePreparedStatement(ps);
+            pool.freeConnection(connection);
+        }
+    }
+    public static int getBookIDByISBN(String ISBN) {
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        int length = ISBN.length();
+        System.out.println("getBookIDByISBN");
+        String query = "SELECT bookID FROM BOOK "
+                        + " where (ISBN13 = ? " 
+                        + " OR ISBN10 = ? )";
+        
+		try {
+            ps = connection.prepareStatement(query);
+            ps.setString(1, ISBN.toUpperCase());
+            ps.setString(2, ISBN.toUpperCase());
+            
+                    System.out.println("Check book id SQL is : " + ps.toString());
+            rs = ps.executeQuery();
+            
+ 
+            if (rs.next()) {
+                System.out.println("data.BookDB.getBookIDByISBN()" + "search Book method");
+                return rs.getInt("bookID");
+            }
+            else{
+                return 0;
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+            return 0;
         } finally {
             DBUtil.closeResultSet(rs);
             DBUtil.closePreparedStatement(ps);

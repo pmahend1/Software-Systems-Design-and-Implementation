@@ -40,12 +40,12 @@
         <!-- <script src="src/bootstrap-rating-input.js"></script> -->
         <script src="js/bootstrap-rating-input.min.js"></script>
         <script>
-            $(function () {
-                $('input').on('change', function () {
-                    alert("Changed: " + $(this).val())
-                });
+            $(function(){
+              $('input').on('change', function(){
+                alert("Changed: " + $(this).val())
+              });
             });
-        </script>
+          </script>
 
     </head>
 

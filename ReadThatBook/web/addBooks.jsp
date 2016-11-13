@@ -6,6 +6,7 @@
 
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -34,7 +35,7 @@
                         <li><a href="#">About</a></li>
                         <li><a href="#">Contact</a></li>
                     </ul>
-                    <p style="color:red;"><c:if test="${not empty message}"><c:out value="${message}"/></c:if></p>
+                    <p style="color:red;" align="center"><c:if test="${not empty message}"><c:out value="${message}"/></c:if></p>
                     <form name="logout" action="LoginServlet" method="post" align="right">
                         <input type="submit" name="logout" value="logout"/>
                         <input type="hidden" name="action" value="logout"/>
@@ -45,6 +46,7 @@
         </nav>
         <br/>
         <h3><center>Add A Book Manually</center></h3>
+        <p style="color:red;" align="center"><c:if test="${not empty messageText}"><c:out value="${messageText}"/></c:if></p>
         <form action="BookManager" enctype="multipart/form-data" method="POST">
             <input type="hidden" name="action" value="addBook"/>
             <table align="center" style="color:brown; font-weight:bold;">

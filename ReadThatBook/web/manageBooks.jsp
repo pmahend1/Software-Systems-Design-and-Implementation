@@ -59,8 +59,11 @@
 <br/>
 <br/>
     <h2>Add book from Google Books</h2>
-        <input id="search" placeholder="Title or Author"/>
-        <button id="button" type="button">Search</button>
+    <form action="GoogleBooksApiServlet" method="POST">
+        <input type="text" placeholder="Title or Author" name="query"/>
+        <input type="submit" name="Search" value="Search"/>
+        <p style="color:red;"><c:if test="${not empty messageText}"><c:out value="${messageText}"/></c:if></p>
+    </form>
         <div id="results"></div>
         <br>
         <div><a class="btn" href="BookManager?action=addBookPage">Add Books Manually</a></div>

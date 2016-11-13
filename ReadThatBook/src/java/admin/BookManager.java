@@ -74,6 +74,7 @@ public class BookManager extends HttpServlet {
             System.out.println("admin.BookManager.doPost()" + ISBN_10Str);
             int ISBN_10 = 0;
             long ISBN_13 = 0;
+            String messageText;
             InputStream inputStream = null;
             //Collection coll = request.getParts();
             Part filePart = request.getPart("photo");
@@ -112,10 +113,25 @@ public class BookManager extends HttpServlet {
             System.out.println("admin.BookManager.doPost()" + publisher);
 
             Book newBook = new Book(title, author, ISBN_10Str, ISBN_13Str, genre, edition, publisher, description);
-            BookDB.addBook(newBook);
+            int status = BookDB.addBook(newBook);
+            if(status == 0){
+                 messageText = "Error in book addition . Please go through log";
+                 url="/addBooks.jsp";
+                 request.setAttribute("messageText", messageText);
+                 getServletContext().getRequestDispatcher(url).forward(request, response);
+                
+            }
+            int bookID = 0 ;
+             if(ISBN_10Str !=null){
+                bookID = BookDB.getBookIDByISBN(ISBN_10Str);
+            }
+            else if(ISBN_13Str != null){
+                bookID= BookDB.getBookIDByISBN(ISBN_13Str);
+            }
+            
             // String addedBookID = BookDB.selectBook(ISBN_13)
-            if (inputStream != null) {
-                BookDB.addBookImage(1, inputStream);
+            if (inputStream != null && bookID != 0) {
+                BookDB.addBookImage(bookID, inputStream);
             }
             url = "/manageBooks.jsp";
             List<Book> bookList = BookDB.selectAllBooks();
