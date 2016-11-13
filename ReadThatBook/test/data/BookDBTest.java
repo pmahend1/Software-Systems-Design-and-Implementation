@@ -7,6 +7,7 @@ package data;
 
 import business.Book;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -161,7 +162,7 @@ public class BookDBTest {
         System.out.println("searchBook");
         String bookTitle = "";
         Book expResult = null;
-        Book result = BookDB.searchBook(bookTitle);
+        List<Book> result = BookDB.searchBook(bookTitle);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");

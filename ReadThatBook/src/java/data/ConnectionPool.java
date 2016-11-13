@@ -29,7 +29,7 @@ public class ConnectionPool {
     public Connection getConnection() {
         try {
             return dataSource.getConnection();
-        } catch (SQLException e) {
+        } catch (Exception e) {
             System.out.println(e);
             return null;
         }
@@ -38,7 +38,7 @@ public class ConnectionPool {
     public void freeConnection(Connection c) {
         try {
             c.close();
-        } catch (SQLException e) {
+        } catch (Exception e) {
             System.out.println(e);
         }
     }

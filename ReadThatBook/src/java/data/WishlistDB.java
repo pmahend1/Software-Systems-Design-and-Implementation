@@ -30,14 +30,14 @@ public class WishlistDB {
             ps.setString(1,username);
           
             return ps.executeUpdate();
-        } catch (SQLException e) {
+        } catch (Exception e) {
             return 0;
         } finally {
             DBUtil.closePreparedStatement(ps);
             pool.freeConnection(connection);
         }
     }
-    public static List<Book> viewWishlist(String username) throws SQLException {
+    public static List<Book> viewWishlist(String username) throws Exception {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
         PreparedStatement ps = null;
@@ -65,7 +65,7 @@ public class WishlistDB {
                 bookList.add(book);
             }
             return bookList;
-        } catch (SQLException e) {
+        } catch (Exception e) {
             System.out.println(e);
             return null;
         } finally {

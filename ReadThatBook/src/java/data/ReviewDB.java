@@ -144,7 +144,7 @@ public class ReviewDB {
                 reviewList.add(review);
             }
             return reviewList;
-        } catch (SQLException e) {
+        } catch (Exception e) {
             System.out.println(e);
             return null;
         } finally {
@@ -179,7 +179,7 @@ public class ReviewDB {
                 reviewList.add(review);
             }
             return reviewList;
-        } catch (SQLException e) {
+        } catch (Exception e) {
             System.out.println(e);
             return null;
         } finally {

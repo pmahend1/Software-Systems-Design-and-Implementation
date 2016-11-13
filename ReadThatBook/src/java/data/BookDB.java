@@ -146,7 +146,7 @@ public class BookDB {
             System.out.println(ps.toString());
             return ps.executeUpdate();
 
-        } catch (SQLException e) {
+        } catch (Exception e) {
             System.out.println(e);
             return 0;
         } finally {
@@ -182,7 +182,7 @@ public class BookDB {
 
             }
             return book;
-        } catch (SQLException e) {
+        } catch (Exception e) {
             System.out.println(e);
             return null;
         } finally {
@@ -206,7 +206,7 @@ public class BookDB {
             ps.setInt(1, bookID);
 
             return ps.executeUpdate();
-        } catch (SQLException e) {
+        } catch (Exception e) {
             System.out.println(e);
             return 0;
         } finally {
@@ -243,7 +243,7 @@ public class BookDB {
                 bookList.add(book);
             }
             return bookList;
-        } catch (SQLException e) {
+        } catch (Exception e) {
             System.out.println(e);
             return null;
         } finally {
@@ -318,7 +318,7 @@ public class BookDB {
                     bookList.add(book);
                 }
                 return bookList;
-            }catch (SQLException e) {
+            }catch (Exception e) {
                 System.out.println(e);
                 return null;
             } finally {
@@ -354,7 +354,7 @@ public class BookDB {
             else{
                 return 0;
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             System.out.println(e);
             return 0;
         } finally {

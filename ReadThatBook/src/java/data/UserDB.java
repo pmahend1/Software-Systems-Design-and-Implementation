@@ -25,7 +25,7 @@ public class UserDB {
             ps.setString(5, user.getPassWord());
             ps.setString(6, user.getRole());
             return ps.executeUpdate();
-        } catch (SQLException e) {
+        } catch (Exception e) {
             System.out.println(e);
             return 0;
         } finally {
@@ -50,7 +50,7 @@ public class UserDB {
             ps.setString(4, user.getEmail());
             ps.setString(5, user.getUserName());
             return ps.executeUpdate();
-        } catch (SQLException e) {
+        } catch (Exception e) {
             System.out.println(e);
             return 0;
         } finally {
@@ -71,7 +71,7 @@ public class UserDB {
             ps = connection.prepareStatement(query);
             ps.setString(1, username);
             return ps.executeUpdate();
-        } catch (SQLException e) {
+        } catch (Exception e) {
             System.out.println(e);
             return 0;
         } finally {
@@ -103,7 +103,7 @@ public class UserDB {
                 user.setRole(rs.getString("role"));
             }
             return user;
-        } catch (SQLException e) {
+        } catch (Exception e) {
             System.out.println(e);
             return null;
         } finally {
