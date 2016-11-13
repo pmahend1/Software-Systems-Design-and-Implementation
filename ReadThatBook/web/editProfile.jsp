@@ -16,54 +16,30 @@
         <title>Edit Profile</title>
     </head>
     <body style="background-color:#FFF791;">
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <div class="container">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <label style="color:white;"><h1>ReadThatBook &emsp;&emsp;&emsp;</h1></label>
-                </div>
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav">
-                        <li><a href="#">About</a></li>
-                        <li><a href="#">Contact</a></li>
-                    </ul>
-                    <p style="color:red;"><c:if test="${not empty message}"><c:out value="${message}"/></c:if></p>
-                    <p style="color:red; font-weight:bold; text-align:right;">Welcome <c:out value="${user.firstName}" ></c:out></p>
-                    <form name="logout" action="LoginServlet" method="post" align="right">
-                        <input type="submit" name="logout" value="logout"/>
-                        <input type="hidden" name="action" value="logout"/>
-                    </form>
-                    <br/>
-                </div>
-            </div>
-        </nav>
+        <%@ include file="header.jsp" %>
+        <p style="color:red; font-weight:bold; text-align:right;">Welcome <c:out value="${user.firstName}" ></c:out></p>
+        <%@ include file="userLogout.jsp" %>
+        <%@ include file="headerClose.jsp" %>
         <br/><br/>
-        <profile>
-    
-        <h3><center>Edit Profile<center></h3>
+        <h3 style="margin-left: 250px">Edit Profile</h3><br/>
         <form name="editProfile" action="UserProfileManager" method="post">
-            <editprofile>
+            <register>
             <label> Password :  </label>
             <input type="password" name="passWord" value="${user.getPassWord()}"/><br/>
             <label> Re enter Password :</label>
             <input type="password" name="rePassword" value="${user.getPassWord()}"/><br/>
             <label> First Name :</label>
             <input type="text" name="firstName" value="${user.getFirstName()}"/><br/>
-            <label> Last Name :</label>
+            <label> Last Name:</label>
             <input type="text" name="lastName" value="${user.getLastName()}"/><br/>
             <label> Email :</label>
             <input type="email" name="email" value="${user.getEmail()}"/><br/>
             <input type="hidden" name="username" value="${user.getUserName()}"</input>
             <input type="hidden" name="action" value="updateProfile" />
             <input type="submit"/>
-            </editprofile>
+            </register>
         </form>
+        <br/><br/><br/><br/><br/><br/><br/><br/><br/>
+        <%@ include file="footer.jsp" %>
     </body>
 </html>

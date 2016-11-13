@@ -47,53 +47,12 @@
             });
         </script>
 
-        <style>
-            textarea {
-	width: 750px;
-	height: 120px;
-	border: 3px solid #cccccc;
-	padding: 5px;
-	font-family: Tahoma, sans-serif;
-	background-image: url(bg.gif);
-	background-position: bottom right;
-	background-repeat: no-repeat;
-}
-        </style>
     </head>
 
     <body style="background-color:#FFF791;">
-
-        <!-- Navigation -->
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <div class="container">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <label style="color:white;"><h1>ReadThatBook &emsp;&emsp;&emsp;</h1></label>
-                </div>
-                <!-- Collect tde nav links, forms, and otder content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav">
-
-                        <li>
-                            <a href="#">About</a>
-                        </li>
-                        <li>
-                            <a href="#">Contact</a>
-                        </li>
-                    </ul>
-                </div>
-                <!-- /.navbar-collapse -->
-            </div>
-            <!-- /.container -->
-        </nav>
-        <br/>
-        <br/>
+        <%@ include file="header.jsp" %>
+        <%@ include file="headerClose.jsp" %>
+        <br/><br/>
         <!-- Page Content -->
         <form name="rate" action="RatingManager" method="post">
             <input type="hidden" name="action" value="rateBook" />
@@ -132,99 +91,11 @@
                     <td><input type="submit" name="Submit" value="Rate"/></td>
                 </tr>
             </table>
-
-
         </form>
-
                     
-    <c:choose>
-
-        <c:when test="${showtextarea}">
-            <form name="review" action="ReviewManager" method="post">
-            <input type="hidden" name="action" value="editreviewBook" />
-            <table align="center" style="width:50%">
-                <tr>
-                    <td>
-                        <input type="hidden" name="bookID" value="${book.getBookID()}" />
-                        <textarea name='review' id='review' class="textarea" value="${editreviewvalue}"></textarea><br />
-                        <input type="submit" name="Submit" value="edit review"/>
-                    </td>
-                </tr>    
-                
-            </table>
-            </form>
-        </c:when>
-        <c:when test = "${reviewexists}" >
-            
-        </c:when>
-        <c:otherwise>
-            <form name="review" action="ReviewManager" method="post">
-            <input type="hidden" name="action" value="reviewBook" />
-            <table align="center" style="width:50%">
-                <tr>
-                    <td>
-                        <input type="hidden" name="bookID" value="${book.getBookID()}" />
-                        <textarea name='review' id='review' class="textarea"></textarea><br />
-                        <input type="submit" name="Submit" value="AddReview"/>
-                    </td>
-                </tr>    
-                
-            </table>
-            </form>
-        </c:otherwise>
-    </c:choose>
-    
-                    <div >
-            
-        <table style="background-color:cornsilk;padding:20px;width: 50%; " align="center">
-            <th>Reviews:</th>
-            <c:forEach items="${reviewlist}" var="review">  
-              <tr>
-                  <td><b><c:out value="${review.getUserName()}" /></b>
-                  <input type="number" name="rating" value="${review.getUserrating()}" id="rating-readonly" class="rating" data-clearable="remove" data-readonly /></td> 
-              </tr>
-                <tr>
-                    <td ><font color="blue"><c:out value="${review.getReview()}"/></font></td>
-                    
-                    <c:choose>
-                        <c:when test = "${review.getUserName() eq user}" >
-                            
-                            <form name="editreview" action="ReviewManager" method="post">
-                            <input type="hidden" name="action" value="editreview" />
-                            <input type="hidden" name="bookID" value="${book.getBookID()}" />
-                            <td><input type="submit" name="Submit" value="edit review"/></td>
-                            </form>
-
-                        </c:when>
-                        <c:otherwise>
-                            
-                        </c:otherwise>
-                    </c:choose>
-                    
-              </tr>
-            </c:forEach>
-        </table>
-        </div> 
-                    
-    <div class="container">
-            <hr>
-            <!-- Footer -->
-            <footer>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <p align="center">Copyright &copy; ReadThatBook 2016</p>
-                    </div>
-                </div>
-            </footer>
-        </div>
-        <!-- /.container -->
-
-        <!-- jQuery -->
         <script src="js/jquery.js"></script>
-
-        <!-- Bootstrap Core JavaScript -->
         <script src="js/bootstrap.min.js"></script>
     </body>
-
+    <%@ include file="footer.jsp" %>
 </html>
 

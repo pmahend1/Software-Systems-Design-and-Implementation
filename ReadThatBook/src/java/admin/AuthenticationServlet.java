@@ -99,6 +99,7 @@ public class AuthenticationServlet extends HttpServlet {
             String email = request.getParameter("email");
             String firstName = request.getParameter("firstName");
             String lastName = request.getParameter("lastName");
+            String userRole = request.getParameter("userRole");
             System.out.println("admin.LoginServlet.doPost()" + userName);
 
             System.out.println("admin.LoginServlet.doPost()" + passWord);
@@ -106,6 +107,7 @@ public class AuthenticationServlet extends HttpServlet {
             System.out.println("admin.LoginServlet.doPost()" + firstName);
             System.out.println("admin.LoginServlet.doPost()" + lastName);
             System.out.println("admin.LoginServlet.doPost()" + email);
+            System.out.println("admin.LoginServlet.doPost()" + userRole);
 
             if (userName.isEmpty() || passWord.isEmpty() || rePassWord.isEmpty()
                     || email.isEmpty() || firstName.isEmpty() || lastName.isEmpty()) {
@@ -118,7 +120,7 @@ public class AuthenticationServlet extends HttpServlet {
                 url="/guestHome.jsp";
                 getServletContext().getRequestDispatcher(url).forward(request, response);
             } else if (passWord.equals(rePassWord)) {
-                User newUser = new User(userName, firstName, lastName, email, passWord, "user");
+                User newUser = new User(userName, firstName, lastName, email, passWord,userRole);
                 UserDB.insert(newUser);
                 url = "/home.jsp";
                 User user = UserDB.selectUser(userName);
@@ -132,11 +134,20 @@ public class AuthenticationServlet extends HttpServlet {
         }else if (action.equals("logout")) {
             session=request.getSession();  
             session.invalidate();  
+            Cookie[] cookies = request.getCookies();
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("userCookie")) {
+                    cookie.setMaxAge(0);
+                    cookie.setPath("/");
+                    response.addCookie(cookie);
+                    request.removeAttribute("userCookie");
+                }
+            }
+
             System.out.println("Log out successful "); 
             message = "You are successfully logged out!";
             url = "/guestHome.jsp";
             request.setAttribute("message", message);
-            
             List<Book> books = BookDB.selectAllBooks();   
             request.setAttribute("books", books);
             request.getServletContext().getRequestDispatcher(url).forward(request, response);

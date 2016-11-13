@@ -7,12 +7,13 @@ package admin;
 
 import business.Book;
 import business.Rating;
-import business.Review;
+import business.User;
 import data.BookDB;
 import data.RatingDB;
-import data.ReviewDB;
+import data.UserDB;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -47,15 +48,20 @@ public class BookListServlet extends HttpServlet {
         System.out.println("admin.BookListServlet.doPost()" + action);
 
         if (action == null) {
-            
             String url = "/guestHome.jsp";
-            //Book books = BookDB.viewBook(1);
+            Cookie[] cookies = request.getCookies();
+            for (Cookie cookie : cookies) {
+                if(cookie.getName().equals("userCookie")){
+                    url = "/home.jsp";
+                    User user = UserDB.selectUser(cookie.getValue());
+                    request.setAttribute("user", user);
+                }
+            }
             
             List<Book> books = BookDB.selectAllBooks();
-            
             request.setAttribute("books", books);
             request.getServletContext().getRequestDispatcher(url).forward(request, response);
-            }
+        }
             else if (action.equals("viewBook")) {
             
                 String url = "/viewBook.jsp";
@@ -64,12 +70,18 @@ public class BookListServlet extends HttpServlet {
                     bookIdstring="nothing";
                 }
                 int bookId=0;
-
+                
                 bookId=Integer.parseInt(bookIdstring);
                 System.out.println("admin.BookListServlet.doPost() bookIdstring"+bookIdstring +" int "+ bookId);
+                List<Book> bookList = new ArrayList();
                 Book book = BookDB.selectBook(bookId);
+                bookList.add(book);
+                String userCookie = null;
                 Cookie[] cookies = request.getCookies();
-                String userCookie = cookies[1].getValue();
+                for(int i = 0; i < cookies.length; i++) {
+                    if(cookies[i].getName().equals("userCookie"))
+                        userCookie = cookies[1].getValue();
+                }
                 System.out.println(userCookie);
                 int rating,votes=0;
                 rating = RatingDB.getUserRating(bookId, userCookie);
@@ -79,39 +91,11 @@ public class BookListServlet extends HttpServlet {
                 System.out.println("avgRating " + averageArray[0]);
                 System.out.println("votes " + votes);
                 
-            String userCookievalue = null;
-
-            for (Cookie cookie : cookies) {
-                String name = cookie.getName();
-                if(name.equals("userCookie"))
-                {
-                    userCookievalue = cookie.getValue();
-                    System.out.println("Cookie : " + name + " - " + userCookievalue);
-                }
-
-            }
-            boolean reviewExists = ReviewDB.checkReviewExists(bookId, userCookievalue);
-            System.out.println("reviewExists " + reviewExists + " User name " +userCookievalue+ " bookId " +bookId);
-            request.setAttribute("reviewexists", reviewExists);
-            
-            List<Review> reviews = ReviewDB.getReviewsFromBookID(bookId);
-            for (int i =0; i < reviews.size(); i++)
-            {
-                Review review = (Review)reviews.get(i);
-                System.out.println("Review id : " + review.getReview());
-
-                int userRating = RatingDB.getUserRating(bookId, review.getUserName());
-                review.setUserrating(userRating);
-            }
-                request.setAttribute("reviewlist", reviews);
-                
                 request.setAttribute("avgRating", averageArray[0]);
                 request.setAttribute("votes", votes);
-                
+                request.setAttribute("bookResult", bookList);
                 request.setAttribute("book", book);
                 request.setAttribute("rating", rating);
-                request.setAttribute("user", userCookievalue);
-                
                 request.getServletContext().getRequestDispatcher(url).forward(request, response);
                 }
            

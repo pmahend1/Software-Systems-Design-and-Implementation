@@ -74,7 +74,6 @@ public class BookManager extends HttpServlet {
             System.out.println("admin.BookManager.doPost()" + ISBN_10Str);
             int ISBN_10 = 0;
             long ISBN_13 = 0;
-            String messageText;
             InputStream inputStream = null;
             //Collection coll = request.getParts();
             Part filePart = request.getPart("photo");
@@ -113,25 +112,10 @@ public class BookManager extends HttpServlet {
             System.out.println("admin.BookManager.doPost()" + publisher);
 
             Book newBook = new Book(title, author, ISBN_10Str, ISBN_13Str, genre, edition, publisher, description);
-            int status = BookDB.addBook(newBook);
-            if(status == 0){
-                 messageText = "Error in book addition . Please go through log";
-                 url="/addBooks.jsp";
-                 request.setAttribute("messageText", messageText);
-                 getServletContext().getRequestDispatcher(url).forward(request, response);
-                
-            }
-            int bookID = 0 ;
-             if(ISBN_10Str !=null){
-                bookID = BookDB.getBookIDByISBN(ISBN_10Str);
-            }
-            else if(ISBN_13Str != null){
-                bookID= BookDB.getBookIDByISBN(ISBN_13Str);
-            }
-            
+            BookDB.addBook(newBook);
             // String addedBookID = BookDB.selectBook(ISBN_13)
-            if (inputStream != null && bookID != 0) {
-                BookDB.addBookImage(bookID, inputStream);
+            if (inputStream != null) {
+                BookDB.addBookImage(1, inputStream);
             }
             url = "/manageBooks.jsp";
             List<Book> bookList = BookDB.selectAllBooks();
@@ -191,7 +175,6 @@ public class BookManager extends HttpServlet {
         }
         else if(action.equals("updateBook")){
             String title = request.getParameter("title");
-            String bookIDStr = request.getParameter("bookID");
             String description = request.getParameter("description");
             String ISBN_13Str = request.getParameter("ISBN_13");
             String ISBN_10Str = request.getParameter("ISBN_10");
@@ -200,12 +183,6 @@ public class BookManager extends HttpServlet {
             int ISBN_10 = 0;
             long ISBN_13 = 0;
             InputStream inputStream = null;
-            int  bookID=0;
-            try {
-                bookID = Integer.parseInt(bookIDStr);
-            } catch (Exception e) {
-                System.out.println(e);
-            }
             //Collection coll = request.getParts();
             Part filePart = request.getPart("photo");
             String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
@@ -233,29 +210,20 @@ public class BookManager extends HttpServlet {
             String genre = request.getParameter("genre");
             String edition = request.getParameter("edition");
             String publisher = request.getParameter("publisher");
-            System.out.println("itle" + title);
-            System.out.println("description" + description);
-            System.out.println("ISBN_13" + ISBN_13);
-            System.out.println("ISBN_10 " + ISBN_10);
-            System.out.println("author" + author);
-            System.out.println("genre" + genre);
-            System.out.println("edition" + edition);
-            System.out.println("publisher" + publisher);
+            System.out.println("admin.BookManager.doPost()" + title);
+            System.out.println("admin.BookManager.doPost()" + description);
+            System.out.println("admin.BookManager.doPost()" + ISBN_13);
+            System.out.println("admin.BookManager.doPost()" + ISBN_10);
+            System.out.println("admin.BookManager.doPost()" + author);
+            System.out.println("admin.BookManager.doPost()" + genre);
+            System.out.println("admin.BookManager.doPost()" + edition);
+            System.out.println("admin.BookManager.doPost()" + publisher);
 
             Book updateBook = new Book(title, author, ISBN_10Str, ISBN_13Str, genre, edition, publisher, description);
-            updateBook.setBookID(bookID);
             BookDB.updateBook(updateBook);
             // String addedBookID = BookDB.selectBook(ISBN_13)
             if (inputStream != null) {
-                System.out.println("Inside inputStream != null");
-                if(BookDB.checkBookImageExists(bookID)){
-                    BookDB.updateBookImage(bookID, inputStream);
-                    System.out.println("updateBookImage method called in servlet ");
-                }
-                else{
-                    BookDB.addBookImage(bookID, inputStream);
-                    System.out.println("addBookImage method called in servlet ");
-                }  
+                BookDB.addBookImage(1, inputStream);
             }
             url = "/manageBooks.jsp";
             List<Book> bookList = BookDB.selectAllBooks();
@@ -305,16 +273,32 @@ public class BookManager extends HttpServlet {
         }
         else if (action.equals("searchBook")) {
             String bookName = request.getParameter("searchString");
-            Book book = BookDB.searchBook(bookName);
-            url="/viewBook.jsp";
-            request.setAttribute("book", book);
+            List<Book> bookList = BookDB.searchBook(bookName);
+            if(bookList.size() == 0){
+                System.out.println("admin.BookManager.doPost()" + "Book Does not exist");
+                cookies = request.getCookies();
+                
+                for (Cookie cookie : cookies) {
+                if(cookie.getName().equals("userCookie")){
+                    url = "/home.jsp";
+                    User user = UserDB.selectUser(cookie.getValue());
+                    request.setAttribute("user", user);
+                }
+                else 
+                    url = "/guestHome.jsp";
+                }
+                
+                message= "Book does not exist with this title or author.";
+                request.setAttribute("searchErrorMessage", message);
+                List<Book> books = BookDB.selectAllBooks();   
+                request.setAttribute("books", books);
+                request.getServletContext().getRequestDispatcher(url).forward(request, response);
+            }else{
+            url="/viewSearchResult.jsp";
+            request.setAttribute("bookResult", bookList);
             getServletContext().getRequestDispatcher(url).forward(request, response);
+            }
         }       
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
 }

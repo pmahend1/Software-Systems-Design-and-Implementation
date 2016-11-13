@@ -31,8 +31,7 @@ body {
 }
 
 .thumbnail img {
-    width: 200px;
-    height: 300px;
+    width: 100%;
 }
 
 .ratings {
@@ -50,8 +49,11 @@ body {
     color: #333;
 }
 
-footer {
-    margin-bottom: 10px;
+footer1 {
+   position:absolute;
+   left:0;
+   bottom:0;
+   width:100%;
 }
 
 th, td {
@@ -66,10 +68,9 @@ th {
     font-size: 150%;
 }
 
-register{
-    color:brown; 
+register{ 
     font-weight:bold;  
-    font-size: 150%;
+    font-size: 100%;
     text-align:right;
     padding-right:10px;
     float:left;
@@ -91,20 +92,26 @@ input[type=searchText] {
 
 profile{
     font-weight:bold;
-    font-family: Georgia;
-    font-size: 150%;
-    float:left;
-    margin-left: 150px;
-}
-
-editprofile{
-    font-size: 80%;
+    font-size: 130%;
     text-align:right;
     padding-right:10px;
     float:left;
     margin-left: 150px;
 }
 
+editprofile1{
+    padding-right:10px;
+    float:left;
+    margin-left: 150px;
+}
+editprofile{ 
+    font-weight:bold;  
+    font-size: 100%;
+    text-align:right;
+    padding-right:10px;
+    float:left;
+    margin-left: 150px;
+}
 .btn {
     background-color: #4CAF50;
     color: white;
@@ -112,4 +119,21 @@ editprofile{
     font-size: 16px;
     border: none;
     cursor: pointer;
+}
+
+.left {
+    width: 30%;
+    float: left;
+    text-align: right;
+}
+.right {
+    width: 65%;
+    margin-left: 10px;
+    float:left;
+}
+
+#wrapper {
+    margin-left:auto;
+    margin-right:auto;
+    min-width:960px;
 }

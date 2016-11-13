@@ -3,11 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Prateek/Documents/GitHub/SSDI.git/branches/Prateek_Sprint2/ReadThatBook/web/guestHome.jsp</file>
-            <file>file:/C:/Users/Prateek/Documents/GitHub/SSDI.git/branches/Prateek_Sprint2/ReadThatBook/src/java/admin/AuthenticationServlet.java</file>
-            <file>file:/C:/Users/Prateek/Documents/GitHub/SSDI.git/branches/Prateek_Sprint2/ReadThatBook/web/googleSearchResults.jsp</file>
-            <file>file:/C:/Users/Prateek/Documents/GitHub/SSDI.git/branches/Prateek_Sprint2/ReadThatBook/web/manageBooks.jsp</file>
-            <file>file:/C:/Users/Prateek/Documents/GitHub/SSDI.git/branches/Prateek_Sprint2/ReadThatBook/src/java/admin/GoogleBooksApiServlet.java</file>
+            <file>file:/F:/ReadThatBook/SSDI_Sprint2_Prateek/ReadThatBook/src/java/admin/RatingManager.java</file>
+            <file>file:/F:/ReadThatBook/SSDI_Sprint2_Prateek/ReadThatBook/web/editProfile.jsp</file>
+            <file>file:/F:/ReadThatBook/SSDI_Sprint2_Prateek/ReadThatBook/web/home.jsp</file>
+            <file>file:/F:/ReadThatBook/SSDI_Sprint2_Prateek/ReadThatBook/web/css/shop-homepage.css</file>
+            <file>file:/F:/ReadThatBook/SSDI_Sprint2_Prateek/ReadThatBook/web/register.jsp</file>
+            <file>file:/F:/ReadThatBook/SSDI_Sprint2_Prateek/ReadThatBook/web/guestHome.jsp</file>
+            <file>file:/F:/ReadThatBook/SSDI_Sprint2_Prateek/ReadThatBook/web/index.jsp</file>
+            <file>file:/F:/ReadThatBook/SSDI_Sprint2_Prateek/ReadThatBook/src/java/admin/AuthenticationServlet.java</file>
+            <file>file:/F:/ReadThatBook/SSDI_Sprint2_Prateek/ReadThatBook/src/java/admin/BookListServlet.java</file>
+            <file>file:/F:/ReadThatBook/SSDI_Sprint2_Prateek/ReadThatBook/web/footer.jsp</file>
+            <file>file:/F:/ReadThatBook/SSDI_Sprint2_Prateek/ReadThatBook/web/viewBook.jsp</file>
         </group>
     </open-files>
 </project-private>

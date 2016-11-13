@@ -51,7 +51,7 @@ public class RatingDB {
         PreparedStatement ps = null;
         ResultSet rs = null;
         int resultCount = 0;
-        boolean exist = false;
+        boolean exist = true;
         System.out.println("Inside data.RatingDB.checkRatingExists() starts");
         System.out.println(rating.getBookID());
         System.out.println(rating.getUserName());
@@ -68,11 +68,10 @@ public class RatingDB {
 
             rs = ps.executeQuery();
 
-            if (rs.next()) {
-                System.out.println("values exist");
-                exist = true;
+            if (rs == null) {
+                exist = false;
             }
-           
+
             return exist;
         } catch (Exception e) {
             System.out.println(e);
@@ -185,36 +184,6 @@ public class RatingDB {
         } catch (Exception e) {
             System.out.println(e);
             return userRating;
-        } finally {
-            DBUtil.closePreparedStatement(ps);
-            pool.freeConnection(connection);
-        }
-    }
-    
-    public static int deleteRating(Rating rating) {
-        ConnectionPool pool = ConnectionPool.getInstance();
-        Connection connection = pool.getConnection();
-        PreparedStatement ps = null;
-        System.out.println("Inside data.RatingDB.deleteRating() starts");
-        System.out.println(rating.getBookID());
-        System.out.println(rating.getUserName());
-        System.out.println(rating.getRating());
-        System.out.println("Inside data.RatingDB.deleteRating() ends");
-        String query
-                = "DELETE FROM RATING "
-				+ " WHERE BOOK_ID = ? "
-				+ " AND USERNAME = ?";
-        try {
-            ps = connection.prepareStatement(query);
-
-            ps.setInt(1, rating.getBookID());
-            ps.setString(2, rating.getUserName());
-
-            return ps.executeUpdate();
-
-        } catch (Exception e) {
-            System.out.println(e);
-            return 0;
         } finally {
             DBUtil.closePreparedStatement(ps);
             pool.freeConnection(connection);

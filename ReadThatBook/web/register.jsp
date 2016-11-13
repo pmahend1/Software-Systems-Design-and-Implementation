@@ -36,36 +36,8 @@
     </head>
 
     <body style="background-color:#FFF791;">
-
-        <!-- Navigation -->
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <div class="container">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <label style="color:white;"><h1>ReadThatBook &emsp;&emsp;&emsp;</h1></label>
-                </div>
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav">
-
-                        <li>
-                            <a href="#">About</a>
-                        </li>
-                        <li>
-                            <a href="#">Contact</a>
-                        </li>
-                    </ul>
-                </div>
-                <!-- /.navbar-collapse -->
-            </div>
-            <!-- /.container -->
-        </nav>
+        <%@ include file="header.jsp" %>
+        <%@ include file="headerClose.jsp" %>
         <br/>
         <br/>
         <form name="registerForm" action="LoginServlet" method="post">
@@ -85,9 +57,16 @@
             <input type="text" name="lastName"/><br/>
             <label> Email </label>
             <input type="email" name="email"/><br/>
+            <label> User Type </label>
+            <select name="userRole" style="width:193px;">
+                <option value="User">User</option>
+                <option value="Critic">Critic</option>
+            </select><br/>
             <input type="hidden" name="action" value="registerForm" />
             <input type="submit"/>
             </register>
         </form>
+        <%@ include file="footer.jsp" %>
     </body>
+
 </html>
