@@ -214,10 +214,14 @@ public class BookManager extends HttpServlet {
             Part filePart = request.getPart("photo");
             String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
             if (filePart != null) {
-                System.out.println(filePart.getName());
-                System.out.println(filePart.getContentType());
+                System.out.println("FilePart name:" + filePart.getName());
+                System.out.println("FilePart content"+ filePart.getContentType());
 
+                System.out.println("FileName : " + filePart.getSubmittedFileName());
+                System.out.println("FileName isEmpty? : " + filePart.getSubmittedFileName().isEmpty());
+                
                 inputStream = filePart.getInputStream();
+                System.out.println("inPut stream : " +inputStream );
             }
             try {
                 ISBN_10 = Integer.parseInt(ISBN_10Str);
@@ -237,7 +241,7 @@ public class BookManager extends HttpServlet {
             String genre = request.getParameter("genre");
             String edition = request.getParameter("edition");
             String publisher = request.getParameter("publisher");
-            System.out.println("itle" + title);
+            System.out.println("Title" + title);
             System.out.println("description" + description);
             System.out.println("ISBN_13" + ISBN_13);
             System.out.println("ISBN_10 " + ISBN_10);
@@ -250,7 +254,7 @@ public class BookManager extends HttpServlet {
             updateBook.setBookID(bookID);
             BookDB.updateBook(updateBook);
             // String addedBookID = BookDB.selectBook(ISBN_13)
-            if (inputStream != null) {
+            if (!filePart.getSubmittedFileName().isEmpty()) {
                 System.out.println("Inside inputStream != null");
                 if(BookDB.checkBookImageExists(bookID)){
                     BookDB.updateBookImage(bookID, inputStream);
@@ -264,12 +268,6 @@ public class BookManager extends HttpServlet {
             url = "/manageBooks.jsp";
             List<Book> bookList = BookDB.selectAllBooks();
             request.setAttribute("bookList", bookList);
-            //byte[] imageBytes = getImageAsBytes();
-
-//            response.setContentType("image/jpeg");
-//            response.setContentLength(imageBytes.length);
-//
-//            response.getOutputStream().write(imageBytes);
             getServletContext().getRequestDispatcher(url).forward(request, response);
         }
         
@@ -281,31 +279,6 @@ public class BookManager extends HttpServlet {
             img.write(b);
             img.flush();
             img.close();
-//                 request.setAttribute("param", 1);
-//               response.setContentType("image/jpeg");
-//            try {
-//                response.setContentLength( (int) b.length());
-//            } catch (SQLException ex) {
-//                Logger.getLogger(BookManager.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//           // response.setContentLength(10);
-//            InputStream is = null;
-//            try {
-//                is = b.getBinaryStream();
-//            } catch (SQLException ex) {
-//                Logger.getLogger(BookManager.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//            OutputStream os = response.getOutputStream();
-//            byte buf[] = null;
-//            try {
-//                buf = new byte[(int) b.length()];
-//            } catch (SQLException ex) {
-//                Logger.getLogger(BookManager.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//            is.read(buf);
-//            os.write(buf);
-//            os.close();
-
         }
         else if (action.equals("searchBook")) {
             String bookName = request.getParameter("searchString");
@@ -336,10 +309,4 @@ public class BookManager extends HttpServlet {
             }
         }       
     }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
 }
