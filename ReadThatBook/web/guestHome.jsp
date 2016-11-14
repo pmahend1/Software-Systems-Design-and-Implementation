@@ -27,6 +27,7 @@
             <p style="color:red; font-weight:lighter; text-align:center;">${message}</p>
         </c:if>
         <div>
+            <br/>
             <form name="loginForm" action="LoginServlet" method="post" align="right" ng-app="guestHomeApp" ng-controller="validateCtrl"
                   novalidate>
                 <input type="hidden" name="action" value="login">   
@@ -53,7 +54,7 @@
         </div>
         <br/>
         <%@ include file="headerClose.jsp" %>
-        <br/><br/><br/>
+        <br/><br/>
         <form name="login" action="BookManager" method="post">
             <div style="text-align:center; margin:0 80px;"/>
             <input type="searchText" name="searchString" placeholder="Search.." align="center">
