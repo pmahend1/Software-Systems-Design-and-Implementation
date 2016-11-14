@@ -109,7 +109,7 @@
             
                 <div class="row">
                   <c:forEach items="${books}" var="item">
-                    <div class="col-sm-4 col-lg-4 col-md-4">
+                    <div class="col-sm-3 col-lg-3 col-md-3">
                         <div class="thumbnail">
                             <img src="http://placehold.it/320x150" alt="">
                             <div class="caption">

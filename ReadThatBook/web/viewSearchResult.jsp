@@ -34,7 +34,7 @@
         
         <div class="row">
             <c:forEach items="${bookResult}" var="item">
-                <div class="col-sm-4 col-lg-4 col-md-4">
+                <div class="col-sm-3 col-lg-4 col-md-4">
                     <div class="thumbnail">
                         <img src="${pageContext.request.contextPath}/images/${item.bookID}" style="width:200px;height: 300px" alt="No image"/>
                         <div class="caption">
@@ -43,7 +43,7 @@
                           <form name="viewBook" action="BookListServlet" method="post">
                               <input type="hidden" name="action" value="viewBook"/>
                               <input type="hidden" name="bookid" value="${item.bookID}"/>
-                              <input type="submit" value="View Details" />
+                              <center><input type="submit" value="View Details" /></center>
                           </form>
                         </div>
                     </div>

@@ -38,6 +38,7 @@
                             <b>Genre :</b> ${book.getGenre()}<br/>
                             <b>Edition :</b>${book.getEdition()}<br/>
                             <b>Description :</b>${book.getDescription()}<br/>
+                            -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
                         </td>
 
 
@@ -52,9 +53,13 @@
                             <input type="hidden" name="imageLink" value="<c:out value="${book.getImageLink()}"/>"/>
 
                             <button type="submit" name="Add" value="Add">Add</button></td>
+                        
                     </tr>
+                    
                     <c:set value="${book}" var="bookN" scope="request"></c:set>
+                    
                 </c:forEach>
+                   
 
             </table>
         </form>
