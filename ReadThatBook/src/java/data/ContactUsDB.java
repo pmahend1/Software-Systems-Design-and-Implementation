@@ -52,13 +52,15 @@ public class ContactUsDB {
         try {
             ps = connection.prepareStatement(query);
             ps.setInt(1, contactUsID);
+            System.out.println("Query : " + ps.toString());
             rs = ps.executeQuery();
-            ContactUs contactus = null;
+            ContactUs contactus = new ContactUs();
             if (rs.next()) {
-                contactus.setContactUsId(rs.getInt(1));
-                contactus.setUserName(rs.getString(2));
-                contactus.setCategory(rs.getString(3));
-                contactus.setUserName(rs.getString(4));
+                contactus.setContactUsId(rs.getInt("contactUsID"));
+                contactus.setUserName(rs.getString("username"));
+                contactus.setCategory(rs.getString("category"));
+                contactus.setDescription(rs.getString("description"));
+                System.out.println("here" + contactus.getCategory());
             }
             return contactus;
         } catch (Exception e) {
@@ -70,28 +72,31 @@ public class ContactUsDB {
             pool.freeConnection(connection);
         }
     }
-    
+
     public static List<ContactUs> selectAllContactUsDescriptions() {
         pool = ConnectionPool.getInstance();
         connection = pool.getConnection();
 
-        String query = "SELECT * FROM Contact_Us ";
-                
+        String query = "SELECT * FROM Contact_Us";
+
         try {
             ps = connection.prepareStatement(query);
+            System.out.println("Query : " + ps.toString());
             rs = ps.executeQuery();
             List<ContactUs> contactUsList = new ArrayList();
-			ContactUs contactus=null;
-            if (rs.next()) {
-                contactus.setContactUsId(rs.getInt(1));
-                contactus.setUserName(rs.getString(2));
-                contactus.setCategory(rs.getString(3));
-                contactus.setUserName(rs.getString(4));
-				contactUsList.add(contactus);
+
+            while (rs.next()) {
+                ContactUs contactus = new ContactUs();
+                contactus.setContactUsId(rs.getInt("contactUsID"));
+                contactus.setUserName(rs.getString("username"));
+                contactus.setCategory(rs.getString("category"));
+                contactus.setDescription(rs.getString("description"));
+                contactUsList.add(contactus);
+                System.out.println("Object : " + contactus.getDescription());
             }
             return contactUsList;
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println("SQL Exception : " + e.toString());
             return null;
         } finally {
             DBUtil.closeResultSet(rs);

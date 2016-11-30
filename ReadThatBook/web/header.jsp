@@ -9,11 +9,11 @@
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
         <div class="navbar-header">
-            <label style="color:white;"><h1>ReadThatBook&emsp;&emsp;</h1></label>
+            <label style="color:white;"><h3>ReadThatBook&emsp;&emsp;</h3></label>
         </div>
-            <ul class="nav navbar-nav">
-                <li><a href="#">About</a></li>
-                <li><a href="contactUs">Contact Us</a></li>
-                <li><a href="<c:url value="LoginServlet?action=backHome"/>">Home</a></li>
-            </ul>
+        <ul class="nav navbar-nav">
+            <li><a href="#">About</a></li>
+            <li><a href="contactUs">Contact Us</a></li>
+            <li><a href="<c:url value="LoginServlet?action=backHome"/>">Home</a></li>
+        </ul>
 

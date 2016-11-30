@@ -1,10 +1,12 @@
 package admin;
 
+import business.ContactUs;
 import business.User;
 import data.ContactUsDB;
 import data.UserDB;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
@@ -42,21 +44,29 @@ public class ContactUsServlet extends HttpServlet {
         int status = 0;
         if (cookies != null) {
             for (Cookie cookie : cookies) {
-                System.out.println("Cookie : " + cookie.getName());
-                System.out.print(" - " + cookie.getName());
+                System.out.println("Cookie : " + cookie.getName() + " - " + cookie.getName());
                 if (cookie.getName().equals("userCookie")) {
-                    userName = cookie.getName();
+                    userName = cookie.getValue();
                     user = UserDB.selectUser(userName);
                 }
             }
         }
-        if(action==null){
-            action="";
+        
+        if (action == null) {
+            action = "";
         }
+        String userRole = user.getRole();
+        System.out.println("User role : " + userRole);
+                
 
         switch (action) {
             case "contactUsPage":
-                url = "/contactUs.jsp";
+                if (userRole == "admin") {
+                    url="/notifications.jsp";
+                }
+                else{
+                    url = "/contactUs.jsp";
+                }
                 getServletContext().getRequestDispatcher(url).forward(request, response);
                 break;
             case "contactUsForm":
@@ -69,32 +79,69 @@ public class ContactUsServlet extends HttpServlet {
                     return;
                 }
                 if (description == null || (description.length()) < 50) {
-                    url = "/home.jsp";
+                    url = "/contactUs.jsp";
                     message = "Description should be at least 50 characters length";
-                    request.setAttribute("messsage", message);
+                    request.setAttribute("message", message);
+                    System.out.println("message set is : " + message);
                     getServletContext().getRequestDispatcher(url).forward(request, response);
+                    break;
                 } else if (userName != null) {
                     status = ContactUsDB.addContactUsDescription(userName, category, description);
                     if (status != 0) {
                         url = "/home.jsp";
                         message = "Contact Us info has been submitted";
-                        request.setAttribute("messsage", message);
+                        request.setAttribute("message", message);
                         getServletContext().getRequestDispatcher(url).forward(request, response);
+                        break;
                     } else {
                         url = "/contactUs.jsp";
                         message = "Error in contact us info submission";
-                        request.setAttribute("messsage", message);
+                        request.setAttribute("message", message);
                         getServletContext().getRequestDispatcher(url).forward(request, response);
+                        break;
                     }
                 } else {
                     url = "/contactUs.jsp";
                     message = "Error in contact us info submission.Please retry";
-                    request.setAttribute("messsage", message);
+                    request.setAttribute("message", message);
                     getServletContext().getRequestDispatcher(url).forward(request, response);
+                    break;
                 }
-
+            case "contactUsInfo":{
+                String IDStr = request.getParameter("ID");
+                int ID=0;
+                try {
+                    ID = Integer.parseInt(IDStr);
+                } catch (Exception e) {
+                    System.out.println("Exception at Integer.parseInt(IDStr) :"+ e);
+                            
+                }
+                if(ID!=0){
+                    url="/notificationDetail.jsp";
+                    ContactUs contactUsObj = ContactUsDB.selectContactUsDescription(ID);
+                    request.setAttribute("notification", contactUsObj);
+                    getServletContext().getRequestDispatcher(url).forward(request, response);
+                    break;
+                }
+                else{
+                    url="/notifications.jsp";
+                    //ContactUs contactUsObj = ContactUsDB.selectContactUsDescription(ID);
+                    request.setAttribute("message", "Oops! Something went wrong..");
+                    getServletContext().getRequestDispatcher(url).forward(request, response);
+                    break;
+                }
+                
+            }
             default:
-                url = "/contactUs.jsp";
+                if (userRole.equals("admin")) {
+                    url="/notifications.jsp";
+                    List<ContactUs> contactUsInfoList = ContactUsDB.selectAllContactUsDescriptions();
+                    request.setAttribute("contactUsInfoList", contactUsInfoList);
+                    System.out.println("hereX");
+                }
+                else{
+                    url = "/contactUs.jsp";
+                }
                 getServletContext().getRequestDispatcher(url).forward(request, response);
                 break;
 
