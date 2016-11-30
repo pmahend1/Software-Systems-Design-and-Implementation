@@ -12,23 +12,21 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="">
-        <meta name="author" content="">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Read That Book</title>
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/shop-homepage.css" rel="stylesheet">
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
         <script src="js/guestHome.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="bootstrap.min.css">
+        <script src="jquery.min.js"></script>
+        <script src="bootstrap.min.js"></script>
     </head>
     <body style="background-color:#F1F4FF;">
         <%@ include file="header.jsp" %>
-        <c:if test="${message != null}">
-            <p style="color:red; font-weight:lighter; text-align:center;">${message}</p>
-        </c:if>
-        <div>
-            <br/>
-            <form name="loginForm" action="LoginServlet" method="post" align="right" ng-app="guestHomeApp" ng-controller="validateCtrl"
+        <div> 
+            <form class="form-inline" name="loginForm" action="LoginServlet" method="post" align="right" ng-app="guestHomeApp" ng-controller="validateCtrl"
                   novalidate>
                 <input type="hidden" name="action" value="login">   
                 <label style="color: white;">User Name</label>
@@ -52,9 +50,11 @@
                 <input type="hidden" name="action" value="register"/>
             </form>
         </div>
-        <br/>
         <%@ include file="headerClose.jsp" %>
-        <br/><br/>
+        <br>
+                   <c:if test="${message != null}">
+                <p style="color:red; font-weight:lighter; text-align:center;">${message}</p>
+            </c:if>
         <form name="login" action="BookManager" method="post">
             <div style="text-align:center; margin:0 80px;"/>
             <input type="searchText" name="searchString" placeholder="Search.." align="center">
@@ -141,6 +141,6 @@
         <!-- Bootstrap Core JavaScript -->
         <script src="js/bootstrap.min.js"></script>  
     </body>
-<%@ include file="footer.jsp" %>
+    <%@ include file="footer.jsp" %>
 </html>
 
