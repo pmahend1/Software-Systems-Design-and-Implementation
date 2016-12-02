@@ -59,6 +59,28 @@ public class UserDB {
         }
     }
      
+     public static int updateUserRole(String userName, String role) {
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        PreparedStatement ps = null;
+
+        String query
+                = "Update User "
+                + "SET role = ? Where UserName = ?";
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setString(1, role);
+            ps.setString(2, userName);
+            return ps.executeUpdate();
+        } catch (Exception e) {
+            System.out.println(e);
+            return 0;
+        } finally {
+            DBUtil.closePreparedStatement(ps);
+            pool.freeConnection(connection);
+        }
+    }
+     
      public static int delete(String username) {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();

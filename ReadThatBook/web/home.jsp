@@ -23,7 +23,8 @@
         <%@ include file="header.jsp" %>
         <p style="color:white; font-weight:bold; text-align:right;">${cookie.userCookie.value}</p>
         <%@ include file="userLogout.jsp" %>
-        <%@ include file="headerClose.jsp" %>
+          </div>
+    </nav>
         <table>
             <tr>
                 <td>

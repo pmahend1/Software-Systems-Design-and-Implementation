@@ -12,49 +12,49 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="">
-        <meta name="author" content="">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Read That Book</title>
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/shop-homepage.css" rel="stylesheet">
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
         <script src="js/guestHome.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="bootstrap.min.css">
+        <script src="jquery.min.js"></script>
+        <script src="bootstrap.min.js"></script>
     </head>
     <body style="background-color:#F1F4FF;">
         <%@ include file="header.jsp" %>
+        <br>
+        <div class="navbar-header">
+            <table>
+                <td><form class="form-horizontal" name="loginForm" action="LoginServlet" method="post">
+                        <input type="hidden" name="action" value="login" >   
+                        <input name="userName" ng-model="userName" type="text" placeholder="User Name" required/>
+                        <input name="passWord" ng-model="passWord" type="password" placeholder="Password" required/>
+
+                        <!--            <span style="color:red" ng-show="loginForm.userName.$dirty && loginForm.userName.$invalid">
+                                        <span ng-show="loginForm.userName.$error.required">Username is required.</span>
+                                        <span style="color:red" ng-show="loginForm.passWord.$dirty && loginForm.passWord.$invalid"></span>
+                                        <span ng-show="loginForm.passWord.$error.required">password is required.</span>
+                                    </span>-->
+
+                        <input type="submit" value="Login" ng-disabled="loginForm.userName.$dirty && loginForm.userName.$invalid ||
+                                    loginForm.passWord.$dirty && loginForm.passWord.$invalid"/>
+                        <span>
+
+                        </span>
+                    </form></td>
+                <td> <form class="form-horizontal" name="register" action="LoginServlet" method="post" align="right">
+                        <input type="submit" name="register" value="Register">
+                        <input type="hidden" name="action" value="register">
+                    </form></td>
+            </table>
+        </div>
+        <%@ include file="headerClose.jsp" %>
         <c:if test="${message != null}">
             <p style="color:red; font-weight:lighter; text-align:center;">${message}</p>
         </c:if>
-        <div>
-            <br/>
-            <form name="loginForm" action="LoginServlet" method="post" align="right" ng-app="guestHomeApp" ng-controller="validateCtrl"
-                  novalidate>
-                <input type="hidden" name="action" value="login">   
-                <label style="color: white;">User Name</label>
-                <input name="userName" ng-model="userName" type="text" required/>
-                <label style="color: white;">Password</label>
-                <input name="passWord" ng-model="passWord" type="password" required/>
-
-                <span style="color:red" ng-show="loginForm.userName.$dirty && loginForm.userName.$invalid">
-                    <span ng-show="loginForm.userName.$error.required">Username is required.</span>
-                    <span style="color:red" ng-show="loginForm.passWord.$dirty && loginForm.passWord.$invalid"></span>
-                    <span ng-show="loginForm.passWord.$error.required">password is required.</span>
-                </span>
-
-                <input type="submit" value="Login" ng-disabled="loginForm.userName.$dirty && loginForm.userName.$invalid ||
-                                    loginForm.passWord.$dirty && loginForm.passWord.$invalid"/>
-            </form>
-        </div>
-        <div>
-            <form name="register" action="LoginServlet" method="post" align="right">
-                <input type="submit" name="register" value="Register" />
-                <input type="hidden" name="action" value="register"/>
-            </form>
-        </div>
-        <br/>
-        <%@ include file="headerClose.jsp" %>
-        <br/><br/>
         <form name="login" action="BookManager" method="post">
             <div style="text-align:center; margin:0 80px;"/>
             <input type="searchText" name="searchString" placeholder="Search.." align="center">
@@ -141,6 +141,6 @@
         <!-- Bootstrap Core JavaScript -->
         <script src="js/bootstrap.min.js"></script>  
     </body>
-<%@ include file="footer.jsp" %>
+    <%@ include file="footer.jsp" %>
 </html>
 

@@ -5,7 +5,7 @@
  */
 var app = angular.module('guestHomeApp', []);
 app.controller('validateCtrl', function($scope) {
-    $scope.userName = 'User';
-    $scope.passWord = 'Pass';
+    $scope.userName = '';
+    $scope.passWord = '';
 });
 

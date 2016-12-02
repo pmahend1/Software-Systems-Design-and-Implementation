@@ -8,6 +8,7 @@ package admin;
 import business.Book;
 import business.User;
 import data.BookDB;
+import data.ContactUsDB;
 import data.UserDB;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -122,6 +123,16 @@ public class AuthenticationServlet extends HttpServlet {
                 url="/guestHome.jsp";
                 getServletContext().getRequestDispatcher(url).forward(request, response);
             } else if (passWord.equals(rePassWord)) {
+                if (userRole.equals("Critic"))
+                {
+                    userRole = "CriticPending";
+                    String category = "Critic Access Request";
+                    StringBuilder description = new StringBuilder("Hello, This is ");
+                    description.append(userName);
+                    description.append(". I would like to have Critic access. Please provide me the same");
+                    ContactUsDB.addContactUsDescription(userName, category, description.toString());
+                }
+                
                 User newUser = new User(userName, firstName, lastName, email, passWord,userRole);
                 UserDB.insert(newUser);
                 url = "/home.jsp";
