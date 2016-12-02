@@ -123,8 +123,9 @@ public class AuthenticationServlet extends HttpServlet {
                 url="/guestHome.jsp";
                 getServletContext().getRequestDispatcher(url).forward(request, response);
             } else if (passWord.equals(rePassWord)) {
-                if (userRole.equals("Critic"))
+                if (userRole.compareTo("Critic") == 0)
                 {
+                    System.out.println("Coming here");
                     userRole = "CriticPending";
                     String category = "Critic Access Request";
                     StringBuilder description = new StringBuilder("Hello, This is ");
@@ -132,11 +133,11 @@ public class AuthenticationServlet extends HttpServlet {
                     description.append(". I would like to have Critic access. Please provide me the same");
                     ContactUsDB.addContactUsDescription(userName, category, description.toString());
                 }
-                
+                System.out.println("Coming here 1");
                 User newUser = new User(userName, firstName, lastName, email, passWord,userRole);
                 UserDB.insert(newUser);
                 url = "/home.jsp";
-                User user = UserDB.selectUser(userName);
+                User user = UserDB.selectUser(userName);    
                 Cookie userCookie = new Cookie("userCookie", userName);
                 userCookie.setMaxAge(1*60*60);
                 userCookie.setPath("/");

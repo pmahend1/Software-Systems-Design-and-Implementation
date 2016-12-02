@@ -120,6 +120,15 @@ public class BookListServlet extends HttpServlet {
 
                 int userRating = RatingDB.getUserRating(bookId, review.getUserName());
                 review.setUserrating(userRating);
+                
+                String userRole = UserDB.getUserRole(review.getUserName());
+                review.setUserRole(userRole);
+                
+                if (userRole.compareTo("Critic") == 0)
+                {
+                    reviews.remove(i);
+                    reviews.add(0, review);
+                }
             }
                 request.setAttribute("reviewlist", reviews);
                 

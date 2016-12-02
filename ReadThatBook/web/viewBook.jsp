@@ -152,6 +152,9 @@
                     <c:forEach items="${reviewlist}" var="review">  
                     <tr>
                         <td><b><c:out value="${review.getUserName()}" /></b>
+                            <c:if test="${review.getUserRole() eq 'Critic'}">
+                                <b class="text-warning">[Critic]</b>                             
+                            </c:if>
                             <input type="number" name="rating" value="${review.getUserrating()}" id="rating-readonly" class="rating" data-clearable="remove" data-readonly /></td> 
                     </tr>
                     <tr>

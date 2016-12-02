@@ -14,6 +14,7 @@ public class Review {
     private String userName;
     private String review;
     private int userrating;
+    private String userRole;
 
     public Review(int bookID, String userName, String review) {
         this.bookID = bookID;
@@ -26,6 +27,14 @@ public class Review {
         review = "";
     }
 
+    public String getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(String userRole) {
+        this.userRole = userRole;
+    }
+    
     public int getBookID() {
         return bookID;
     }

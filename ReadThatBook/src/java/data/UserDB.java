@@ -135,4 +135,31 @@ public class UserDB {
         }
     }
      
+    public static String getUserRole(String userName) {
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String query = "SELECT role FROM User "
+                + "WHERE UserName = ?";
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setString(1, userName);
+            rs = ps.executeQuery();
+            User user = null;
+            String role = null;
+            if (rs.next()) {
+                role = rs.getString("role");
+            }
+            return role;
+        } catch (Exception e) {
+            System.out.println(e);
+            return null;
+        } finally {
+            DBUtil.closeResultSet(rs);
+            DBUtil.closePreparedStatement(ps);
+            pool.freeConnection(connection);
+        }
+    }
 }

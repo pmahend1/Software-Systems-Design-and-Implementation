@@ -10,6 +10,7 @@ import business.Review;
 import data.BookDB;
 import data.RatingDB;
 import data.ReviewDB;
+import data.UserDB;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -167,6 +168,15 @@ public class ReviewManager extends HttpServlet {
                         reviewStr = review.getReview();
                     int userRating = RatingDB.getUserRating(bookID, review.getUserName());
                     review.setUserrating(userRating);
+                    
+                    String userRole = UserDB.getUserRole(review.getUserName());
+                    review.setUserRole(userRole);
+                    
+                    if (userRole.compareTo("Critic") == 0)
+                    {
+                        reviews.remove(i);
+                        reviews.add(0, review);
+                    }
                 }
                 request.setAttribute("reviewlist", reviews);
                 Book book = BookDB.selectBook(bookID);
