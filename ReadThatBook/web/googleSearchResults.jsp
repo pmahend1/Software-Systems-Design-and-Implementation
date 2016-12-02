@@ -26,42 +26,40 @@
         <form action="GoogleBooksApiServlet" method="POST">
             <input type="hidden" name="action" value="addGoogleBook"/>
             <table>
-                <c:forEach var="book" items="${books}">
-                    <tr>
-                        <td><img src="${book.getImageLink()}" alt="${book.getTitle()}"></td>
-                        <td>
-                            <b>Title :</b><c:out value="${book.getTitle()}"/><br/>
-                            <b>Author(s) :</b> ${book.getAuthor()}<br/>
-                            <b>Publisher :</b> ${book.getPublisher()}<br/>
-                            <b>ISBN10 :</b> ${book.getISBN10()}<br/>
-                            <b>ISBN13 :</b> ${book.getISBN13()}<br/>
-                            <b>Genre :</b> ${book.getGenre()}<br/>
-                            <b>Edition :</b>${book.getEdition()}<br/>
-                            <b>Description :</b>${book.getDescription()}<br/>
-                            -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-                        </td>
+            <c:forEach items="${books}" var="book">
+                <tr>
+                    <td><img src="${book.getImageLink()}" alt="${book.getTitle()}"></td>
+                    <td>
+                        <b>Title :</b><c:out value="${book.getTitle()}"/><br/>
+                        <b>Author(s) :</b> ${book.getAuthor()}<br/>
+                        <b>Publisher :</b> ${book.getPublisher()}<br/>
+                        <b>ISBN10 :</b> <c:out value="${book.getISBN10()}"/><br/>
+                        <b>ISBN13 :</b> <c:out value="${book.getISBN13()}"/><br/>
+                        <b>Genre :</b> ${book.getGenre()}<br/>
+                        <b>Description :</b>${book.getDescription()}<br/>
+                    </td>
+
+                    <td><form action="manageBooks" method="POST">
+                            <input type="hidden" name="action" value="addGoogleBook"/>
+                            <input type="hidden" name="title" value="${book.getTitle()}">
+                            <input type="hidden" name="ISBN13" value="${book.getISBN13()}">
+                            <input type="hidden" name="ISBN10" value="${book.getISBN10()}">
+                            <input type="hidden" name="author" value="${book.getAuthor()}">
+                            <input type="hidden" name="genre" value="${book.getGenre()}">
+                            <input type="hidden" name="publisher" value="${book.getPublisher()}">
+                            <input type="hidden" name="description" value="${book.getDescription()}">
+                            <input type="hidden" name="imageLink" value="<c:out value="${book.getImageLink()}"/>">
+                            <input type="submit" name="Add" value="Add"> </form></td>
+
+                </tr>
 
 
-                        <td><input type="hidden" name="title" value="<c:out value="${book.getTitle()}"/>" />
-                            <input type="hidden" name="ISBN_13" value="<c:out value="${book.getISBN13()}"/>" />
-                            <input type="hidden" name="ISBN_10" value="<c:out value="${book.getISBN10()}"/>"/>
-                            <input type="hidden" name="author" value="<c:out value="${book.getAuthor()}"/>"/>
-                            <input type="hidden" name="genre" value="<c:out value="${book.getGenre()}"/>" />
-                            <input type="hidden" name="edition" value="<c:out value="${book.getEdition()}"/>" />
-                            <input type="hidden" name="publisher" value="<c:out value="${book.getPublisher()}"/>" />
-                            <input type="hidden" name="description" value="<c:out value="${book.getDescription()}"/>"/>
-                            <input type="hidden" name="imageLink" value="<c:out value="${book.getImageLink()}"/>"/>
+            </c:forEach>
 
-                            <button type="submit" name="Add" value="Add">Add</button></td>
-                        
-                    </tr>
-                    
-                    <c:set value="${book}" var="bookN" scope="request"></c:set>
-                    
-                </c:forEach>
-                   
 
-            </table>
+        </table>
+			
+			
         </form>
     </body>
 </html>
