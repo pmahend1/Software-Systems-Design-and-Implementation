@@ -127,14 +127,25 @@ public class ReviewManager extends HttpServlet {
             }
             //String userCookie = cookies[1].getValue();
             System.out.println("userCookievalue : " + userCookievalue);
+            String buttonStatus = request.getParameter("buttonStatus");
             if (userCookievalue != null) {
                 Review newReview = new Review(bookID, userCookievalue, reviewStr);
                 if (ReviewDB.checkReviewExists(bookID, userCookievalue)) {
                     if (action.equals("editreview"))
                     {
-                        request.setAttribute("showtextarea", true);
-                        request.setAttribute("editreviewvalue", reviewStr);
-                        System.out.println("Clicked edit review button: ");
+                        
+                        if (buttonStatus.compareTo("Edit") == 0)
+                        {
+                            request.setAttribute("showtextarea", true);
+                            request.setAttribute("editreviewvalue", reviewStr);
+                            System.out.println("Clicked edit review button: ");
+                        }
+                        else if(buttonStatus.compareTo("Delete") == 0)
+                        {
+                            System.out.println("Clicked delete review button: ");
+                            ReviewDB.deleteReview(newReview);
+                        }
+                        
                     }
                     else if (action.equals("editreviewBook"))
                     {
@@ -169,7 +180,7 @@ public class ReviewManager extends HttpServlet {
                 request.setAttribute("votes", (int) averageArray[1]);
                 request.setAttribute("review", newReview);
                 System.out.println("action:"+action);
-                if (action.equals("editreview"))
+                if (action.equals("editreview") && buttonStatus.compareTo("Edit") == 0)
                 {
                     System.out.println("admin.ReviewManager.doPost()" +reviewStr);
                     request.setAttribute("editreviewvalue", reviewStr);

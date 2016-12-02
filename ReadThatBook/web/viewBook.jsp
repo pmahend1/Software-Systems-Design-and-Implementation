@@ -155,7 +155,7 @@
                             <input type="number" name="rating" value="${review.getUserrating()}" id="rating-readonly" class="rating" data-clearable="remove" data-readonly /></td> 
                     </tr>
                     <tr>
-                        <td ><font color="blue"><c:out value="${review.getReview()}"/></font></td>
+                        <td width="70%"><font color="blue"><c:out value="${review.getReview()}"/></font></td>
 
                         <c:choose>
                             <c:when test = "${review.getUserName() eq user}" >
@@ -163,7 +163,9 @@
                             <form name="editreview" action="ReviewManager" method="post">
                                 <input type="hidden" name="action" value="editreview" />
                                 <input type="hidden" name="bookID" value="${book.getBookID()}" />
-                                <td><input type="submit" name="Submit" value="Edit review"/></td>
+                                
+                                <td width="20%"><input type="submit" name="buttonStatus" value="Edit" class="btn btn-success" />
+                                <input type="submit" name="buttonStatus" value="Delete" class="btn btn-danger" /></td>
                             </form>
 
                         </c:when>
