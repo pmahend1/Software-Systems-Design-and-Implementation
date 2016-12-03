@@ -15,7 +15,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author akshay
+ * @author ashwini
  */
 public class UserDBTest {
     
@@ -44,10 +44,11 @@ public class UserDBTest {
     @Test
     public void testInsert() {
         System.out.println("insert");
-        User user = null;
-        int expResult = 0;
+        User user = new User("new", "new", "newLastName", "new@new.com", "new", "user");
         int result = UserDB.insert(user);
-        assertEquals(expResult, result);
+        User userFromDB= UserDB.selectUser("new");
+        
+        assertEquals("new", userFromDB.getUserName());
     }
 
     /**
@@ -56,35 +57,30 @@ public class UserDBTest {
     @Test
     public void testUpdate() {
         System.out.println("update");
-        User user = null;
-        int expResult = 0;
+        User user = UserDB.selectUser("new");
+        String expected = "newFirstName";
+        user.setFirstName(expected);
         int result = UserDB.update(user);
-        assertEquals(expResult, result);
+        User userFromDB = UserDB.selectUser("new");
+        String firstName = userFromDB.getFirstName();
+        assertEquals(expected, firstName);
     }
-
-    /**
-     * Test of delete method, of class UserDB.
-     */
-    @Test
-    public void testDelete() {
-        System.out.println("delete");
-        String username = "";
-        int expResult = 0;
-        int result = UserDB.delete(username);
-        assertEquals(expResult, result);
-    }
-
+    
     /**
      * Test of selectUser method, of class UserDB.
      */
     @Test
     public void testSelectUser() {
         System.out.println("selectUser");
-        String userName = "";
-        User expResult = null;
-        User result = UserDB.selectUser(userName);
-        assertEquals(expResult, result);
+        String userName = "new";
+        User userFromDB = UserDB.selectUser(userName);
+        String lastName = userFromDB.getLastName();
+        assertEquals("newLastName", lastName);
     }
+
+    
+
+    
 
     /**
      * Test of updateUserRole method, of class UserDB.
@@ -92,11 +88,12 @@ public class UserDBTest {
     @Test
     public void testUpdateUserRole() {
         System.out.println("updateUserRole");
-        String userName = "";
-        String role = "";
-        int expResult = 0;
+        String userName = "new";
+        String role = "admin";
+        String expResult = "admin";
         int result = UserDB.updateUserRole(userName, role);
-        assertEquals(expResult, result);
+        String dbResult = UserDB.selectUser(userName).getRole();
+        assertEquals(expResult, dbResult);
 
     }
 
@@ -106,11 +103,23 @@ public class UserDBTest {
     @Test
     public void testGetUserRole() {
         System.out.println("getUserRole");
-        String userName = "";
-        String expResult = null;
+        String userName = "new";
+        String expResult = "admin";
         String result = UserDB.getUserRole(userName);
         assertEquals(expResult, result);
 
+    }
+    
+    /**
+     * Test of delete method, of class UserDB.
+     */
+    @Test
+    public void testDelete() {
+        System.out.println("delete");
+        String username = "new";
+        int result = UserDB.delete(username);
+        User userFromDB = UserDB.selectUser(username);
+        assertEquals(userFromDB, null);
     }
     
 }
