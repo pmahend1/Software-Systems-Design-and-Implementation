@@ -192,3 +192,28 @@ ALTER TABLE `wishlist`
   ADD CONSTRAINT `BookID` FOREIGN KEY (`BookID`) REFERENCES `book` (`BookID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `UserName` FOREIGN KEY (`UserName`) REFERENCES `user` (`UserName`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
+--
+-- Table structure for table `spam`
+--
+
+DROP TABLE IF EXISTS `spam`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `spam` (
+  `BOOK_ID` int(11) NOT NULL,
+  `UserName` varchar(20) NOT NULL,
+  `reporter` varchar(20) DEFAULT NULL,
+  `reason` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`BOOK_ID`,`UserName`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `spam`
+--
+
+LOCK TABLES `spam` WRITE;
+/*!40000 ALTER TABLE `spam` DISABLE KEYS */;
+INSERT INTO `spam` VALUES (39,'akadam3','raka','Its incorrect.'),(44,'akadam3','raka','Wrong');
+/*!40000 ALTER TABLE `spam` ENABLE KEYS */;
+UNLOCK TABLES;
