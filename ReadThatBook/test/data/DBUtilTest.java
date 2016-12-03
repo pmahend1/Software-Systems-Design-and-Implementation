@@ -6,6 +6,7 @@
 package data;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -43,30 +44,53 @@ public class DBUtilTest {
      * Test of closeStatement method, of class DBUtil.
      */
     @Test
-    public void testCloseStatement() {
+    public void testCloseStatement() throws SQLException {
         System.out.println("closeStatement");
-        Statement s = null;
+        Statement s = ConnectionPool.getInstance().getConnection().createStatement();
         DBUtil.closeStatement(s);
+        if(s.isClosed()){
+            System.out.println("Statement closed");
+        }
+        assertTrue(s.isClosed());
     }
 
     /**
      * Test of closePreparedStatement method, of class DBUtil.
      */
     @Test
-    public void testClosePreparedStatement() {
+    public void testClosePreparedStatement() throws SQLException {
         System.out.println("closePreparedStatement");
-        Statement ps = null;
+        String sql= "Select * from User";
+        Statement ps = ConnectionPool.getInstance().getConnection().prepareStatement(sql);
+        System.out.println(ps.toString());
+        ResultSet rs = ps.executeQuery(sql);
+        while(rs.next()){
+            System.out.println(rs.toString());
+        }
         DBUtil.closePreparedStatement(ps);
+        System.out.println(ps.toString());
+        assertTrue(ps.isClosed());
     }
 
     /**
      * Test of closeResultSet method, of class DBUtil.
      */
     @Test
-    public void testCloseResultSet() {
+    public void testCloseResultSet() throws SQLException {
         System.out.println("closeResultSet");
-        ResultSet rs = null;
-        DBUtil.closeResultSet(rs);
+        
+        String sql= "Select * from User";
+        Statement ps = ConnectionPool.getInstance().getConnection().prepareStatement(sql);
+        System.out.println(ps.toString());
+        ResultSet rs = ps.executeQuery(sql);
+        while(rs.next()){
+            System.out.println(rs.toString());
+        }
+        DBUtil.closePreparedStatement(ps);
+        rs.close();
+        System.out.println(ps.toString());
+        assertTrue(rs.isClosed());
+        
     }
     
 }
