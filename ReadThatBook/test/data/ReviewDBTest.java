@@ -20,11 +20,14 @@ import static org.junit.Assert.*;
  */
 public class ReviewDBTest {
     
+    //static Review review;
     public ReviewDBTest() {
+        
     }
     
     @BeforeClass
     public static void setUpClass() {
+        //review = new Review(2, "sanjukh", "Hello");
     }
     
     @AfterClass
@@ -49,6 +52,10 @@ public class ReviewDBTest {
         int expResult = 0;
         int result = ReviewDB.insertReview(review);
         assertEquals(expResult, result);
+        
+        review = new Review(2, "sanjukh", "Hello");
+        result = ReviewDB.insertReview(review);
+        assertNotEquals(expResult, result);
     }
 
     /**
@@ -62,6 +69,9 @@ public class ReviewDBTest {
         boolean expResult = false;
         boolean result = ReviewDB.checkReviewExists(bookID, userName);
         assertEquals(expResult, result);
+        
+        result = ReviewDB.checkReviewExists(2, "sanjukh");
+        assertEquals(true, result);
     }
 
     /**
@@ -69,11 +79,18 @@ public class ReviewDBTest {
      */
     @Test
     public void testUpdateReview() {
+        //invalid test case
         System.out.println("updateReview");
         Review review = null;
         int expResult = 0;
         int result = ReviewDB.updateReview(review);
         assertEquals(expResult, result);
+        
+        //valid test case
+        review = new Review(2, "sanjukh", "Hello this is my book");
+        result = ReviewDB.updateReview(review);
+        System.out.println("testUpdateReview result" + result);
+        assertNotEquals(expResult, result);
     }
 
     /**
@@ -85,21 +102,17 @@ public class ReviewDBTest {
         int bookID = 0;
         String userName = "";
         List<Review> expResult = null;
+        
+        //invalid test case
         List<Review> result = ReviewDB.getUsersReview(bookID, userName);
-        assertEquals(expResult, result);
+        assertEquals(0, result.size());
+        
+        //valid test case
+        result = ReviewDB.getUsersReview(2, "sanjukh");
+        assertNotEquals(0, result.size());
      }
 
-    /**
-     * Test of getReviewsFromBookID method, of class ReviewDB.
-     */
-    @Test
-    public void testGetReviewsFromBookID() {
-        System.out.println("getReviewsFromBookID");
-        int bookID = 0;
-        List<Review> expResult = null;
-        List<Review> result = ReviewDB.getReviewsFromBookID(bookID);
-        assertEquals(expResult, result);
-    }
+
 
     /**
      * Test of deleteReview method, of class ReviewDB.
@@ -111,6 +124,34 @@ public class ReviewDBTest {
         int expResult = 0;
         int result = ReviewDB.deleteReview(review);
         assertEquals(expResult, result);
+        
+        review = new Review(2, "sanjukh", "Hello");
+        result = ReviewDB.deleteReview(review);
+        System.out.println("testDeleteReview result" + result);
+        assertNotEquals(expResult, result);
+    }
+    
+        /**
+     * Test of getReviewsFromBookID method, of class ReviewDB.
+     */
+    
+    @Test
+    public void testGetReviewsFromBookID() {
+        System.out.println("getReviewsFromBookID");
+        int bookID = 1;
+        
+        List<Review> result = ReviewDB.getReviewsFromBookID(bookID);
+        //assertEquals(0, result.size());
+        int sum = 0;
+        result = ReviewDB.getReviewsFromBookID(bookID);
+        if(result!=null){
+            for(Review r:result){
+                System.out.println(r.getBookID());
+                sum = sum+r.getBookID();
+            }
+        }
+        System.out.println("testDeleteReview result" + result);
+        assertTrue(sum>0);
     }
     
 }

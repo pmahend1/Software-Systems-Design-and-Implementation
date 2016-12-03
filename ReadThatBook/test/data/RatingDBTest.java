@@ -47,6 +47,11 @@ public class RatingDBTest {
         Rating rating = null;
         int expResult = 0;
         int result = RatingDB.insertRating(rating);
+        assertEquals(expResult, result);
+        
+        rating = new Rating(2, "sanjukh", 4);
+        result = RatingDB.insertRating(rating);
+        assertNotEquals(expResult, result);
     }
 
     /**
@@ -59,6 +64,10 @@ public class RatingDBTest {
         boolean expResult = false;
         boolean result = RatingDB.checkRatingExists(rating);
         assertEquals(expResult, result);
+        
+        rating = new Rating(2, "sanjukh", 4);
+        result = RatingDB.checkRatingExists(rating);
+        assertNotEquals(expResult, result);
     }
 
     /**
@@ -71,18 +80,10 @@ public class RatingDBTest {
         int expResult = 0;
         int result = RatingDB.updateRating(rating);
         assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of getAverageRating method, of class RatingDB.
-     */
-    @Test
-    public void testGetAverageRating() {
-        System.out.println("getAverageRating");
-        int bookID = -1;
-        double[] expResult = null;
-        double[] result = RatingDB.getAverageRating(bookID);
-        assertArrayEquals(expResult, result, bookID);
+        
+        rating = new Rating(2, "sanjukh", 6);
+        result = RatingDB.updateRating(rating);
+        assertEquals(6, RatingDB.getUserRating(2, "sanjukh"));
     }
 
     /**
@@ -93,9 +94,12 @@ public class RatingDBTest {
         System.out.println("getUserRating");
         int bookID = 0;
         String userName = "";
-        int expResult = 0;
+        int expResult = -1;
         int result = RatingDB.getUserRating(bookID, userName);
         assertEquals(expResult, result);
+        
+        result = RatingDB.getUserRating(2, "sanjukh");
+        assertNotEquals(expResult, result);
     }
 
     /**
@@ -108,5 +112,9 @@ public class RatingDBTest {
         int expResult = 0;
         int result = RatingDB.deleteRating(rating);
         assertEquals(expResult, result);
+        
+        rating = new Rating(2, "sanjukh", 6);
+        result = RatingDB.deleteRating(rating);
+        assertNotEquals(expResult, result);
     }
 }
