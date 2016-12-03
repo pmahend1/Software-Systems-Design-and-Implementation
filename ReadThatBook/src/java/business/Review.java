@@ -25,6 +25,7 @@ public class Review {
     public Review() {
         userName = "";
         review = "";
+        userRole = "";
     }
 
     public String getUserRole() {

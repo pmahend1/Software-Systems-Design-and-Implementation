@@ -83,4 +83,30 @@ public class WishlistServletTest {
 
         assertEquals("", result);
 }
+
+    /**
+     * Test of doGet method, of class WishlistServlet.
+     */
+    @Test
+    public void testDoGet() throws Exception {
+        System.out.println("doGet");
+        HttpServletRequest request = null;
+        HttpServletResponse response = null;
+        WishlistServlet instance = new WishlistServlet();
+        instance.doGet(request, response);
+
+    }
+
+    /**
+     * Test of doPost method, of class WishlistServlet.
+     */
+    @Test
+    public void testDoPost() throws Exception {
+        System.out.println("doPost");
+        HttpServletRequest request = null;
+        HttpServletResponse response = null;
+        WishlistServlet instance = new WishlistServlet();
+        instance.doPost(request, response);
+
+    }
 }

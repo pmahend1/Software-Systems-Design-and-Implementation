@@ -17,7 +17,7 @@ import org.junit.runners.Suite;
  * @author akshay
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({UserTest.class, RatingTest.class, BookTest.class, ReviewTest.class, iUserTest.class, WishlistTest.class})
+@Suite.SuiteClasses({UserTest.class, RatingTest.class, BookTest.class, ReviewTest.class, ContactUsTest.class, iUserTest.class, WishlistTest.class})
 public class BusinessSuite {
 
     @BeforeClass

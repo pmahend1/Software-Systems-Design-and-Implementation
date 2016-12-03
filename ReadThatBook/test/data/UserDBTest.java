@@ -85,5 +85,32 @@ public class UserDBTest {
         User result = UserDB.selectUser(userName);
         assertEquals(expResult, result);
     }
+
+    /**
+     * Test of updateUserRole method, of class UserDB.
+     */
+    @Test
+    public void testUpdateUserRole() {
+        System.out.println("updateUserRole");
+        String userName = "";
+        String role = "";
+        int expResult = 0;
+        int result = UserDB.updateUserRole(userName, role);
+        assertEquals(expResult, result);
+
+    }
+
+    /**
+     * Test of getUserRole method, of class UserDB.
+     */
+    @Test
+    public void testGetUserRole() {
+        System.out.println("getUserRole");
+        String userName = "";
+        String expResult = null;
+        String result = UserDB.getUserRole(userName);
+        assertEquals(expResult, result);
+
+    }
     
 }

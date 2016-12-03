@@ -17,6 +17,7 @@ public class ContactUs implements Serializable {
     private String category;
     private String description;
 
+   
     public int getContactUsId() {
         return contactUsId;
     }

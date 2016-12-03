@@ -131,5 +131,32 @@ public class ReviewTest {
         instance.setUserrating(userrating);
    }
 
+    /**
+     * Test of getUserRole method, of class Review.
+     */
+    @Test
+    public void testGetUserRole() {
+        System.out.println("getUserRole");
+        Review instance = new Review();
+        String expResult = "";
+        String result = instance.getUserRole();
+        assertEquals(expResult, result);
+
+    }
+
+    /**
+     * Test of setUserRole method, of class Review.
+     */
+    @Test
+    public void testSetUserRole() {
+        System.out.println("setUserRole");
+        String userRole = "";
+        Review instance = new Review();
+        instance.setUserRole(userRole);
+
+    }
+
+
+
     
 }

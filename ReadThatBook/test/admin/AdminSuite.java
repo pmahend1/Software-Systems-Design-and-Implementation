@@ -17,7 +17,7 @@ import org.junit.runners.Suite;
  * @author akshay
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({HomeServletTest.class, ImageServletTest.class, WishlistServletTest.class, GoogleBooksApiServletTest.class, ReviewManagerTest.class, BookListServletTest.class, BookManagerTest.class, AuthenticationServletTest.class, UserProfileManagerTest.class, RatingManagerTest.class})
+@Suite.SuiteClasses({HomeServletTest.class, ImageServletTest.class, ContactUsServletTest.class, WishlistServletTest.class, GoogleBooksApiServletTest.class, ReviewManagerTest.class, BookManagerTest.class, BookListServletTest.class, AuthenticationServletTest.class, UserProfileManagerTest.class, RatingManagerTest.class})
 public class AdminSuite {
 
     @BeforeClass
