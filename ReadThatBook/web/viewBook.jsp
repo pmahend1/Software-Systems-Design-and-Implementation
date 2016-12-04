@@ -50,8 +50,7 @@
         </style>
     </head>
     <body style="background-color:#F1F4FF;">
-        <%@ include file="header.jsp" %>
-        <%@ include file="headerClose.jsp" %>
+        <%@ include file="defaultNav.jsp" %>
         <br/><br/>
         <!-- Page Content -->
         <form name="rate" action="RatingManager" method="post">
