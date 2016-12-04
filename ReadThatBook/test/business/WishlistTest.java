@@ -17,7 +17,7 @@ import static org.junit.Assert.*;
  * @author sanju
  */
 public class WishlistTest {
-    
+    Wishlist wishlist;
     public WishlistTest() {
     }
     
@@ -31,6 +31,9 @@ public class WishlistTest {
     
     @Before
     public void setUp() {
+        wishlist = new Wishlist();
+        wishlist.setBookID(100);
+        wishlist.setUsername("sanjukh");
     }
     
     @After
@@ -47,6 +50,9 @@ public class WishlistTest {
         String expResult = "";
         String result = instance.getUsername();
         assertEquals(expResult, result);
+        
+        expResult = "sanjukh";
+        assertEquals(expResult, wishlist.getUsername());
     }
 
     /**
@@ -59,6 +65,9 @@ public class WishlistTest {
         int expResult = 0;
         int result = instance.getBookID();
         assertEquals(expResult, result);
+        
+        expResult = 100;
+        assertEquals(expResult, wishlist.getBookID());
     }
 
     /**
@@ -70,6 +79,11 @@ public class WishlistTest {
         String username = "";
         Wishlist instance = new Wishlist();
         instance.setUsername(username);
+        assertEquals(instance.getUsername(), username);
+        
+        username = "sanjukh";
+        instance.setUsername(username);
+        assertEquals(instance.getUsername(), username);
     }
 
     /**
@@ -81,6 +95,11 @@ public class WishlistTest {
         int bookID = 0;
         Wishlist instance = new Wishlist();
         instance.setBookID(bookID);
+        assertEquals(bookID, instance.getBookID());
+        
+        bookID = 100;
+        instance.setBookID(bookID);
+        assertEquals(instance.getBookID(), bookID);
     }
     
 }

@@ -17,8 +17,9 @@ import static org.junit.Assert.*;
  * @author sanju
  */
 public class RatingTest {
-    
+    Rating rating = new Rating();
     public RatingTest() {
+        
     }
     
     @BeforeClass
@@ -31,6 +32,9 @@ public class RatingTest {
     
     @Before
     public void setUp() {
+        rating.setBookID(100);
+        rating.setRating(4);
+        rating.setUserName("sanjukh");
     }
     
     @After
@@ -47,6 +51,9 @@ public class RatingTest {
         int expResult = 0;
         int result = instance.getBookID();
         assertEquals(expResult, result);
+        
+        expResult = 100;
+        assertEquals(expResult, rating.getBookID());
     }
 
     /**
@@ -55,9 +62,11 @@ public class RatingTest {
     @Test
     public void testSetBookID() {
         System.out.println("setBookID");
-        int bookID = 0;
+        int bookID = 100;
         Rating instance = new Rating();
         instance.setBookID(bookID);
+        assertEquals(bookID, instance.getBookID());
+        
     }
 
     /**
@@ -70,6 +79,9 @@ public class RatingTest {
         String expResult = "";
         String result = instance.getUserName();
         assertEquals(expResult, result);
+        
+        expResult = "sanjukh";
+        assertEquals(expResult, rating.getUserName());
     }
 
     /**
@@ -81,6 +93,13 @@ public class RatingTest {
         String userName = "";
         Rating instance = new Rating();
         instance.setUserName(userName);
+        assertEquals(instance.getUserName(), "");
+        
+        userName="sanjukh";
+        instance.setUserName(userName);
+        assertEquals(instance.getUserName(), "sanjukh");
+        
+        
     }
 
     /**
@@ -93,6 +112,9 @@ public class RatingTest {
         int expResult = 0;
         int result = instance.getRating();
         assertEquals(expResult, result);
+        
+        expResult = 4;
+        assertEquals(expResult, rating.getRating());
     }
 
     /**
@@ -101,9 +123,10 @@ public class RatingTest {
     @Test
     public void testSetRating() {
         System.out.println("setRating");
-        int rating = 0;
+        int rating = 5;
         Rating instance = new Rating();
         instance.setRating(rating);
+        assertEquals(instance.getRating(), rating);
     }
     
 }

@@ -17,7 +17,7 @@ import static org.junit.Assert.*;
  * @author sanju
  */
 public class ContactUsTest {
-    
+    ContactUs contactUs;
     public ContactUsTest() {
     }
     
@@ -31,6 +31,11 @@ public class ContactUsTest {
     
     @Before
     public void setUp() {
+        contactUs = new ContactUs();
+        contactUs.setCategory("Testing category");
+        contactUs.setContactUsId(100);
+        contactUs.setDescription("Testing description");
+        contactUs.setUserName("sanjukh");
     }
     
     @After
@@ -48,6 +53,8 @@ public class ContactUsTest {
         int result = instance.getContactUsId();
         assertEquals(expResult, result);
 
+        expResult = 100;
+        assertEquals(expResult, contactUs.getContactUsId());
     }
 
     /**
@@ -56,10 +63,11 @@ public class ContactUsTest {
     @Test
     public void testSetContactUsId() {
         System.out.println("setContactUsId");
-        int contactUsId = 0;
+        int contactUsId = 101;
         ContactUs instance = new ContactUs();
         instance.setContactUsId(contactUsId);
-
+        
+        assertEquals(instance.getContactUsId(), contactUsId);
     }
 
     /**
@@ -73,6 +81,8 @@ public class ContactUsTest {
         String result = instance.getUserName();
         assertEquals(expResult, result);
 
+        expResult = "sanjukh";
+        assertEquals(expResult, contactUs.getUserName());
     }
 
     /**
@@ -85,6 +95,9 @@ public class ContactUsTest {
         ContactUs instance = new ContactUs();
         instance.setUserName(userName);
 
+        userName = "sanjukh";
+        instance.setUserName(userName);
+        assertEquals(instance.getUserName(), userName);
     }
 
     /**
@@ -97,6 +110,9 @@ public class ContactUsTest {
         String expResult = null;
         String result = instance.getCategory();
         assertEquals(expResult, result);
+        
+        expResult = "Testing category";
+        assertEquals(expResult, contactUs.getCategory());
 
     }
 
@@ -110,6 +126,9 @@ public class ContactUsTest {
         ContactUs instance = new ContactUs();
         instance.setCategory(category);
 
+        category = "Testing category";
+        instance.setCategory(category);
+        assertEquals(instance.getCategory(), category);
     }
 
     /**
@@ -123,6 +142,8 @@ public class ContactUsTest {
         String result = instance.getDescription();
         assertEquals(expResult, result);
 
+        expResult = "Testing description";
+        assertEquals(expResult, contactUs.getDescription());
     }
 
     /**
@@ -135,6 +156,9 @@ public class ContactUsTest {
         ContactUs instance = new ContactUs();
         instance.setDescription(description);
 
+        description = "Testing description";
+        instance.setDescription(description);
+        assertEquals(instance.getDescription(), description);
     }
     
 }

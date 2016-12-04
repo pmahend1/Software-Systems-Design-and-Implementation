@@ -17,7 +17,7 @@ import static org.junit.Assert.*;
  * @author sanju
  */
 public class ReviewTest {
-    
+    private Review review;
     public ReviewTest() {
     }
     
@@ -31,6 +31,12 @@ public class ReviewTest {
     
     @Before
     public void setUp() {
+        review = new Review();
+        review.setBookID(100);
+        review.setUserName("sanjukh");
+        review.setUserRole("Admin");
+        review.setUserrating(4);
+        review.setReview("Testing review");
     }
     
     @After
@@ -47,8 +53,9 @@ public class ReviewTest {
         int expResult = 0;
         int result = instance.getBookID();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+
+        expResult = 100;
+        assertEquals(expResult, review.getBookID());
     }
 
     /**
@@ -57,9 +64,10 @@ public class ReviewTest {
     @Test
     public void testSetBookID() {
         System.out.println("setBookID");
-        int bookID = 0;
+        int bookID = 101;
         Review instance = new Review();
         instance.setBookID(bookID);
+        assertEquals(bookID, instance.getBookID());
     }
 
     /**
@@ -72,6 +80,9 @@ public class ReviewTest {
         String expResult = "";
         String result = instance.getUserName();
         assertEquals(expResult, result);
+        
+        expResult = "sanjukh";
+        assertEquals(expResult, review.getUserName());
     }
 
     /**
@@ -80,9 +91,10 @@ public class ReviewTest {
     @Test
     public void testSetUserName() {
         System.out.println("setUserName");
-        String userName = "";
+        String userName = "sanjukh";
         Review instance = new Review();
         instance.setUserName(userName);
+        assertEquals(review.getUserName(), userName);
     }
 
     /**
@@ -95,6 +107,9 @@ public class ReviewTest {
         String expResult = "";
         String result = instance.getReview();
         assertEquals(expResult, result);
+        
+        expResult = "Testing review";
+        assertEquals(expResult, review.getReview());
     }
 
     /**
@@ -103,9 +118,10 @@ public class ReviewTest {
     @Test
     public void testSetReview() {
         System.out.println("setReview");
-        String review = "";
+        String review = "My review";
         Review instance = new Review();
         instance.setReview(review);
+        assertEquals(instance.getReview(), review);
     }
 
     /**
@@ -118,6 +134,9 @@ public class ReviewTest {
         int expResult = 0;
         int result = instance.getUserrating();
         assertEquals(expResult, result);
+        
+        expResult = 4;
+        assertEquals(expResult, review.getUserrating());
     }
 
     /**
@@ -126,9 +145,10 @@ public class ReviewTest {
     @Test
     public void testSetUserrating() {
         System.out.println("setUserrating");
-        int userrating = 0;
+        int userrating = 5;
         Review instance = new Review();
         instance.setUserrating(userrating);
+        assertEquals(instance.getUserrating(), userrating);
    }
 
     /**
@@ -142,6 +162,8 @@ public class ReviewTest {
         String result = instance.getUserRole();
         assertEquals(expResult, result);
 
+        expResult = "Admin";
+        assertEquals(expResult, review.getUserRole());
     }
 
     /**
@@ -150,9 +172,10 @@ public class ReviewTest {
     @Test
     public void testSetUserRole() {
         System.out.println("setUserRole");
-        String userRole = "";
+        String userRole = "Admin";
         Review instance = new Review();
         instance.setUserRole(userRole);
+        assertEquals(instance.getUserRole(), userRole);
 
     }
 
