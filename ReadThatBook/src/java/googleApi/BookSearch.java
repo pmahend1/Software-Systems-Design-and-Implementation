@@ -159,17 +159,6 @@ public class BookSearch {
             googleBook = new Book(title, author, ISBN10, ISBN13, genre, edition, publisher, description);
             googleBook.setImageLink(imageLink);
             boolean add = bookList.add(googleBook);
-//            // Access status.
-//            String accessViewStatus = volume.getAccessInfo().getAccessViewStatus();
-//            String message = "Additional information about this book is available from Google eBooks at:";
-//            if ("FULL_PUBLIC_DOMAIN".equals(accessViewStatus)) {
-//                message = "This public domain book is available for free from Google eBooks at:";
-//            } else if ("SAMPLE".equals(accessViewStatus)) {
-//                message = "A preview of this book is available from Google eBooks at:";
-//            }
-//            System.out.println(message);
-//            // Link to Google eBooks.
-//            System.out.println(volumeInfo.getInfoLink());
         }
 
         System.out.println("==========");
@@ -182,43 +171,8 @@ public class BookSearch {
     public static String parseQuery(String args) {
         JsonFactory jsonFactory = JacksonFactory.getDefaultInstance();
         try {
-            // Verify command line parameters.
-//      if (args.length == 0) {
-//        System.err.println("Usage: BooksSample [--author|--isbn|--title] \"<query>\"");
-//        System.exit(1);
-//      }
-
-            // Parse command line parameters into a query.
-            // Query format: "[<author|isbn|intitle>:]<query>"
             String prefix = null;
-            String query = "";
-//            for (String arg : args) {
-//                if ("--author".equals(arg)) {
-//                    prefix = "inauthor:";
-//                } else if ("--isbn".equals(arg)) {
-//                    prefix = "isbn:";
-//                } else if ("--title".equals(arg)) {
-//                    prefix = "intitle:";
-//                } else if (arg.startsWith("--")) {
-//                    System.err.println("Unknown argument: " + arg);
-//                    System.exit(1);
-//                } else {
-//                    query = arg;
-//                }
-//            }
-
-//            if (args.contains("--author")) {
-//                prefix = "inauthor:";
-//            } else if (args.contains("--isbn")) {
-//                prefix = "isbn:";
-//            } else if (args.contains("--title")) {
-//                prefix = "intitle:";
-//            } else if (args.startsWith("--")) {
-//                System.err.println("Unknown argument: " + args);
-//                System.exit(1);
-//            } else {
-//                query = args;
-//            }
+            String query = args;
             args.replace("", "");
             System.out.println("prefix : " + prefix);
             if (prefix != null) {
@@ -226,13 +180,6 @@ public class BookSearch {
             }
 
             return query;
-//            try {
-//                queryGoogleBooks(jsonFactory, query);
-//                // Success!
-//                return;
-//            } catch (IOException e) {
-//                System.err.println(e.getMessage());
-//            }
         } catch (Throwable t) {
             t.printStackTrace();
             return "";
