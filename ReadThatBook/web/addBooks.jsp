@@ -26,6 +26,12 @@
         <br/>
         <h3><center>Add A Book Manually</center></h3>
         <p style="color:white;" align="center"><c:if test="${not empty messageText}"><c:out value="${cookie['userCookie'].value}" /></c:if></p>
+        <div class="row">
+            <div class="alert alert-danger alert-dismissible col-md-6 col-md-offset-3">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                <center><strong><c:out value="${searchErrorMessage}"/></strong></center> 
+            </div>
+        </div> 
         <form class="form-horizontal" action="BookManager" enctype="multipart/form-data" method="POST">
             <input type="hidden" name="action" value="addBook"/>
             <div class="form-group">
