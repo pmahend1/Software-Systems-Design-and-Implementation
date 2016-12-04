@@ -16,9 +16,7 @@
         <title>Google Search Results</title>
     </head>
     <body style="background-color:#F1F4FF;">
-        <%@ include file="header.jsp" %>
-        <%@ include file="userLogout.jsp" %>
-        <%@ include file="headerClose.jsp" %>
+        <%@ include file="defaultNav.jsp" %>
 
         <h3>Books from Google</h3>
         <p style="color:white;"><c:if test="${not empty message}"><c:out value="${message}"/></c:if></p>
@@ -52,12 +50,9 @@
 
                     </tr>
 
-
                 </c:forEach>
 
-
             </table>
-
 
         </form>
     </body>
