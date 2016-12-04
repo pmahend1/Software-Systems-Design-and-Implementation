@@ -31,30 +31,30 @@
         <div class="row">
             <c:forEach items="${books}" var="item">
                 <div class="col-sm-3 col-lg-3 col-md-3">
-                    <div class="thumbnail">
-                        <img src="${pageContext.request.contextPath}/images/${item.bookID}" alt="No image"/>
-                        <div class="caption">
-                            <h4 align="center">${item.title}</h4>
-                            <h5 align="center">By:${item.author}</h5> 
-                            <div style="width: 280px">
-                                <div style="float:left; margin-left: 15px">
-                                    <form name="viewBook" action="BookListServlet" method="post" align="center">
-                                        <input type="hidden" name="action" value="viewBook">
-                                        <input type="hidden" name="bookid" value=${item.bookID}>
-                                        <input type="submit" class="btn btn-primary btn-sm" value="View" />
-                                    </form>
-                                </div>
-                                <div style="float:right; margin-right: 15px">
+                    <div class="thumbnail" style="width:280px;height:420px">
+<!--                        <img src="${pageContext.request.contextPath}/images/${item.bookID}" alt="No image"/>-->
+                            <div>
+                                <form name="viewBook" action="BookListServlet" method="post" align="center">
+                                    <input type="hidden" name="action" value="viewBook">
+                                    <input type="hidden" name="bookid" value=${item.bookID}>
+                                    <input type="image" src="${pageContext.request.contextPath}/images/${item.bookID}" class="thumbnail center-block" style="width:250px;height: 300px" alt="No Image" />
+                                </form>
+                                
+                                <div class="text-center" align="center">
+                                    <h5 class="text text-muted"><b>${item.title}</b></h5>
+                                    <h6 class="text text-muted">By:${item.author}</h6>                                         
+                                </div> 
+                                <div class="center-block">
                                     <form name="addToWishlist" action="WishlistServlet" method="post" align="center">
                                         <input type="hidden" name="action" value="addToWishlist">
                                         <input type="hidden" name="username" value="${user.getUserName()}"</input>
                                         <input type="hidden" name="bookid" value=${item.bookID}>
                                         <input type="hidden" name="books" value="${books}">
-                                        <input type="submit" class="btn btn-primary btn-sm" value="Add to wishlist" />
+                                        <input type="submit" class="btn btn-primary btn-sm" value="Add to Wishlist" />
                                     </form>
                                 </div>
                             </div>
-                        </div>
+
                     </div>
                 </div>
             </c:forEach> 
