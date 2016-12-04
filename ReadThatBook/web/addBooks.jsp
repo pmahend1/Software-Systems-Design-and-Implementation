@@ -23,62 +23,69 @@
         <br/>
         <h3><center>Add A Book Manually</center></h3>
         <p style="color:white;" align="center"><c:if test="${not empty messageText}"><c:out value="${cookie['userCookie'].value}" /></c:if></p>
-        <form action="BookManager" enctype="multipart/form-data" method="POST">
+        <form class="form-horizontal" action="BookManager" enctype="multipart/form-data" method="POST">
             <input type="hidden" name="action" value="addBook"/>
-            <table align="center" style="font-weight:bold;">
-                <tbody>
-                    <tr>
-                        <td>Book Title</td>
-                        <td>:</td>
-                        <td><input type="text" name="title"/></td>
-                    </tr>
-                    <tr>
-                        <td>ISBN-13</td>
-                        <td>:</td>
-                        <td><input type="text" name="ISBN_13"/></td>
-                    </tr>
-                    <tr>
-                        <td>ISBN-10</td>
-                        <td>:</td>
-                        <td><input type="text" name="ISBN_10"/></td>
-                    </tr>
-                    <tr>
-                        <td>Author</td>
-                        <td>:</td>
-                        <td><input type="text" name="author"/></td>
-                    </tr>
-                    <tr>
-                        <td>Genre</td>
-                        <td>:</td>
-                        <td><input type="text" name="genre"/></td>
-                    </tr>
-                    <tr>
-                        <td>Edition</td>
-                        <td>:</td>
-                        <td><input type="text" name="edition"/></td>
-                    </tr>
-                    <tr>
-                        <td>Publisher</td>
-                        <td>:</td>
-                        <td><input type="text" name="publisher"/></td>
-                    </tr>
-                    <tr>
-                        <td>Description</td>
-                        <td>:</td>
-                        <td><textarea rows="4" cols="21" name="description"></textarea></td>
-                    </tr>
-                    <tr>
-                        <td>Image</td>
-                        <td>:</td>
-                        <td><input type="file" name="photo"/></td>
-                    </tr>
-                    <tr>
-                        <td><input type="submit" style="color:black" /></td>
-                        <td>  </td>
-                        <td><input type="reset" style="color:black"/></td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="form-group">
+                <label for="BookTitle" class="col-sm-4 control-label">Book Title</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" id="BookTitle" name="title">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="ISBN_13" class="col-sm-4 control-label">ISBN-13</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" id="ISBN_13" name="ISBN_13">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="ISBN_10" class="col-sm-4 control-label">ISBN-10</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" id="ISBN_10" name="ISBN_10">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="Author" class="col-sm-4 control-label">Author</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" id="Author" name="author">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="Genre" class="col-sm-4 control-label">Genre</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" id="Genre" name="genre">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="Edition" class="col-sm-4 control-label">Edition</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" id="Edition" name="edition">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="Publisher" class="col-sm-4 control-label">Publisher</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" id="Publisher" name="publisher">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="Description" class="col-sm-4 control-label">Description</label>
+                <div class="col-sm-4">
+                    <textarea rows="4" cols="21"  class="form-control" id="Description" name="description"></textarea> 
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="Image" class="col-sm-4 control-label">Image</label>
+                <div class="col-sm-4">
+                    <input type="file" id="Image" name="photo" >
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-sm-offset-5">
+                    <input type="submit" class="btn btn-primary btn-sm"/>
+                    <input type="reset" class="btn btn-primary btn-sm"/>
+                </div>
+            </div>
         </form>
     </body>
     <%@ include file="footer.jsp" %>
