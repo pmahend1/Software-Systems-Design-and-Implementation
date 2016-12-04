@@ -20,15 +20,38 @@
         <%@ include file="header.jsp" %>
         <%@ include file="headerClose.jsp" %>
         <br><br>
-        <form name="login" action="BookManager" method="post">
-            <advSearch>
-                Title : <input type="searchText" name="searchBookTitle" placeholder="Title..." align="center"><br/><br/>
-                Author : <input type="searchText" name="searchBookAuthor" placeholder="Author..." align="center"><br/><br/>
-                Genre : <input type="searchText" name="searchBookGenre" placeholder="Genre..." align="center"><br/><br/>
-                ISBN : <input type="searchText" name="searchBookISBN" placeholder="ISBN..." align="center"><br/><br/>
-                <input type = "Submit" name="submit" value="Advanced Search"/>
-                <input type="hidden" name="action" value="advSearchBook"/>
-            </advSearch>
+ 
+        <form class="form-horizontal" name="advSearch" action="BookManager" method="post">
+            <div class="form-group">
+                <label for="inputTitle" class="col-sm-3 control-label">Title</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="inputTitle" name="searchBookTitle" placeholder="Title">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputAuthor" class="col-sm-3 control-label">Author</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="inputAuthor" name="searchBookAuthor" placeholder="Author">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputGenre" class="col-sm-3 control-label">Genre</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="inputGenre" name="searchBookGenre" placeholder="Genre">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputISBN" class="col-sm-3 control-label">ISBN</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="inputISBN" name="searchBookISBN" placeholder="ISBN">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-8 col-sm-10">
+                    <button type="Submit" name="submit" class="btn btn-primary btn-lg">Search</button>
+                    <input type="hidden" name="action" value="advSearchBook"/>
+                </div>
+            </div>
         </form>
     </body>
 
