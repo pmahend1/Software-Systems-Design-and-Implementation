@@ -13,10 +13,7 @@
         <title>Wishlist Page</title>
     </head>
     <body style="background-color:#F1F4FF;">
-        <%@ include file="header.jsp" %>
-        <p style="color:white; font-weight:bold; text-align:right;"><c:out value="${cookie['userCookie'].value}"  ></c:out></p>
-        <%@ include file="userLogout.jsp" %>
-        <%@ include file="headerClose.jsp" %>
+        <%@ include file="defaultNav.jsp" %>
         <h3 align="center">My Wishlist</h3>
         <table align="center" style="align-items: middle; border:1px solid black;">
             <tr>
