@@ -46,11 +46,11 @@
                                 </div> 
                                 <div class="center-block">
                                     <form name="addToWishlist" action="WishlistServlet" method="post" align="center">
-                                        <input type="hidden" name="action" value="addToWishlist">
-                                        <input type="hidden" name="username" value="${user.getUserName()}"</input>
-                                        <input type="hidden" name="bookid" value=${item.bookID}>
-                                        <input type="hidden" name="books" value="${books}">
-                                        <input type="submit" class="btn btn-primary btn-sm" value="Add to Wishlist" />
+                                        <input type="hidden" name="action" value="addToWishlist"/>
+                                        <input type="hidden" name="username" value="${user.getUserName()}"/>
+                                        <input type="hidden" name="bookid" value="${item.bookID}"/>
+                                        <input type="hidden" name="books" value="${books}"/>
+                                        <button type="submit" class="btn btn-primary btn-sm">Add to Wishlist</button>
                                     </form>
                                 </div>
                             </div>
