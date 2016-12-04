@@ -178,7 +178,7 @@
                                 <input type="hidden" name="bookID" value="${review.getBookID()}" />
                                 <input type="hidden" name="username" value="${review.getUserName()}" />
                                 <td align="right"><input type="text" name="reason" value="Why is it spam?" /></td>
-                                <td><input type="submit" name="Spam" value="Report spam" onclick="spam()"/></td>
+                                <td><input type="submit" name="Spam" value="Report spam"/></td>
                             </form>
                         </c:otherwise>
                     </c:choose>
