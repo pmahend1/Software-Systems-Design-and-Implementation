@@ -295,7 +295,8 @@ public class BookDB {
 
             String query = "SELECT * FROM book"+
                     " where upper(title) like ? || upper(Author) like ?" +
-                    "|| upper(Genre) like ? || upper(ISBN10) like ?";
+                    "|| upper(Genre) like ? || upper(ISBN10) like ?" +
+                    "|| upper(ISBN13) like ?";
             System.out.println("data.BookDB.searchBook()"+ " query :" +query);
             System.out.println("bookTitle " + bookTitle);
             try {
@@ -304,6 +305,7 @@ public class BookDB {
                 ps.setString(2, "%"+bookTitle.toUpperCase()+"%");
                 ps.setString(3, "%"+bookTitle.toUpperCase()+"%");
                 ps.setString(4, "%"+bookTitle.toUpperCase()+"%");
+                ps.setString(5, "%"+bookTitle.toUpperCase()+"%");
                 
                 rs = ps.executeQuery();
                 ArrayList bookList = new ArrayList();
@@ -387,7 +389,7 @@ public class BookDB {
           
             String query = "SELECT * FROM book" +
                     " where upper(title) like ? AND upper(Author) like ? AND " +
-                    " upper(Genre) like ? AND upper(ISBN10) like ?";
+                    " upper(Genre) like ? AND (upper(ISBN10) like ? OR upper(ISBN13) like ?)";
             
             System.out.println("data.BookDB.searchBook()"+ " query :" +query);
             System.out.println(bookTitle+bookAuthor+bookGenre +bookISBN );
@@ -397,6 +399,7 @@ public class BookDB {
                 ps.setString(2, "%"+bookAuthor.toUpperCase()+"%");
                 ps.setString(3, "%"+bookGenre.toUpperCase()+"%");
                 ps.setString(4, "%"+bookISBN.toUpperCase()+"%");
+                ps.setString(5, "%"+bookISBN.toUpperCase()+"%");
                 rs = ps.executeQuery();
                 
                 ArrayList bookList = new ArrayList();
