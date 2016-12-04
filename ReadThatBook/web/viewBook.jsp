@@ -175,7 +175,6 @@
                         <c:otherwise>
                             <form name="reportSpam" action="SpamServlet" method="post">
                                 <input type="hidden" name="action" value="reportSpam" />
-                                <input type="hidden" name="reporter" value="${review.getUserName()}" />
                                 <input type="hidden" name="bookID" value="${review.getBookID()}" />
                                 <input type="hidden" name="username" value="${review.getUserName()}" />
                                 <td align="right"><input type="text" name="reason" value="Why is it spam?" /></td>

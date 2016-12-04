@@ -8,6 +8,7 @@ package admin;
 import business.Book;
 import business.User;
 import data.BookDB;
+import data.ContactUsDB;
 import data.UserDB;
 import data.SpamDB;
 import java.io.IOException;
@@ -59,7 +60,6 @@ public class SpamServlet extends HttpServlet {
             reporter = cookie.getValue();
             System.out.println(name + " " + reporter);
         }
-            //String reporter= request.getParameter("reporter");
             User user = UserDB.selectUser(reporter);
             List<Book> books = BookDB.selectAllBooks();   
             
@@ -78,6 +78,9 @@ public class SpamServlet extends HttpServlet {
             {
                 message="Review has been successfully reported as spam.";
             }
+            Book b=BookDB.selectBook(bookId);
+            String description="Review for Book: "+b.getTitle() +" ID= "+bookId+" by User= "+username+" is a spam. Reason: "+reason+".Please delete this spam review.";
+            ContactUsDB.addContactUsDescription(reporter,"Report Spam Review",description);
             request.setAttribute("wishMessage", message);
             request.setAttribute("books", books);
             request.setAttribute("username", reporter);
