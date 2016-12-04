@@ -36,18 +36,24 @@
                         <div class="caption">
                             <h4 align="center">${item.title}</h4>
                             <h5 align="center">By:${item.author}</h5> 
-                            <form name="viewBook" action="BookListServlet" method="post" align="center">
-                                <input type="hidden" name="action" value="viewBook">
-                                <input type="hidden" name="bookid" value=${item.bookID}>
-                                <input type="submit" value="View Details" />
-                            </form>
-                            <form name="addToWishlist" action="WishlistServlet" method="post" align="center">
-                                <input type="hidden" name="action" value="addToWishlist">
-                                <input type="hidden" name="username" value="${user.getUserName()}"</input>
-                                <input type="hidden" name="bookid" value=${item.bookID}>
-                                <input type="hidden" name="books" value="${books}">
-                                <input type="submit" value="Add to wishlist" />
-                            </form>
+                            <div style="width: 280px">
+                                <div style="float:left; margin-left: 15px">
+                                    <form name="viewBook" action="BookListServlet" method="post" align="center">
+                                        <input type="hidden" name="action" value="viewBook">
+                                        <input type="hidden" name="bookid" value=${item.bookID}>
+                                        <input type="submit" class="btn btn-primary btn-sm" value="View" />
+                                    </form>
+                                </div>
+                                <div style="float:right; margin-right: 15px">
+                                    <form name="addToWishlist" action="WishlistServlet" method="post" align="center">
+                                        <input type="hidden" name="action" value="addToWishlist">
+                                        <input type="hidden" name="username" value="${user.getUserName()}"</input>
+                                        <input type="hidden" name="bookid" value=${item.bookID}>
+                                        <input type="hidden" name="books" value="${books}">
+                                        <input type="submit" class="btn btn-primary btn-sm" value="Add to wishlist" />
+                                    </form>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
