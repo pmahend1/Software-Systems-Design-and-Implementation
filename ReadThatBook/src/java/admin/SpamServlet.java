@@ -26,7 +26,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Raka Choudhury
  */
-@WebServlet(name = "BookListServlet", urlPatterns = {"/BookListServlet"})
+@WebServlet(name = "SpamServlet", urlPatterns = {"/SpamServlet"})
 public class SpamServlet extends HttpServlet {
 
    @Override
