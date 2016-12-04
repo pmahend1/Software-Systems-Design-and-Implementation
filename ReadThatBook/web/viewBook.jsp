@@ -173,13 +173,15 @@
 
                         </c:when>
                         <c:otherwise>
-                            <form name="reportSpam" action="SpamServlet" method="post">
-                                <input type="hidden" name="action" value="reportSpam" />
-                                <input type="hidden" name="bookID" value="${review.getBookID()}" />
-                                <input type="hidden" name="username" value="${review.getUserName()}" />
-                                <td align="right"><input type="text" name="reason" value="Why is it spam?" /></td>
-                                <td><input type="submit" name="Spam" value="Report spam"/></td>
-                            </form>
+                            <c:if test="${not empty user}">
+                                <form name="reportSpam" action="SpamServlet" method="post">
+                                    <input type="hidden" name="action" value="reportSpam" />
+                                    <input type="hidden" name="bookID" value="${review.getBookID()}" />
+                                    <input type="hidden" name="username" value="${review.getUserName()}" />
+                                    <td align="right"><input type="text" name="reason" value="Why is it spam?" /></td>
+                                    <td><input type="submit" name="Spam" value="Report spam"/></td>
+                                </form>
+                            </c:if>
                         </c:otherwise>
                     </c:choose>
 
@@ -216,4 +218,3 @@
     </body>
     <%@ include file="footer.jsp" %>
 </html>
-
