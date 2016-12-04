@@ -33,7 +33,14 @@
     <form action="GoogleBooksApiServlet" method="POST">
         <input type="text" placeholder="Title or Author" name="query" style="width: 450px"/>
         <input type="submit" class="btn btn-primary btn-sm" name="Search" value="Search"/>
-        <p style="color:red;"><c:if test="${not empty messageText}"><c:out value="${messageText}"/></c:if></p>
+        <c:if test="${not empty messageText}">
+            <div class="row">
+                <div class="alert alert-danger alert-dismissible col-md-6 col-md-offset-3">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                    <center><strong><c:out value="${messageText}"/></strong></center> 
+                </div>
+            </div>
+        </c:if>
     </form>
         <div id="results"></div>
         <br>
