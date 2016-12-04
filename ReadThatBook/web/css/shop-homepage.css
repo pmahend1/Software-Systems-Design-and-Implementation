@@ -79,8 +79,8 @@ register{
 }
 
 input[type=searchText] {
-    width: 400px;
-    height: 20px;
+    width: 500px;
+    height: 34px;
     box-sizing: border-box;
     border: 2px solid #ccc;
     border-radius: 4px;
@@ -115,9 +115,6 @@ editprofile{
 }
 
 .btn {
-    background-color: gray;
-    color: white;
-    padding: 16px;
     font-size: 16px;
     border: none;
     cursor: pointer;
