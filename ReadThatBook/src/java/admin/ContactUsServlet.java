@@ -88,6 +88,7 @@ public class ContactUsServlet extends HttpServlet {
                     message = "Description should be at least 50 characters length";
                     request.setAttribute("message", message);
                     System.out.println("message set is : " + message);
+                    request.setAttribute("user", user);
                     getServletContext().getRequestDispatcher(url).forward(request, response);
                     break;
                 } else if (userName != null) {
@@ -96,12 +97,14 @@ public class ContactUsServlet extends HttpServlet {
                         url = "/home.jsp";
                         message = "Contact Us info has been submitted";
                         request.setAttribute("message", message);
+                        request.setAttribute("user", user);
                         getServletContext().getRequestDispatcher(url).forward(request, response);
                         break;
                     } else {
                         url = "/contactUs.jsp";
                         message = "Error in contact us info submission";
                         request.setAttribute("message", message);
+                        request.setAttribute("user", user);
                         getServletContext().getRequestDispatcher(url).forward(request, response);
                         break;
                     }
@@ -109,6 +112,7 @@ public class ContactUsServlet extends HttpServlet {
                     url = "/contactUs.jsp";
                     message = "Error in contact us info submission.Please retry";
                     request.setAttribute("message", message);
+                    request.setAttribute("user", user);
                     getServletContext().getRequestDispatcher(url).forward(request, response);
                     break;
                 }
@@ -125,12 +129,14 @@ public class ContactUsServlet extends HttpServlet {
                     url = "/notificationDetail.jsp";
                     ContactUs contactUsObj = ContactUsDB.selectContactUsDescription(ID);
                     request.setAttribute("notification", contactUsObj);
+                    request.setAttribute("user", user);
                     getServletContext().getRequestDispatcher(url).forward(request, response);
                     break;
                 } else {
                     url = "/notifications.jsp";
                     //ContactUs contactUsObj = ContactUsDB.selectContactUsDescription(ID);
                     request.setAttribute("message", "Oops! Something went wrong..");
+                    request.setAttribute("user", user);
                     getServletContext().getRequestDispatcher(url).forward(request, response);
                     break;
                 }
@@ -166,6 +172,7 @@ public class ContactUsServlet extends HttpServlet {
                     ContactUs contactUsObj = ContactUsDB.selectContactUsDescription(ID);
 
                     request.setAttribute("notification", contactUsObj);
+                    request.setAttribute("user", user);
                     getServletContext().getRequestDispatcher(url).forward(request, response);
 
                 } 
@@ -212,11 +219,13 @@ public class ContactUsServlet extends HttpServlet {
                     
                     List<ContactUs> contactUsInfoList2 = ContactUsDB.selectAllContactUsDescriptions();
                     request.setAttribute("contactUsInfoList", contactUsInfoList2);
+                    request.setAttribute("user", user);
                     getServletContext().getRequestDispatcher(url).forward(request, response);
                     
                 }else {
                     url = "/notifications.jsp";
                     //ContactUs contactUsObj = ContactUsDB.selectContactUsDescription(ID);
+                    request.setAttribute("user", user);
                     request.setAttribute("message", "Oops! Something went wrong..");
                     getServletContext().getRequestDispatcher(url).forward(request, response);
 
@@ -228,6 +237,7 @@ public class ContactUsServlet extends HttpServlet {
                     contactUsInfoList = ContactUsDB.selectAllContactUsDescriptions();
                     request.setAttribute("contactUsInfoList", contactUsInfoList);
                     System.out.println("hereX");
+                    System.out.println(contactUsInfoList.get(0).getContactUsId());
                 } else if (userRole.equals("user")) {
                     url = "/contactUs.jsp";
                 } else {
@@ -235,6 +245,7 @@ public class ContactUsServlet extends HttpServlet {
                 }
                 message = "Please log in to access this feature.";
                 request.setAttribute("searchErrorMessage", message);
+                request.setAttribute("user", user);
                 getServletContext().getRequestDispatcher(url).forward(request, response);
                 break;
             }

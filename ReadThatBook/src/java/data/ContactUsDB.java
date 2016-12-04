@@ -111,7 +111,7 @@ public class ContactUsDB {
                 contactus.setCategory(rs.getString("category"));
                 contactus.setDescription(rs.getString("description"));
                 contactUsList.add(contactus);
-                System.out.println("Object : " + contactus.getDescription());
+                //System.out.println("Object : " + contactus.getDescription());
             }
             return contactUsList;
         } catch (Exception e) {
