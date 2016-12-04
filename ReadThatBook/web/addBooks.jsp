@@ -11,27 +11,34 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/shop-homepage.css" rel="stylesheet">
-        <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-        <script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/jquery-ui.js" type="text/javascript"></script>
-        <link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/themes/blitzer/jquery-ui.css" rel="stylesheet" type="text/css" />      
-        <link href="css/userProfile.css" rel="stylesheet">
-        <script src="js/userProfile.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+        <script src="js/guestHome.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="bootstrap.min.css">
+        <script src="jquery.min.js"></script>
+        <script src="bootstrap.min.js"></script>
+        <script src="js/jquery.js"></script>
+        <link href="css/userProfile.css" rel="stylesheet" type="text/css"/>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <title>Add a Book</title>
     </head>
     <body style="background-color:#F1F4FF;">
         <%@ include file="defaultNav.jsp" %>
         <br/>
         <h3><center>Add A Book Manually</center></h3>
-        <p style="color:white;" align="center"><c:if test="${not empty messageText}"><c:out value="${cookie['userCookie'].value}" /></c:if></p>
+        <c:if test="${not empty messageText}">
         <div class="row">
             <div class="alert alert-danger alert-dismissible col-md-6 col-md-offset-3">
                 <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
-                <center><strong><c:out value="${searchErrorMessage}"/></strong></center> 
+                <center><strong><c:out value="${messageText}"/></strong></center> 
             </div>
         </div> 
+        </c:if>
         <form class="form-horizontal" action="BookManager" enctype="multipart/form-data" method="POST">
             <input type="hidden" name="action" value="addBook"/>
             <div class="form-group">
