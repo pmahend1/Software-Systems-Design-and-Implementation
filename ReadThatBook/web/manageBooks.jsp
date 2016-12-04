@@ -9,14 +9,23 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-        <script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/jquery-ui.js" type="text/javascript"></script>
-        <link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/themes/blitzer/jquery-ui.css" rel="stylesheet" type="text/css" />      
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Read That Book</title>
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/shop-homepage.css" rel="stylesheet">
-        <link href="css/userProfile.css" rel="stylesheet">
-        <script src="js/userProfile.js"></script>
-
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+        <script src="js/guestHome.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="bootstrap.min.css">
+        <script src="jquery.min.js"></script>
+        <script src="bootstrap.min.js"></script>
+        <script src="js/jquery.js"></script>
+        <link href="css/userProfile.css" rel="stylesheet" type="text/css"/>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	    
         <style>
         table, th, td {
             border: 1px solid black;
