@@ -20,68 +20,8 @@
         <script src="js/userProfile.js"></script>
     </head>
     <body style="background-color:#F1F4FF;">
-        <%@ include file="header.jsp" %>
+        <%@ include file="defaultNav.jsp" %>
         <p style="color:white; font-weight:bold; text-align:right;">${cookie.userCookie.value}</p>
-        <%@ include file="userLogout.jsp" %>
-          </div>
-    </nav>
-        <table>
-            <tr>
-                <td>
-                    <c:if test="${user.getRole()=='admin'}">
-                        <a class ="dropbtn" style="text-decoration:none; color:white;"
-                           href="BookManager?action=manageBooks&user=${cookie.userCookie.value}">Manage Books</a><br/>
-                    </c:if> 
-                </td>
-                <td>
-                    <form name="ProfileView" action="UserProfileManager" method="post">
-                        <input type="hidden" name="username" value="${user.getUserName()}"/>
-                        <div class="dropdown" style="z-index:1">
-                            <button class="dropbtn">Profile</button>
-                            <div class="dropdown-content">
-                                <button type="submit" name="action" value="viewprofile" >View profile</button>
-                                <button type="submit" name="action" value="editprofile" >Edit profile</button>
-                                <input type="button" id="btnShow" value="Delete Account" />
-                                <div id="dialog" style="display: none" align = "center">
-                                    Are you sure you want to delete your account?
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </td>
-                <td>
-                    <form name="viewWishlist" action="WishlistServlet" method="post">
-                        <input type="hidden" name="action" value="viewWishlist">
-                        <input type="hidden" name="username" value="${user.getUserName()}"></input>
-                        <input type="submit" value="View wishlist" 
-                               style="background-color: gray; 
-                               border: none;
-                               color: white;
-                               padding: 15px 32px;
-                               text-align: center;
-                               text-decoration: none;
-                               display: inline-block;
-                               font-size: 16px;
-                               margin: 5px 0px;
-                               cursor: pointer;"/>
-                    </form>
-                </td>
-                <td>
-                    <form name="login" action="BookManager" method="post">
-                        <div style="text-align:center; margin-left: 80px"/>
-                        <input type="searchText" name="searchString" placeholder="Search.." align="center">
-                        <input type = "Submit" name="submit" value="Search"/>
-                        <input type="hidden" name="action" value="searchBook"/>
-                    </form>
-                </td>
-                <td>
-                    <form name="login" action="BookManager" method="post">
-                        <input type = "Submit" name="submit" value="AdvancedSearch"/>
-                        <input type="hidden" name="action" value="advancedSearchBook"/>
-                </form>
-                </td>
-            </tr>
-        </table>
         <c:if test="${searchErrorMessage != null}">
             <p style="color:red; font-weight:bold; text-align:center;">${searchErrorMessage}</p>  
         </c:if>
