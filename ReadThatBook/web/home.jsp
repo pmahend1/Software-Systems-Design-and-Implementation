@@ -25,7 +25,7 @@
     </head>
     <body style="background-color:#F1F4FF;">
         <%@ include file="defaultNav.jsp" %>
-        <p style="color:white; font-weight:bold; text-align:right;">${cookie.userCookie.value}</p>
+        <br>
         
         <c:if test="${searchErrorMessage != null}">
             <div class="row">
