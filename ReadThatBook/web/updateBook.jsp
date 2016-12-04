@@ -8,15 +8,17 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+        <script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/jquery-ui.js" type="text/javascript"></script>
+        <link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/themes/blitzer/jquery-ui.css" rel="stylesheet" type="text/css" />      
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/shop-homepage.css" rel="stylesheet">
+        <link href="css/userProfile.css" rel="stylesheet">
+        <script src="js/userProfile.js"></script>
         <title>Update Book</title>
     </head>
     <body style="background-color:#F1F4FF;">
-        <%@ include file="header.jsp" %>
-        <%@ include file="userLogout.jsp" %> 
-        <%@ include file="headerClose.jsp" %>
+        <%@ include file="defaultNav.jsp" %>
         
         <h3><center>Update Book</center></h3>
          <form action="BookManager" enctype="multipart/form-data" method="POST">
@@ -82,9 +84,7 @@
                 </tbody>
             </table>
                 </td>
-            </table>
-            
-
+            </table>         
 
         </form>
     </body>
