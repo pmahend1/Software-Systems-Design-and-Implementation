@@ -51,21 +51,23 @@ public class ContactUsServlet extends HttpServlet {
                 }
             }
         }
-        
+
         if (action == null) {
             action = "";
         }
-        String userRole = user.getRole();
-        System.out.println("User role : " + userRole);
-                
+        String userRole = "";
+        if (user != null) {
+            userRole = user.getRole();
+            System.out.println("User role : " + userRole);
+        }
+
         List<ContactUs> contactUsInfoList = null;
-        
+
         switch (action) {
             case "contactUsPage":
                 if (userRole == "admin") {
-                    url="/notifications.jsp";
-                }
-                else{
+                    url = "/notifications.jsp";
+                } else {
                     url = "/contactUs.jsp";
                 }
                 getServletContext().getRequestDispatcher(url).forward(request, response);
@@ -108,87 +110,86 @@ public class ContactUsServlet extends HttpServlet {
                     getServletContext().getRequestDispatcher(url).forward(request, response);
                     break;
                 }
-            case "contactUsInfo":{
+            case "contactUsInfo": {
                 String IDStr = request.getParameter("ID");
-                int ID=0;
+                int ID = 0;
                 try {
                     ID = Integer.parseInt(IDStr);
                 } catch (Exception e) {
-                    System.out.println("Exception at Integer.parseInt(IDStr) :"+ e);
-                            
+                    System.out.println("Exception at Integer.parseInt(IDStr) :" + e);
+
                 }
-                if(ID!=0){
-                    url="/notificationDetail.jsp";
+                if (ID != 0) {
+                    url = "/notificationDetail.jsp";
                     ContactUs contactUsObj = ContactUsDB.selectContactUsDescription(ID);
                     request.setAttribute("notification", contactUsObj);
                     getServletContext().getRequestDispatcher(url).forward(request, response);
                     break;
-                }
-                else{
-                    url="/notifications.jsp";
+                } else {
+                    url = "/notifications.jsp";
                     //ContactUs contactUsObj = ContactUsDB.selectContactUsDescription(ID);
                     request.setAttribute("message", "Oops! Something went wrong..");
                     getServletContext().getRequestDispatcher(url).forward(request, response);
                     break;
                 }
-                
+
             }
             case "notificationdecision":
                 String usertoApprove = request.getParameter("userName");
                 String buttonType = request.getParameter("buttonStatus");
-                System.out.println("usertoApprove = "+usertoApprove);
-                System.out.println("buttontype = "+buttonType);
-                            
+                System.out.println("usertoApprove = " + usertoApprove);
+                System.out.println("buttontype = " + buttonType);
+
                 String IDStr = request.getParameter("ID");
-                int ID=0;
+                int ID = 0;
                 try {
                     ID = Integer.parseInt(IDStr);
                 } catch (Exception e) {
-                    System.out.println("Exception at Integer.parseInt(IDStr) :"+ e);
-                            
+                    System.out.println("Exception at Integer.parseInt(IDStr) :" + e);
+
                 }
-                if(ID!=0){
-                    url="/notificationDetail.jsp";
-                    
-                    if (buttonType.compareTo("Approve") == 0)
-                    {
+                if (ID != 0) {
+                    url = "/notificationDetail.jsp";
+
+                    if (buttonType.compareTo("Approve") == 0) {
                         System.out.println("notificationdecision approve");
                         UserDB.updateUserRole(usertoApprove, "Critic");
                         ContactUsDB.updateContactUsCategory(ID, "Critic");
 
+                    } else {
+                        System.out.println("notificationdecision discard");
+                        UserDB.updateUserRole(usertoApprove, "User");
+                        ContactUsDB.updateContactUsCategory(ID, "User");
                     }
-                    else
-                    {
-                         System.out.println("notificationdecision discard");
-                         UserDB.updateUserRole(usertoApprove, "User");
-                         ContactUsDB.updateContactUsCategory(ID, "User");
-                    }    
                     ContactUs contactUsObj = ContactUsDB.selectContactUsDescription(ID);
-                    
+
                     request.setAttribute("notification", contactUsObj);
                     getServletContext().getRequestDispatcher(url).forward(request, response);
-                    
-                }
-                else{
-                    url="/notifications.jsp";
+
+                } else {
+                    url = "/notifications.jsp";
                     //ContactUs contactUsObj = ContactUsDB.selectContactUsDescription(ID);
                     request.setAttribute("message", "Oops! Something went wrong..");
                     getServletContext().getRequestDispatcher(url).forward(request, response);
-                    
+
                 }
                 break;
-            default:
+            default: {
                 if (userRole.equals("admin")) {
-                    url="/notifications.jsp";
+                    url = "/notifications.jsp";
                     contactUsInfoList = ContactUsDB.selectAllContactUsDescriptions();
                     request.setAttribute("contactUsInfoList", contactUsInfoList);
                     System.out.println("hereX");
-                }
-                else{
+                } else if (userRole.equals("user")) {
                     url = "/contactUs.jsp";
+                } else {
+                    url = "/guestHome.jsp";
                 }
+                message = "Please log in to access this feature.";
+                request.setAttribute("searchErrorMessage", message);
                 getServletContext().getRequestDispatcher(url).forward(request, response);
                 break;
+            }
 
         }
 
