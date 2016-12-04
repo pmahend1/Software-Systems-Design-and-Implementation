@@ -93,7 +93,7 @@
                             <c:if test="${not empty user}">
                                 <tr>
                                    <input type="hidden" name="bookID" value="${book.getBookID()}" />
-                                    <td><input type="submit" name="Submit" value="Rate"/></td>
+                                    <td><input type="submit" name="Submit" class="btn btn-primary btn-sm" value="Rate"/></td>
                                 </tr>
                             </c:if>
                                 
@@ -119,7 +119,7 @@
                             <td>
                                 <input type="hidden" name="bookID" value="${book.getBookID()}" />
                                 <textarea name='review' id='review' class="textarea">${editreviewvalue}</textarea><br />
-                                <input type="submit" name="Submit" value="edit review"/>
+                                <input type="submit" name="Submit" class="btn btn-primary btn-sm" value="edit review"/>
                             </td>
                         </tr>    
 
@@ -137,7 +137,7 @@
                             <td>
                                 <input type="hidden" name="bookID" value="${book.getBookID()}" />
                                 <textarea name='review' id='review' class="textarea"></textarea><br />
-                                <input type="submit" name="Submit" value="AddReview"/>
+                                <input type="submit" name="Submit" class="btn btn-primary btn-sm" value="AddReview"/>
                             </td>
                         </tr>    
 
@@ -167,8 +167,8 @@
                                 <input type="hidden" name="action" value="editreview" />
                                 <input type="hidden" name="bookID" value="${book.getBookID()}" />
                                 
-                                <td width="20%"><input type="submit" name="buttonStatus" value="Edit" class="btn btn-success" />
-                                <input type="submit" name="buttonStatus" value="Delete" class="btn btn-danger" /></td>
+                                <td width="20%"><input type="submit" name="buttonStatus" value="Edit" class="btn btn-primary btn-sm" />
+                                <input type="submit" name="buttonStatus" value="Delete" class="btn btn-primary btn-sm" /></td>
                             </form>
 
                         </c:when>
@@ -179,7 +179,7 @@
                                     <input type="hidden" name="bookID" value="${review.getBookID()}" />
                                     <input type="hidden" name="username" value="${review.getUserName()}" />
                                     <td align="right"><input type="text" name="reason" value="Why is it spam?" /></td>
-                                    <td><input type="submit" name="Spam" value="Report spam"/></td>
+                                    <td><input type="submit" name="Spam" class="btn btn-danger btn-sm" value="Report spam"/></td>
                                 </form>
                             </c:if>
                         </c:otherwise>
