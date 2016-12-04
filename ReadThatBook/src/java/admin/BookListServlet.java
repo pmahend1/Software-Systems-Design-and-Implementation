@@ -142,7 +142,7 @@ public class BookListServlet extends HttpServlet {
             request.setAttribute("bookResult", bookList);
             request.setAttribute("book", book);
             request.setAttribute("rating", rating);
-            request.setAttribute("user", userCookievalue);
+            request.setAttribute("userName", userCookievalue);
 
             List<Book> similarBookList = null;
             String genre = BookDB.getGenreofBook(bookId);

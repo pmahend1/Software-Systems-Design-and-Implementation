@@ -8,6 +8,7 @@ package admin;
 import business.Book;
 import business.Rating;
 import business.Review;
+import business.User;
 import data.BookDB;
 import data.RatingDB;
 import data.ReviewDB;
@@ -49,12 +50,14 @@ public class RatingManager extends HttpServlet {
 
         Cookie[] cookies = request.getCookies();
         String userCookievalue = null;
-
+        User user = null;
         for (Cookie cookie : cookies) {
             String name = cookie.getName();
             if(name.equals("userCookie"))
             {
                 userCookievalue = cookie.getValue();
+                user = UserDB.selectUser(cookie.getValue());
+                request.setAttribute("user", user);
                 System.out.println("Cookie : " + name + " - " + userCookievalue);
             }
 
@@ -157,7 +160,9 @@ public class RatingManager extends HttpServlet {
                     }
                 }
                 request.setAttribute("reviewlist", reviews);
-                request.setAttribute("user", userCookievalue);
+                request.setAttribute("userName", userCookievalue);
+                
+                request.setAttribute("user", user);
                 getServletContext().getRequestDispatcher(url).forward(request, response);
             }
 

@@ -82,15 +82,15 @@
                                 </tr>
                                 <tr>
                                     <td><b>Rating</b></td>
-                                <c:if test="${not empty user}">
+                                <c:if test="${not empty userName}">
                                     <td><input type="number" name="rating"  value="${rating}" id="rating-empty-clearable" class="rating" data-clearable/>
-                                        <c:if test="${not empty user}">
+                                        <c:if test="${not empty userName}">
                                           <input type="hidden" name="bookID" value="${book.getBookID()}" />
                                         <input type="submit" name="Submit" class="btn btn-primary btn-sm" value="Rate"/></td>
                                         </c:if>
                                     </td>  
                                 </c:if>
-                                <c:if test="${empty user}">
+                                <c:if test="${empty userName}">
                                     <td><input type="number" name="rating" value="${avgRatinginDouble}" id="rating-readonly" class="rating" data-clearable="remove" data-readonly /></td> 
                                     </c:if>
                             </tr>
@@ -100,7 +100,7 @@
             </table>
             <center><h4>Average Rating :${avgRating}/10</h4> <h5> ${votes} votes</h5></center>
         </form>
-        <c:if test="${not empty user}">
+        <c:if test="${not empty userName}">
             <c:choose>
                 <c:when test="${showtextarea}">
                     <form name="review" action="ReviewManager" method="post">
@@ -151,7 +151,7 @@
                             <td width="70%"><font color="blue"><c:out value="${review.getReview()}"/></font></td>
 
                             <c:choose>
-                                <c:when test = "${review.getUserName() eq user}" >
+                                <c:when test = "${review.getUserName() eq userName}" >
 
                                 <form name="editreview" action="ReviewManager" method="post">
                                     <input type="hidden" name="action" value="editreview" />
@@ -163,7 +163,7 @@
 
                             </c:when>
                             <c:otherwise>
-                                <c:if test="${not empty user}">
+                                <c:if test="${not empty userName}">
                                     <form name="reportSpam" action="SpamServlet" method="post">
                                         <input type="hidden" name="action" value="reportSpam" />
                                         <input type="hidden" name="bookID" value="${review.getBookID()}" />

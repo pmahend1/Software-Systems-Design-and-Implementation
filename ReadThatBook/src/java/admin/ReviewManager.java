@@ -7,6 +7,7 @@ package admin;
 
 import business.Book;
 import business.Review;
+import business.User;
 import data.BookDB;
 import data.RatingDB;
 import data.ReviewDB;
@@ -95,11 +96,14 @@ public class ReviewManager extends HttpServlet {
         System.out.println("admin.ReviewManager.doPost()");
         String userCookievalue = null;
         Cookie[] cookies = request.getCookies();
+        User user = null;
         for (Cookie cookie : cookies) {
             String name = cookie.getName();
             if(name.equals("userCookie"))
             {
                 userCookievalue = cookie.getValue();
+                user = UserDB.selectUser(cookie.getValue());
+                request.setAttribute("user", user);
                 System.out.println("Cookie : " + name + " - " + userCookievalue);
             }
             
@@ -197,7 +201,8 @@ public class ReviewManager extends HttpServlet {
                 }
                 request.setAttribute("rating", rating);
                 request.setAttribute("book", book);
-                request.setAttribute("user", userCookievalue);
+                request.setAttribute("userName", userCookievalue);
+                request.setAttribute("user", user);
                 boolean reviewExists = ReviewDB.checkReviewExists(bookID, userCookievalue);
                 request.setAttribute("reviewexists", reviewExists);
                 getServletContext().getRequestDispatcher(url).forward(request, response);
