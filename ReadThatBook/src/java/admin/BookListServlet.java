@@ -143,9 +143,10 @@ public class BookListServlet extends HttpServlet {
                 request.setAttribute("rating", rating);
                 request.setAttribute("user", userCookievalue);
                 
-                List<Book> similarBookList = new ArrayList();
+               List<Book> similarBookList = new ArrayList();
                 String genre = BookDB.getGenreofBook(bookId);
-                similarBookList = BookDB.searchSimilarBooks(genre, bookId);
+                String author = BookDB.getAuthorOfBook(bookId);
+                similarBookList = BookDB.searchSimilarBooks(genre, author, bookId);
                 request.setAttribute("similarBookList", similarBookList);
                 
                 request.getServletContext().getRequestDispatcher(url).forward(request, response);
