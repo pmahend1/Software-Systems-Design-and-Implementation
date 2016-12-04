@@ -332,23 +332,24 @@ public class BookDB {
             }
         }
     
-    public static List<Book> searchSimilarBooks(String bookGenre, int bookId) {
+    public static List<Book> searchSimilarBooks(String bookGenre, String bookAuthor, int bookId) {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
         PreparedStatement ps = null;
         ResultSet rs = null;
 
         String query = "SELECT * FROM book"+
-                " where upper(Genre) like ? AND BookID != ? " +
-//                "NOT IN ( SELECT * FROM book where BookID = ?) " + 
+                " where (upper(Genre) like ? OR upper(Author) like ? ) AND BookID != ? " +
                 "ORDER BY RAND() LIMIT 7";
         
         System.out.println("data.BookDB.searchSimilarBooks()"+ " query :" +query);
         System.out.println("bookGenre " + bookGenre);
+        System.out.println("bookAuthor " + bookAuthor);
         try {
             ps = connection.prepareStatement(query);
             ps.setString(1, "%"+bookGenre.toUpperCase()+"%");
-            ps.setInt(2, bookId);
+            ps.setString(2, "%"+bookAuthor.toUpperCase()+"%");
+            ps.setInt(3, bookId);
 
             rs = ps.executeQuery();
             ArrayList bookList = new ArrayList();
@@ -456,6 +457,38 @@ public class BookDB {
         }
     }
 
+    public static String getAuthorOfBook(int bookID) {
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        System.out.println("getAuthorOfBook");
+        String query = "SELECT Author FROM BOOK "
+                        + " where bookID = ? ";
+        
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setInt(1, bookID);
+            
+            System.out.println("Check book id SQL is : " + ps.toString());
+            rs = ps.executeQuery();
+            
+            if (rs.next()) {
+                System.out.println("data.BookDB.getAuthorOfBook()" + "search Author of Book method");
+                return rs.getString("Author");
+            }
+            else{
+                return null;
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+            return null;
+        } finally {
+            DBUtil.closeResultSet(rs);
+            DBUtil.closePreparedStatement(ps);
+            pool.freeConnection(connection);
+        }
+    }
     
     public static int getBookIDByISBN(String ISBN) {
         ConnectionPool pool = ConnectionPool.getInstance();
