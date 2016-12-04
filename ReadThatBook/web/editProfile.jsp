@@ -24,41 +24,46 @@
         <br/><br/>
         <center>
         <h3>Edit Profile</h3><br/>
-        <table>
-            <tr>
-                <td><b>Password</b></td>
-                <td>:</td>
-                <td><input type="password" name="passWord" value="${user.getPassWord()}"/></td>    
-            </tr>
-            <tr>
-                <td><b>Re enter Password</b></td>
-                <td>:</td>
-                <td><input type="password" name="rePassword" value="${user.getPassWord()}"/></td>
-            </tr>
-            <tr>
-                <td><b>First Name</b></td>
-                <td>:</td>
-                <td><input type="text" name="firstName" value="${user.getFirstName()}"/></td>  
-            </tr>
-            <tr>
-                <td><b>Last Name</b></td>
-                <td>:</td>
-                <td><input type="text" name="lastName" value="${user.getLastName()}"/></td>  
-            </tr>
-            <tr>
-                <td><b>Email</b></td>
-                <td>:</td>
-                <td><input type="email" name="email" value="${user.getEmail()}"/></td>  
-            </tr>
-            <tr>
-                <form name="editProfile" action="UserProfileManager" method="post">
-                <td><input type="hidden" name="username" value="${user.getUserName(}"</input></td>   
-                <td><input type="hidden" name="action" value="updateProfile" /></td>   
-                <td><input type="submit"/></td>   
-                </form>
-            </tr>
-        </table>
         </center>
+        <form class="form-horizontal" name="editProfile" action="UserProfileManager" method="post">
+            <div class="form-group">
+                <label for="inputPassword" class="col-sm-4 control-label">Password</label>
+                <div class="col-sm-4">
+                    <input type="password" class="form-control" id="inputPassword" name="passWord" value="${user.getPassWord()}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputRePassword" class="col-sm-4 control-label">Re enter Password</label>
+                <div class="col-sm-4">
+                    <input type="password" class="form-control" id="inputRePassword" name="rePassword" value="${user.getPassWord()}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputFirstName" class="col-sm-4 control-label">First Name</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" id="inputFirstName" name="firstName" value="${user.getFirstName()}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputLastName" class="col-sm-4 control-label">Last Name</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" id="inputLastName" name="lastName" value="${user.getLastName()}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail" class="col-sm-4 control-label">Email</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" id="inputEmail" name="email" value="${user.getEmail()}">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-7 col-sm-10">
+                    <button type="Submit" name="submit" class="btn btn-primary btn-lg">Submit</button>
+                    <input type="hidden" name="username" value="${user.getUserName()}"</input>
+                    <input type="hidden" name="action" value="updateProfile"/>
+                </div>
+            </div>
+        </form>
         <br/><br/><br/><br/><br/><br/><br/><br/><br/>
         <%@ include file="footer.jsp" %>
     </body>
