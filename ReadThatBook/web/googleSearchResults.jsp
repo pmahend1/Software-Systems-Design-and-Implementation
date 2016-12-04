@@ -39,8 +39,8 @@
                         <td><form action="GoogleBooksApiServlet" method="POST">
                                 <input type="hidden" name="action" value="addGoogleBook"/>
                                 <input type="hidden" name="title" value="${book.getTitle()}">
-                                <input type="hidden" name="ISBN13" value="${book.getISBN13()}">
-                                <input type="hidden" name="ISBN10" value="${book.getISBN10()}">
+                                <input type="hidden" name="ISBN_13" value="${book.getISBN13()}">
+                                <input type="hidden" name="ISBN_10" value="${book.getISBN10()}">
                                 <input type="hidden" name="author" value="${book.getAuthor()}">
                                 <input type="hidden" name="genre" value="${book.getGenre()}">
                                 <input type="hidden" name="publisher" value="${book.getPublisher()}">
