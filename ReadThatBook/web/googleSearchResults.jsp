@@ -38,7 +38,7 @@
                             <b>Description :</b>${book.getDescription()}<br/>
                         </td>
 
-                        <td><form action="manageBooks" method="POST">
+                        <td><form action="GoogleBooksApiServlet" method="POST">
                                 <input type="hidden" name="action" value="addGoogleBook"/>
                                 <input type="hidden" name="title" value="${book.getTitle()}">
                                 <input type="hidden" name="ISBN13" value="${book.getISBN13()}">
