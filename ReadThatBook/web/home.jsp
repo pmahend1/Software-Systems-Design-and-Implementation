@@ -10,16 +10,19 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Home</title>
-	<script src="js/bootstrap.min.js" type="text/javascript"></script>
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-        <script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/jquery-ui.js" type="text/javascript"></script>
-        <link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/themes/blitzer/jquery-ui.css" rel="stylesheet" type="text/css" />      
+        <title>Read That Book</title>
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/shop-homepage.css" rel="stylesheet">
-        <link href="css/userProfile.css" rel="stylesheet">
-        <script src="js/jquery.min.js" type="text/javascript"></script>
-        <script src="js/userProfile.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+        <script src="js/guestHome.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="bootstrap.min.css">
+        <script src="jquery.min.js"></script>
+        <script src="bootstrap.min.js"></script>
+        <script src="js/jquery.js"></script>
+        <link href="css/userProfile.css" rel="stylesheet" type="text/css"/>
+        <script src="js/bootstrap.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
@@ -37,7 +40,7 @@
         <c:if test="${wishMessage != null}">
             <div class="row">
             <div class="alert alert-success alert-dismissible col-md-6 col-md-offset-3">
-                <a href="#" class="close" data-dismiss="alert" aria-label="close">×</span>
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
                 <center><strong><c:out value="${wishMessage}"/></strong></center> 
             </div></div>
         </c:if>
