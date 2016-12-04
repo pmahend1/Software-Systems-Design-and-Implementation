@@ -6,9 +6,11 @@
 package admin;
 
 import business.Book;
+import business.User;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import data.BookDB;
+import data.UserDB;
 import googleApi.BookSearch;
 import java.io.IOException;
 import java.io.InputStream;
@@ -19,6 +21,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -44,6 +47,16 @@ public class GoogleBooksApiServlet extends HttpServlet {
         String queryString = request.getParameter("query");
         String action = request.getParameter("action");
         
+        Cookie[] cookies = request.getCookies();
+        User user = null;
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("userCookie")) {
+                    user = UserDB.selectUser(cookie.getValue());
+                    request.setAttribute("user", user);
+                }
+            }
+        }
         //System.out.println(queryString);
         if (queryString == null) {
             queryString = "";
@@ -78,6 +91,7 @@ public class GoogleBooksApiServlet extends HttpServlet {
                  List<Book> bookList = BookDB.selectAllBooks();
                 request.setAttribute("bookList", bookList);
                 request.setAttribute("messageText", messageText);
+                request.setAttribute("user", user);
                 getServletContext().getRequestDispatcher(url).forward(request, response);
                 
             }
@@ -105,6 +119,7 @@ public class GoogleBooksApiServlet extends HttpServlet {
             String url="/manageBooks.jsp";
             List<Book> books = BookDB.selectAllBooks();
             request.setAttribute("bookList", books);
+            request.setAttribute("user", user);
             getServletContext().getRequestDispatcher(url).forward(request, response);
 
         }
@@ -123,6 +138,7 @@ public class GoogleBooksApiServlet extends HttpServlet {
             }
         request.setAttribute("books", bookList);
         String url = "/googleSearchResults.jsp";
+        request.setAttribute("user", user);
         getServletContext().getRequestDispatcher(url).forward(request, response);
         }
         }
