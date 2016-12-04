@@ -68,11 +68,17 @@
                 </td>
                 <td>
                     <form name="login" action="BookManager" method="post">
-                        <div style="text-align:center; margin:0 80px;"/>
+                        <div style="text-align:center; margin-left: 80px"/>
                         <input type="searchText" name="searchString" placeholder="Search.." align="center">
                         <input type = "Submit" name="submit" value="Search"/>
                         <input type="hidden" name="action" value="searchBook"/>
                     </form>
+                </td>
+                <td>
+                    <form name="login" action="BookManager" method="post">
+                        <input type = "Submit" name="submit" value="AdvancedSearch"/>
+                        <input type="hidden" name="action" value="advancedSearchBook"/>
+                </form>
                 </td>
             </tr>
         </table>

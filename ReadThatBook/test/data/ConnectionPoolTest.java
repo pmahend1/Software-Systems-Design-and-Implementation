@@ -6,6 +6,7 @@
 package data;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -44,9 +45,34 @@ public class ConnectionPoolTest {
     @Test
     public void testGetConnection() {
         System.out.println("getConnection");
-        ConnectionPool instance = null;
-        Connection expResult = null;
-        assertEquals(expResult, instance);
+        ConnectionPool instance = ConnectionPool.getInstance();
+        Connection expResult = instance.getConnection();
+        System.out.println(expResult.toString());
+        assertNotEquals(expResult,null);
         // TODO review the generated test code and remove the default call to fail.
     }   
+
+    /**
+     * Test of getInstance method, of class ConnectionPool.
+     */
+    @Test
+    public void testGetInstance() {
+        System.out.println("getInstance");
+        ConnectionPool pool = ConnectionPool.getInstance();
+        System.out.println(pool.toString());
+        assertNotEquals(pool, null);
+    }
+
+    /**
+     * Test of freeConnection method, of class ConnectionPool.
+     */
+    @Test
+    public void testFreeConnection() throws SQLException {
+        System.out.println("freeConnection");
+        Connection c = null;
+        ConnectionPool instance = new ConnectionPool();
+        c = instance.getConnection();
+        instance.freeConnection(c);
+        assertTrue(c.isClosed());
+    }
 }

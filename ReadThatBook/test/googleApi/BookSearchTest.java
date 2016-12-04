@@ -7,6 +7,7 @@ package googleApi;
 
 import business.Book;
 import com.google.api.client.json.JsonFactory;
+import com.google.api.client.json.jackson2.JacksonFactory;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -46,11 +47,15 @@ public class BookSearchTest {
     @Test
     public void testQueryGoogleBooks() throws Exception {
         System.out.println("queryGoogleBooks");
-        JsonFactory jsonFactory = null;
-        String query = "";
-        List<Book> expResult = null;
+        JsonFactory jsonFactory = JacksonFactory.getDefaultInstance();
+        String query = "Dan Brown";
         List<Book> result = BookSearch.queryGoogleBooks(jsonFactory, query);
-        assertEquals(expResult, result);
+        if(result!=null){
+            for(Book b : result){
+                System.out.println(b.getTitle());
+            }
+        }
+        assertNotEquals(0, result);
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }
@@ -61,8 +66,8 @@ public class BookSearchTest {
     @Test
     public void testParseQuery() {
         System.out.println("parseQuery");
-        String args = "";
-        String expResult = "";
+        String args = "Harry";
+        String expResult = "Harry";
         String result = BookSearch.parseQuery(args);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.

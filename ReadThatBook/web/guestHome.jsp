@@ -52,30 +52,39 @@
             </table>
         </div>
         <%@ include file="headerClose.jsp" %>
-        <c:if test="${message != null}">
-            <p style="color:red; font-weight:lighter; text-align:center;">${message}</p>
-        </c:if>
-        <form name="login" action="BookManager" method="post">
-            <div style="text-align:center; margin:0 80px;"/>
-            <input type="searchText" name="searchString" placeholder="Search.." align="center">
-            <input type = "Submit" name="submit" value="Search"/>
-            <input type="hidden" name="action" value="searchBook">
-        </form>
+        <br/><br/>
+        <div style="width:1000px">
+            <div style="text-align:center;float:left; margin-left: 430px">
+            <form name="login" action="BookManager" method="post">
+                <input type="searchText" name="searchString" placeholder="Search.." align="center">
+                <input type = "Submit" name="submit" value="Search"/>
+                <input type="hidden" name="action" value="searchBook"/>
+            </form>
+            </div>
+            <div style="text-align:center;float:right; width: 100px">   
+            <form name="login" action="BookManager" method="post">
+                <input type = "Submit" name="submit" value="AdvancedSearch"/>
+                <input type="hidden" name="action" value="advancedSearchBook"/>
+            </form>
+            </div>
+        </div>
         <br/>
-        <c:if test="${searchErrorMessage != null}">
-            <p style="color:red; font-weight:bold; text-align:center;">${searchErrorMessage}</p>
-            <%request.removeAttribute("searchErrorMessage");%>  
-        </c:if>
+        <div style="width:1000px; text-align:center; float:left; margin-left: 150px">
+            <c:if test="${searchErrorMessage != null}">
+                <p style="color:red; font-weight:bold; text-align:center;">${searchErrorMessage}</p>
+                <%request.removeAttribute("searchErrorMessage");%>  
+            </c:if>
+        </div>
         <br/>
         <div class="container">
             <div class="row">
                 <div class="col-md-2">
                     <p class="lead">Genres</p>
                     <div class="list-group">
-                        <a href="#" class="list-group-item">Fiction</a>
-                        <a href="#" class="list-group-item">Science Fiction</a>
-                        <a href="#" class="list-group-item">Mystery</a>
-                        <a href="#" class="list-group-item">Horror</a>
+                        <a href="<c:url value="BookManager?action=searchBook&searchString=Fiction"/>" class="list-group-item">Fiction</a>
+                        <a href="<c:url value="BookManager?action=searchBook&searchString=Science"/>" class="list-group-item">Science Fiction</a>
+                        <a href="<c:url value="BookManager?action=searchBook&searchString=Mystery"/>" class="list-group-item">Mystery</a>
+                        <a href="<c:url value="BookManager?action=searchBook&searchString=Horror"/>" class="list-group-item">Horror</a>
                     </div>
                 </div>
                 <div class="col-md-9">

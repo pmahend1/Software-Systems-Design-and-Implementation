@@ -45,12 +45,23 @@ public class ContactUsDBTest {
     @Test
     public void testAddContactUsDescription() {
         System.out.println("addContactUsDescription");
-        String username = "";
-        String category = "";
-        String description = "";
-        int expResult = 0;
+        ContactUs contactUs = new ContactUs();
+        String username = "Sanju";
+        String category = "Test";
+        String description = "Test";
+        String descriptionDB = "";
         int result = ContactUsDB.addContactUsDescription(username, category, description);
-        assertEquals(expResult, result);
+        List<ContactUs> all = ContactUsDB.selectAllContactUsDescriptions();
+        if(all!=null){
+            for(ContactUs c : all){
+                
+                System.out.println(c.getDescription());
+                if(c.getUserName().equals("Sanju")){
+                    descriptionDB=c.getDescription();
+                }
+            }
+        }
+        assertEquals(descriptionDB, description);
 
     }
 
@@ -60,11 +71,10 @@ public class ContactUsDBTest {
     @Test
     public void testUpdateContactUsCategory() {
         System.out.println("updateContactUsCategory");
-        int ID = 0;
-        String category = "";
-        int expResult = 0;
+        String category = "new Category";
+        int ID=1;
         int result = ContactUsDB.updateContactUsCategory(ID, category);
-        assertEquals(expResult, result);
+        assertNotEquals(0, result);
 
     }
 
@@ -74,9 +84,10 @@ public class ContactUsDBTest {
     @Test
     public void testSelectContactUsDescription() {
         System.out.println("selectContactUsDescription");
-        int contactUsID = 0;
-        ContactUs expResult = null;
-        ContactUs result = ContactUsDB.selectContactUsDescription(contactUsID);
+        int contactUsID = 5;
+        String expResult = "Test";
+        ContactUs dbValue = ContactUsDB.selectContactUsDescription(contactUsID);
+        String result = dbValue.getDescription();
         assertEquals(expResult, result);
 
     }
@@ -87,9 +98,15 @@ public class ContactUsDBTest {
     @Test
     public void testSelectAllContactUsDescriptions() {
         System.out.println("selectAllContactUsDescriptions");
-        List<ContactUs> expResult = null;
         List<ContactUs> result = ContactUsDB.selectAllContactUsDescriptions();
-        assertEquals(expResult, result);
+        int sum=0;
+        if(result!=null){
+            for(ContactUs c : result){
+                System.out.println(c.getContactUsId());
+                sum = sum + c.getContactUsId();
+            }
+        }
+        assertTrue(sum>0);
 
     }
     
