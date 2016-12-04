@@ -13,13 +13,16 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/shop-homepage.css" rel="stylesheet">
-
+        <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+        <script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/jquery-ui.js" type="text/javascript"></script>
+        <link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/themes/blitzer/jquery-ui.css" rel="stylesheet" type="text/css" />      
+        <link href="css/userProfile.css" rel="stylesheet">
+        <script src="js/userProfile.js"></script>
         <title>Add a Book</title>
     </head>
     <body style="background-color:#F1F4FF;">
-        <%@ include file="header.jsp" %>
-        <%@ include file="userLogout.jsp" %>        
-        <%@ include file="headerClose.jsp" %>
+        <%@ include file="defaultNav.jsp" %>
         <br/>
         <h3><center>Add A Book Manually</center></h3>
         <p style="color:white;" align="center"><c:if test="${not empty messageText}"><c:out value="${cookie['userCookie'].value}" /></c:if></p>
