@@ -21,8 +21,9 @@
     </head>
     <body style="background-color:#F1F4FF;">
         <%@ include file="defaultNav.jsp" %>
+        <br/>
         <h3 align="center">My Wishlist</h3>
-        <table align="center" style="align-items: middle; border:1px solid black;">
+        <table align="center" class="table-striped" style="align-items: middle">
             <tr>
                 <th style="border:1px solid black;">Book Title</th>
                 <th style="border:1px solid black;">Book Author</th> 
@@ -38,7 +39,7 @@
                         <form name="viewBook" action="BookListServlet" method="post" align="center">
                             <input type="hidden" name="action" value="viewBook">
                             <input type="hidden" name="bookid" value=${item.bookID}>
-                            <input type="submit" value="View" />
+                            <input type="submit" class="btn btn-primary btn-xs" value="View" />
                         </form>
                     </td>
                     <td>
@@ -47,7 +48,7 @@
                             <input type="hidden" name="username" value="${user.getUserName()}"/>
                             <input type="hidden" name="bookid" value=${item.bookID}>
                             <input type="hidden" name="books" value="${books}"/>
-                            <input type="submit" value="Remove" />
+                            <input type="submit" class="btn btn-primary btn-xs" value="Remove" />
                         </form>
                     </td>
                 </tr>           
@@ -56,19 +57,10 @@
         </table> 
 
         <form name="viewhome" action="LoginServlet" method="post">
-            <input type="hidden" name="username" value="${user.getUserName()}"</input>
+            <input type="hidden" name="username" value="${user.getUserName()}"></input>
             <input type="hidden" name="action" value="backHome">
-            <center><input type="submit" value="Back to homepage" 
-                   style="background-color: grey; 
-                   border: none;
-                   color: white;
-                   padding: 15px 32px;
-                   text-align: center;
-                   text-decoration: none;
-                   display: inline-block;
-                   font-size: 16px;
-                   margin: 4px 2px;
-                   cursor: pointer;"/></center>
+            <br/>
+            <center><input type="submit" value="Back to homepage" class="btn btn-primary btn-sm"/></center>
         </form>
     </body>
     <%@ include file="footer.jsp" %>
