@@ -14,11 +14,15 @@
         <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/shop-homepage.css" rel="stylesheet">
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+        <script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/jquery-ui.js" type="text/javascript"></script>
+        <link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/themes/blitzer/jquery-ui.css" rel="stylesheet" type="text/css" />      
+        <link href="css/userProfile.css" rel="stylesheet">
+        <script src="js/userProfile.js"></script>
     </head>
     
     <body style="background-color:#F1F4FF;">
-        <%@ include file="header.jsp" %>
-        <%@ include file="headerClose.jsp" %>
+       <%@ include file="defaultNav.jsp" %>
         <br><br>
  
         <form class="form-horizontal" name="advSearch" action="BookManager" method="post">
