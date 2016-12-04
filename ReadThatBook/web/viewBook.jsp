@@ -191,25 +191,27 @@
             
         </div> 
         <br/>
-        <h4>This might interest you:</h4>
-        <div class="row">
-            <c:forEach items="${similarBookList}" begin="1" end="6" var="item">
-                <div class="col-sm-2 col-lg-2 col-md-2">
-                    <div class="thumbnail">
-                        <img src="${pageContext.request.contextPath}/images/${item.bookID}" alt="No image"/>
-                        <div class="caption">
-                            <h4 align="center">${item.title}</h4>
-                            <h5 align="center">By:${item.author}</h5> 
-                            <form name="viewBook" action="BookListServlet" method="post" align="center">
-                                <input type="hidden" name="action" value="viewBook">
-                                <input type="hidden" name="bookid" value=${item.bookID}>
-                                <input type="submit" value="View Details" />
-                            </form>
+        <c:if test="${not empty similarBookList}">
+            <h4>This might interest you:</h4>
+            <div class="row">
+                <c:forEach items="${similarBookList}" begin="1" end="6" var="item">
+                    <div class="col-sm-2 col-lg-2 col-md-2">
+                        <div class="thumbnail">
+                            <img src="${pageContext.request.contextPath}/images/${item.bookID}" alt="No image"/>
+                            <div class="caption">
+                                <h4 align="center">${item.title}</h4>
+                                <h5 align="center">By:${item.author}</h5> 
+                                <form name="viewBook" action="BookListServlet" method="post" align="center">
+                                    <input type="hidden" name="action" value="viewBook">
+                                    <input type="hidden" name="bookid" value=${item.bookID}>
+                                    <input type="submit" value="View Details" />
+                                </form>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </c:forEach>   
-        </div>
+                </c:forEach>   
+            </div>
+        </c:if>
         <!-- jQuery -->
         <script src="js/jquery.js"></script>
 
