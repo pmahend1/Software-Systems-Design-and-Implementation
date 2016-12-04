@@ -9,13 +9,13 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <script src="scripts/angular.min.js"></script>
-        <script src="scripts/angular.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
-        <script src="js/manageBooks.js"></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+        <script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/jquery-ui.js" type="text/javascript"></script>
+        <link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/themes/blitzer/jquery-ui.css" rel="stylesheet" type="text/css" />      
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/shop-homepage.css" rel="stylesheet">
+        <link href="css/userProfile.css" rel="stylesheet">
+        <script src="js/userProfile.js"></script>
 
         <style>
         table, th, td {
@@ -27,10 +27,7 @@
     </head>
     <body style="background-color:#F1F4FF;">
         <!--#e3e8f8-->
-	<%@ include file="header.jsp" %>
-        <p style="color:white; font-weight:bold; text-align:right;"><c:out value="${cookie['userCookie'].value}" ></c:out></p>
-        <%@ include file="userLogout.jsp" %>
-        <%@ include file="headerClose.jsp" %>
+	 <%@ include file="defaultNav.jsp" %>
 	<br/>
     <h4>Add book from Google Books</h4>
     <form action="GoogleBooksApiServlet" method="POST">
