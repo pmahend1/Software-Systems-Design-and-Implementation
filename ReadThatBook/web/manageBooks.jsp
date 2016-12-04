@@ -35,17 +35,18 @@
     <h4>Add book from Google Books</h4>
     <form action="GoogleBooksApiServlet" method="POST">
         <input type="text" placeholder="Title or Author" name="query" style="width: 450px"/>
-        <input type="submit" name="Search" value="Search"/>
+        <input type="submit" class="btn btn-primary btn-sm" name="Search" value="Search"/>
         <p style="color:red;"><c:if test="${not empty messageText}"><c:out value="${messageText}"/></c:if></p>
     </form>
         <div id="results"></div>
         <br>
-        <div><a class="btn" href="BookManager?action=addBookPage">Add Books Manually</a></div>
+        <div><a class="btn btn-primary" href="BookManager?action=addBookPage">Add Books Manually</a></div>
         <br>
         <h3 align="center">Book Details </h3>
         <br>
         <div>
-        <table>
+        <table class="table table-striped">
+            <thead class="thead-default">
                 <tr>
                     <th>Title</th>
                     <th>Author</th>
@@ -56,6 +57,7 @@
                     <th>Update</th>
                     <th>Delete</th>
                 </tr>
+            </thead>>
                 <c:forEach items="${bookList}" var="book">
                     <tr>
                         <td><c:out value="${book.getTitle()}"/></td>
@@ -64,8 +66,8 @@
                         <td><c:out value="${book.getGenre()}"/></td>
                         <td><c:out value="${book.getISBN10()}"/></td>
                         <td><c:out value="${book.getISBN13()}"/></td>
-                        <td><a href="<c:url value="BookManager?action=updateBookPage&bookID=${book.getBookID()}"/>">Edit</a></td>
-                        <td><a href="<c:url value="BookManager?action=deleteBook&bookID=${book.getBookID()}"/>">Delete</a></td>
+                        <td><center><a href="<c:url value="BookManager?action=updateBookPage&bookID=${book.getBookID()}"/>" class ="btn btn-primary btn-xs">Edit</a></center></td>
+                        <td><a href="<c:url value="BookManager?action=deleteBook&bookID=${book.getBookID()}"/>" class ="btn btn-primary btn-xs">Delete</a></td>
                     </tr>
                 </c:forEach>          
         </table>       
