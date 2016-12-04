@@ -28,7 +28,7 @@ public class WishlistDB {
             ps = connection.prepareStatement(query);
             ps.setInt(2, bookid);
             ps.setString(1,username);
-          
+            System.out.println(ps.toString());
             return ps.executeUpdate();
         } catch (Exception e) {
             return 0;

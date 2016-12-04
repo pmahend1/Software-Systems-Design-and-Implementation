@@ -74,7 +74,13 @@ public class WishlistServlet extends HttpServlet {
                 bookIdstring="nothing";
             }
             int bookId=0;
-            bookId=Integer.parseInt(bookIdstring);
+            try {
+                bookId=Integer.parseInt(bookIdstring);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+            System.out.println("username :" + username);
+            System.out.println("bookId :" + bookId);
             int s=WishlistDB.addBook(username,bookId);
             if(s==0)
             { message="This book has been already added to your wishlist.";}

@@ -7,9 +7,9 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container">
+    <div class="container-">
         <div class="navbar-header">
-            <label style="color:white;"><h3>ReadThatBook&emsp;&emsp;</h3></label>
+            <label style="color:white;" class="h3">ReadThatBook&emsp;&emsp;</label>
         </div>
         <ul class="nav navbar-nav">
             <li><a href="#">About</a></li>
