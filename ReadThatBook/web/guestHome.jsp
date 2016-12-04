@@ -14,6 +14,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Read That Book</title>
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/shop-homepage.css" rel="stylesheet">
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
@@ -39,36 +40,35 @@
                                         <span ng-show="loginForm.passWord.$error.required">password is required.</span>
                                     </span>-->
 
-                        <input type="submit" value="Login" ng-disabled="loginForm.userName.$dirty && loginForm.userName.$invalid ||
+                        <input type="submit" class="btn btn-xs" value="Login" ng-disabled="loginForm.userName.$dirty && loginForm.userName.$invalid ||
                                     loginForm.passWord.$dirty && loginForm.passWord.$invalid"/>
                         <span>
-
                         </span>
                     </form></td>
                 <td> <form class="form-horizontal" name="register" action="LoginServlet" method="post" align="right">
-                        <input type="submit" name="register" value="Register">
+                        <input type="submit" class="btn btn-xs" name="register" value="Register">
                         <input type="hidden" name="action" value="register">
                     </form></td>
             </table>
         </div>
         <%@ include file="headerClose.jsp" %>
         <br/><br/>
-        <div style="width:1000px">
-            <div style="text-align:center;float:left; margin-left: 430px">
+        <div style="width:1100px">
+            <div style="text-align:center;float:left; margin-left: 300px">
             <form name="login" action="BookManager" method="post">
                 <input type="searchText" name="searchString" placeholder="Search.." align="center">
-                <input type = "Submit" name="submit" value="Search"/>
+                <button type="Submit" name="submit" class="btn btn-primary btn-lg">Search</button>
                 <input type="hidden" name="action" value="searchBook"/>
             </form>
             </div>
-            <div style="text-align:center;float:right; width: 100px">   
+            <div style="text-align:center;float:right; margin-right: 50px">   
             <form name="login" action="BookManager" method="post">
-                <input type = "Submit" name="submit" value="AdvancedSearch"/>
+                <button type="Submit" name="submit" class="btn btn-primary btn-lg">AdvancedSearch</button>
                 <input type="hidden" name="action" value="advancedSearchBook"/>
             </form>
             </div>
         </div>
-        <br/>
+        <br/><br/>
         <div style="width:1000px; text-align:center; float:left; margin-left: 150px">
             <c:if test="${searchErrorMessage != null}">
                 <p style="color:red; font-weight:bold; text-align:center;">${searchErrorMessage}</p>
