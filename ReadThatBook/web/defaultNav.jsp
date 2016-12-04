@@ -39,7 +39,8 @@
                         </form>
                     </td>
                 </table>
-            </div>       
+            </div>   
+            <c:if test="${not empty user}">
             <div class="col-lg-2">
                 <table class="nav navbar-right">
                     <td>
@@ -74,7 +75,7 @@
                     </td>
                 </table>
             </div>
-
+        </c:if>
         </div>
     </div>
 </nav>
