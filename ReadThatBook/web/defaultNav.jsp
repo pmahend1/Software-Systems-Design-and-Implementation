@@ -47,7 +47,7 @@
                         <form name="ProfileView" action="UserProfileManager" method="post">
                             <input type="hidden" name="username" value="${user.getUserName()}"/>
                             <div class="dropdown" style="z-index:1">
-                                <button class="btn btn-link" style="text-decoration:none; color:white;">Profile</button>
+                                <button type="submit" name="action" value="viewprofile" class="btn btn-link" style="text-decoration:none; color:white;">Profile</button>
                                 <div class="dropdown-content">
                                     <button type="submit" name="action" value="viewprofile" >View profile</button>
                                     <button type="submit" name="action" value="editprofile" >Edit profile</button>
