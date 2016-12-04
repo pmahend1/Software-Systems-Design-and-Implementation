@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -40,7 +41,16 @@ public class HomeServlet extends HttpServlet {
             return;
         HttpSession session = request.getSession();
         String action = request.getParameter("action");
-        
+        Cookie[] cookies = request.getCookies();
+        User user = null;
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("userCookie")) {
+                    user = UserDB.selectUser(cookie.getValue());
+                    request.setAttribute("user", user);
+                }
+            }
+        }
        // String url = "/index.jsp";
         //String message = "";
         System.out.println("admin.HomeServlet.doPost()" + action);
@@ -60,6 +70,7 @@ public class HomeServlet extends HttpServlet {
             System.out.println("admin.HomeServlet.doPost() bookIdstring"+bookIdstring +" int "+ bookId);
             Book book = BookDB.selectBook(bookId);
             request.setAttribute("book", book);
+            request.setAttribute("user", user);
             request.getServletContext().getRequestDispatcher(url).forward(request, response);
             }
            

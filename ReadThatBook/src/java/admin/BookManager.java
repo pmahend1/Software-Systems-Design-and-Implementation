@@ -47,21 +47,25 @@ public class BookManager extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        if (request == null || response == null){
+        if (request == null || response == null) {
             return;
         }
-            
+
         String action = request.getParameter("action");
         //String userStr = request.getParameter("user");
         HttpSession session = request.getSession();
 
         Cookie[] cookies = request.getCookies();
-        for (Cookie cookie : cookies) {
-            String name = cookie.getName();
-            String value = cookie.getValue();
-            System.out.println(name + " " + value);
+        User user = null;
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("userCookie")) {
+                    user = UserDB.selectUser(cookie.getValue());
+                    request.setAttribute("user", user);
+                }
+            }
         }
-        
+
         String url = "/index.jsp";
         String message = "";
         //User user = UserDB.selectUser(userStr);
@@ -118,21 +122,21 @@ public class BookManager extends HttpServlet {
 
             Book newBook = new Book(title, author, ISBN_10Str, ISBN_13Str, genre, edition, publisher, description);
             int status = BookDB.addBook(newBook);
-            if(status == 0){
-                 messageText = "Error in book addition . Please go through log";
-                 url="/addBooks.jsp";
-                 request.setAttribute("messageText", messageText);
-                 getServletContext().getRequestDispatcher(url).forward(request, response);
-                
+            if (status == 0) {
+                messageText = "Error in book addition . Please go through log";
+                url = "/addBooks.jsp";
+                request.setAttribute("messageText", messageText);
+                request.setAttribute("user", user);
+                getServletContext().getRequestDispatcher(url).forward(request, response);
+
             }
-            int bookID = 0 ;
-             if(ISBN_10Str !=null){
+            int bookID = 0;
+            if (ISBN_10Str != null) {
                 bookID = BookDB.getBookIDByISBN(ISBN_10Str);
+            } else if (ISBN_13Str != null) {
+                bookID = BookDB.getBookIDByISBN(ISBN_13Str);
             }
-            else if(ISBN_13Str != null){
-                bookID= BookDB.getBookIDByISBN(ISBN_13Str);
-            }
-            
+
             // String addedBookID = BookDB.selectBook(ISBN_13)
             if (inputStream != null && bookID != 0) {
                 BookDB.addBookImage(bookID, inputStream);
@@ -146,6 +150,7 @@ public class BookManager extends HttpServlet {
 //            response.setContentLength(imageBytes.length);
 //
 //            response.getOutputStream().write(imageBytes);
+            request.setAttribute("user", user);
             getServletContext().getRequestDispatcher(url).forward(request, response);
         } else if (action.equals("deleteBook")) {
             String bookIDStr = request.getParameter("bookID");
@@ -159,6 +164,7 @@ public class BookManager extends HttpServlet {
                 System.out.println(e);
                 url = "/home.jsp";
                 //request.setAttribute("booklist", booklist);
+                request.setAttribute("user", user);
                 getServletContext().getRequestDispatcher(url).forward(request, response);
             }
             BookDB.deleteBook(bookID);
@@ -166,6 +172,7 @@ public class BookManager extends HttpServlet {
             //request.setAttribute("user", user);
             List<Book> booklist = BookDB.selectAllBooks();
             request.setAttribute("bookList", booklist);
+            request.setAttribute("user", user);
             getServletContext().getRequestDispatcher(url).forward(request, response);
 
         } else if (action.equals("manageBooks")) {
@@ -173,27 +180,29 @@ public class BookManager extends HttpServlet {
             List<Book> bookList = BookDB.selectAllBooks();
 
             request.setAttribute("bookList", bookList);
+            request.setAttribute("user", user);
             getServletContext().getRequestDispatcher(url).forward(request, response);
         } else if (action.equals("addBookPage")) {
             url = "/addBooks.jsp";
+            request.setAttribute("user", user);
             getServletContext().getRequestDispatcher(url).forward(request, response);
-        }else if(action.equals("updateBookPage")){
-            url="/updateBook.jsp";
+        } else if (action.equals("updateBookPage")) {
+            url = "/updateBook.jsp";
             String bookIDStr = request.getParameter("bookID");
-            System.out.println("Inside updateBookPage" );
-            System.out.println("bookID is "+bookIDStr );
-            int bookID=0;
+            System.out.println("Inside updateBookPage");
+            System.out.println("bookID is " + bookIDStr);
+            int bookID = 0;
             try {
                 bookID = Integer.parseInt(bookIDStr);
             } catch (Exception e) {
                 System.out.println(e);
             }
             Book updatableBook = BookDB.selectBook(bookID);
-            System.out.println("book selected for update"+ updatableBook.getTitle());
+            System.out.println("book selected for update" + updatableBook.getTitle());
             request.setAttribute("book", updatableBook);
+            request.setAttribute("user", user);
             getServletContext().getRequestDispatcher(url).forward(request, response);
-        }
-        else if(action.equals("updateBook")){
+        } else if (action.equals("updateBook")) {
             String title = request.getParameter("title");
             String bookIDStr = request.getParameter("bookID");
             String description = request.getParameter("description");
@@ -204,7 +213,7 @@ public class BookManager extends HttpServlet {
             int ISBN_10 = 0;
             long ISBN_13 = 0;
             InputStream inputStream = null;
-            int  bookID=0;
+            int bookID = 0;
             try {
                 bookID = Integer.parseInt(bookIDStr);
             } catch (Exception e) {
@@ -215,13 +224,13 @@ public class BookManager extends HttpServlet {
             String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
             if (filePart != null) {
                 System.out.println("FilePart name:" + filePart.getName());
-                System.out.println("FilePart content"+ filePart.getContentType());
+                System.out.println("FilePart content" + filePart.getContentType());
 
                 System.out.println("FileName : " + filePart.getSubmittedFileName());
                 System.out.println("FileName isEmpty? : " + filePart.getSubmittedFileName().isEmpty());
-                
+
                 inputStream = filePart.getInputStream();
-                System.out.println("inPut stream : " +inputStream );
+                System.out.println("inPut stream : " + inputStream);
             }
             try {
                 ISBN_10 = Integer.parseInt(ISBN_10Str);
@@ -256,22 +265,20 @@ public class BookManager extends HttpServlet {
             // String addedBookID = BookDB.selectBook(ISBN_13)
             if (!filePart.getSubmittedFileName().isEmpty()) {
                 System.out.println("Inside inputStream != null");
-                if(BookDB.checkBookImageExists(bookID)){
+                if (BookDB.checkBookImageExists(bookID)) {
                     BookDB.updateBookImage(bookID, inputStream);
                     System.out.println("updateBookImage method called in servlet ");
-                }
-                else{
+                } else {
                     BookDB.addBookImage(bookID, inputStream);
                     System.out.println("addBookImage method called in servlet ");
-                }  
+                }
             }
             url = "/manageBooks.jsp";
             List<Book> bookList = BookDB.selectAllBooks();
             request.setAttribute("bookList", bookList);
+            request.setAttribute("user", user);
             getServletContext().getRequestDispatcher(url).forward(request, response);
-        }
-        
-        else if (action.equals("viewBooks")) {
+        } else if (action.equals("viewBooks")) {
             byte[] b = BookDB.getBookImage(8);
             OutputStream img = null;
             response.setContentType("image/png");
@@ -279,65 +286,69 @@ public class BookManager extends HttpServlet {
             img.write(b);
             img.flush();
             img.close();
-        }
-        else if (action.equals("searchBook")) {
+        } else if (action.equals("searchBook")) {
             String bookName = request.getParameter("searchString");
             List<Book> bookList = BookDB.searchBook(bookName);
-            if(bookList.size() == 0){
+            if (bookList.size() == 0) {
                 System.out.println("admin.BookManager.doPost()" + "Book Does not exist");
                 cookies = request.getCookies();
-                
+
                 for (Cookie cookie : cookies) {
-                if(cookie.getName().equals("userCookie")){
-                    url = "/home.jsp";
-                    User user = UserDB.selectUser(cookie.getValue());
-                    request.setAttribute("user", user);
+                    if (cookie.getName().equals("userCookie")) {
+                        url = "/home.jsp";
+                        user = UserDB.selectUser(cookie.getValue());
+                        request.setAttribute("user", user);
+                    } else {
+                        url = "/guestHome.jsp";
+                    }
                 }
-                else 
-                    url = "/guestHome.jsp";
-                }
-                
-                message= "Book does not exist with this title or author.";
+
+                message = "Book does not exist with this title or author.";
                 request.setAttribute("searchErrorMessage", message);
-                List<Book> books = BookDB.selectAllBooks();   
+                List<Book> books = BookDB.selectAllBooks();
                 request.setAttribute("books", books);
+                request.setAttribute("user", user);
                 request.getServletContext().getRequestDispatcher(url).forward(request, response);
-            }else{
-            url="/viewSearchResult.jsp";
-            request.setAttribute("bookResult", bookList);
-            getServletContext().getRequestDispatcher(url).forward(request, response);
+            } else {
+                url = "/viewSearchResult.jsp";
+                request.setAttribute("bookResult", bookList);
+                request.setAttribute("user", user);
+                getServletContext().getRequestDispatcher(url).forward(request, response);
             }
-        }else if (action.equals("advancedSearchBook")) {
-            url="/advancedSearch.jsp";
+        } else if (action.equals("advancedSearchBook")) {
+            url = "/advancedSearch.jsp";
+            request.setAttribute("user", user);
             getServletContext().getRequestDispatcher(url).forward(request, response);
-        }else if (action.equals("advSearchBook")) {
+        } else if (action.equals("advSearchBook")) {
             String bookTitle = request.getParameter("searchBookTitle");
             String bookAuthor = request.getParameter("searchBookAuthor");
             String bookGenre = request.getParameter("searchBookGenre");
             String bookISBN = request.getParameter("searchBookISBN");
             List<Book> bookList = BookDB.advSearchBook(bookTitle, bookAuthor, bookGenre, bookISBN);
-            if(bookList.isEmpty()){
+            if (bookList.isEmpty()) {
                 System.out.println("admin.BookManager.doPost()" + "Book Does not exist");
                 cookies = request.getCookies();
-                
+
                 for (Cookie cookie : cookies) {
-                if(cookie.getName().equals("userCookie")){
-                    url = "/home.jsp";
-                    User user = UserDB.selectUser(cookie.getValue());
-                    request.setAttribute("user", user);
+                    if (cookie.getName().equals("userCookie")) {
+                        url = "/home.jsp";
+                        user = UserDB.selectUser(cookie.getValue());
+                        request.setAttribute("user", user);
+                    } else {
+                        url = "/guestHome.jsp";
+                    }
                 }
-                else 
-                    url = "/guestHome.jsp";
-                }
-                
-                message= "Book does not exist with this title or author.";
+
+                message = "Book does not exist with this title or author.";
                 request.setAttribute("searchErrorMessage", message);
-                List<Book> books = BookDB.selectAllBooks();   
+                List<Book> books = BookDB.selectAllBooks();
                 request.setAttribute("books", books);
+                request.setAttribute("user", user);
                 request.getServletContext().getRequestDispatcher(url).forward(request, response);
-            }else{
-                url="/viewSearchResult.jsp";
+            } else {
+                url = "/viewSearchResult.jsp";
                 request.setAttribute("bookResult", bookList);
+                request.setAttribute("user", user);
                 getServletContext().getRequestDispatcher(url).forward(request, response);
             }
         }

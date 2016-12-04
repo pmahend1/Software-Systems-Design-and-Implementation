@@ -43,14 +43,14 @@
                     </form>
                 </div>
             </div>
-            <br/>
-            <div style="width:1000px; text-align:center; float:left; margin-left: 150px">
-                <c:if test="${searchErrorMessage != null}">
-                    <p style="color:red; font-weight:bold; text-align:center;">${searchErrorMessage}</p>
-                    <%request.removeAttribute("searchErrorMessage");%>  
-                </c:if>
-            </div>
-            <br/>
+            <br/><br/>
+            <c:if test="${searchErrorMessage != null}">
+                <div class="row">
+                <div class="alert alert-danger alert-dismissible col-md-6 col-md-offset-3">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                    <center><strong><c:out value="${searchErrorMessage}"/></strong></center> 
+                </div></div>  
+            </c:if>
             <div class="container">
                 <div class="row">
                     <div class="col-md-2">
