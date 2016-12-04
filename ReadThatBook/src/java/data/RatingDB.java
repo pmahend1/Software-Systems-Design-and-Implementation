@@ -168,7 +168,7 @@ public class RatingDB {
     }
 
     public static int getUserRating(int bookID, String userName) {
-        if (bookID == -1 || userName.length() == 0)
+        if (bookID == -1)
             return -1;
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
