@@ -28,13 +28,13 @@
                         <form name="login" action="BookManager" method="post">
                             
                             <input type="searchText" name="searchString" placeholder="Search.." style="width: 350px">
-                            <input type = "Submit" name="submit" value="Search" class="btn"/>
+                            <input type = "Submit" name="submit" value="Search" class="btn btn-primary"/>
                             <input type="hidden" name="action" value="searchBook"/>
                         </form>
                     </td>
                     <td>
                         <form name="login" action="BookManager" method="post">
-                            <input type = "Submit" name="submit" value="Advanced" class="btn"/>
+                            <input type = "Submit" name="submit" value="Advanced" class="btn btn-primary"/>
                             <input type="hidden" name="action" value="advancedSearchBook"/>
                         </form>
                     </td>

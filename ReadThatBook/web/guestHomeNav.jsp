@@ -13,8 +13,8 @@
             </div>
             <div class="col-lg-2">
                 <ul class="nav navbar-nav">            
-                    <li><a href="LoginServlet?action=backHome">Home</a></li>
-                    <li><a href="contactUs">Contact Us</a></li>
+                    <li><a href="LoginServlet?action=backHome" class="btn" style="text-decoration:none; color:white;">Home</a></li>
+                    <li><a href="contactUs" class="btn" style="text-decoration:none; color:white;">Contact Us</a></li>
                 </ul>
             </div>
             <div class="col-lg-6">
