@@ -121,6 +121,8 @@ public class AuthenticationServlet extends HttpServlet {
                 firstName = "dummy";
                 lastName = "dummy";
                 url="/guestHome.jsp";
+                List<Book> books = BookDB.selectAllBooks();
+                request.setAttribute("books", books);
                 getServletContext().getRequestDispatcher(url).forward(request, response);
             } else if (passWord.equals(rePassWord)) {
                 if (userRole.compareTo("Critic") == 0)
@@ -142,6 +144,8 @@ public class AuthenticationServlet extends HttpServlet {
                 userCookie.setMaxAge(1*60*60);
                 userCookie.setPath("/");
                 response.addCookie(userCookie);
+                List<Book> books = BookDB.selectAllBooks();
+                request.setAttribute("books", books);
                 request.setAttribute("user", user);
                 getServletContext().getRequestDispatcher(url).forward(request, response);
             }
@@ -193,6 +197,7 @@ public class AuthenticationServlet extends HttpServlet {
             request.setAttribute("username", username);
             request.setAttribute("user", user);
             System.out.println("Back to homepage");
+            
             request.getServletContext().getRequestDispatcher(url).forward(request, response);
             
         }

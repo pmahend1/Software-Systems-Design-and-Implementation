@@ -29,15 +29,14 @@
     </head>
 
     <body style="background-color:#F1F4FF;">
-        <%@ include file="header.jsp" %>
-        <%@ include file="headerClose.jsp" %>
+        <%@ include file="guestHomeNav.jsp" %>
         <br/>
         <br/>
         <form class="form-horizontal" name="registerForm" action="LoginServlet" method="post">
             <span style = "color:red; margin-left:500px;" ng-show = "registerForm.userName.$dirty && registerForm.firstname.$invalid;">
-                    <span ng-show = "registerForm.firstname.$error.required">User Name is required.</span>
+                <span ng-show = "registerForm.firstname.$error.required">User Name is required.</span>
             </span> <br/>
-             <div class="form-group">
+            <div class="form-group">
                 <label for="inputUserName" class="col-sm-4 control-label">User Name</label>
                 <div class="col-sm-4">
                     <input type="text" class="form-control" id="inputUserName" name="userName"/>
