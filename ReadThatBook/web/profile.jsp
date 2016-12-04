@@ -21,37 +21,42 @@
     </head>
     <body style="background-color:#F1F4FF;">
         <%@ include file="defaultNav.jsp" %>
-        <br/><br/>
-    <center>
-        <table>
-            <tr>
-                <td><b>First Name</b></td>
-                <td>:</td>
-                <td><c:out value="${user.getFirstName()}" ></c:out></td>    
-                </tr>
-                <tr>
-                    <td><b>Last Name</b></td>
-                    <td>:</td>
-                    <td><c:out value="${user.getLastName()}" ></c:out></td>
-                </tr>
-                <tr>
-                    <td><b>Username</b></td>
-                    <td>:</td>
-                    <td><c:out value="${user.getUserName()}" ></c:out></td>  
-                </tr>
-                <tr>
-                    <td><b>Email</b></td>
-                    <td>:</td>
-                    <td><c:out value="${user.getEmail()}" ></c:out></td>  
-                </tr>
-                <tr>
-                    <td><b>Role</b></td>
-                    <td>:</td>
-                    <td><c:out value="${user.getRole()}" ></c:out></td>  
-                </tr>
-            </table>
-        </center>
-        <br/><br/> <br/><br/><br/><br/><br/><br/>   
-    </body>
-<%@ include file="footer.jsp" %>
+        <div class="container">
+            <br>
+            <div class="center-block">
+                <div class="col-xs-8 col-lg-offset-2">
+                    <table class="table table-striped col-lg-5">
+                        <center><h3 class="h4">Account Information</h3></center>
+                        <tr>
+                            <td><b>First Name</b></td>
+                            <td>:</td>
+                            <td><c:out value="${user.getFirstName()}" ></c:out></td>    
+                            </tr>
+                            <tr>
+                                <td><b>Last Name</b></td>
+                                <td>:</td>
+                                <td><c:out value="${user.getLastName()}" ></c:out></td>
+                            </tr>
+                            <tr>
+                                <td><b>Username</b></td>
+                                <td>:</td>
+                                <td><c:out value="${user.getUserName()}" ></c:out></td>  
+                            </tr>
+                            <tr>
+                                <td><b>Email</b></td>
+                                <td>:</td>
+                                <td><c:out value="${user.getEmail()}" ></c:out></td>  
+                            </tr>
+                            <tr>
+                                <td><b>Role</b></td>
+                                <td>:</td>
+                                <td><c:out value="${user.getRole()}" ></c:out></td>  
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <br/><br/> <br/><br/><br/><br/><br/><br/>   
+        </body>
+    <%@ include file="footer.jsp" %>
 </html>
