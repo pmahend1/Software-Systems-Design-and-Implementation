@@ -96,17 +96,16 @@
                         <div class="row">
                             <c:forEach items="${books}" var="item">
                                 <div class="col-sm-3 col-lg-3 col-md-3">
-                                    <div class="thumbnail">
-                                        <img src="${pageContext.request.contextPath}/images/${item.bookID}" alt="No image"/>
-                                        <div class="caption">
-
-                                            <h4 align="center">${item.title}</h4>
-                                            <h5 align="center">By:${item.author}</h5> 
-                                            <form name="viewBook" action="BookListServlet" method="post" align="center">
+                                    <div class="thumbnail" style="width:200px;height:400px">
+                                        <!--<img src="${pageContext.request.contextPath}/images/${item.bookID}" alt="No image"/>-->
+                                        <form name="viewBook" action="BookListServlet" method="post" align="center">
                                                 <input type="hidden" name="action" value="viewBook">
                                                 <input type="hidden" name="bookid" value=${item.bookID}>
-                                                <input type="submit" value="View Details" />
+                                                <input type="image" src="${pageContext.request.contextPath}/images/${item.bookID}" class="thumbnail" style="width:200px;height: 300px" alt="No Image" />
                                             </form>
+                                       <div class="text-center" align="center">
+                                           <h5 class="text text-muted"><b>${item.title}</b></h5>
+                                            <h6 class="text text-muted">By:${item.author}</h6>                                         
                                         </div>
                                     </div>
                                 </div>
