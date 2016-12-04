@@ -49,6 +49,16 @@
                                         <input type="submit" name="buttonStatus" value="Discard" class="btn btn-danger" />
                                     </form>
                                 </c:if>
+                                <c:if test="${notification.getCategory() eq 'Report Spam Review'}">
+                                    <form action="contactUs" method="POST">
+                                        <input type="hidden" name="action" value="spamdecision" />
+                                        <input type="hidden" name="userName" value="${notification.getUserName()}" />
+                                        <input type="hidden" name="ID" value="${notification.getContactUsId()}" />
+                                        <input type="hidden" name="desc" value="${notification.getDescription()}" />
+                                        <input type="submit" name="buttonSpam" value="Keep Review" class="btn btn-success" />
+                                        <input type="submit" name="buttonSpam" value="Discard Review" class="btn btn-danger" />
+                                    </form>
+                                </c:if>
                             </td>
                         </tr>
                     </tbody>
