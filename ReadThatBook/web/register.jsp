@@ -33,31 +33,61 @@
         <%@ include file="headerClose.jsp" %>
         <br/>
         <br/>
-        <form name="registerForm" action="LoginServlet" method="post">
-            <span style = "color:red; margin-left:300px;" ng-show = "registerForm.userName.$dirty && registerForm.firstname.$invalid;">
+        <form class="form-horizontal" name="registerForm" action="LoginServlet" method="post">
+            <span style = "color:red; margin-left:500px;" ng-show = "registerForm.userName.$dirty && registerForm.firstname.$invalid;">
                     <span ng-show = "registerForm.firstname.$error.required">User Name is required.</span>
             </span> <br/>
-            <register>
-            <label> User Name </label>
-            <input type="text" name="userName"/><br/>
-            <label> Password </label>
-            <input type="password" name="passWord"/><br/>
-            <label> Re enter Password </label>
-            <input type="password" name="rePassword"/><br/>
-            <label> First Name </label>
-            <input type="text" name="firstName"/><br/>
-            <label> Last Name </label>
-            <input type="text" name="lastName"/><br/>
-            <label> Email </label>
-            <input type="email" name="email"/><br/>
-            <label> User Type </label>
-            <select name="userRole" style="width:193px;">
-                <option value="User">User</option>
-                <option value="Critic">Critic</option>
-            </select><br/>
-            <input type="hidden" name="action" value="registerForm" />
-            <input type="submit"/>
-            </register>
+             <div class="form-group">
+                <label for="inputUserName" class="col-sm-4 control-label">User Name</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" id="inputUserName" name="userName"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputPassword" class="col-sm-4 control-label">Password</label>
+                <div class="col-sm-4">
+                    <input type="password" class="form-control" id="inputPassword" name="passWord"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputRePassword" class="col-sm-4 control-label">Re enter Password</label>
+                <div class="col-sm-4">
+                    <input type="password" class="form-control" id="inputRePassword" name="rePassword"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputFirstName" class="col-sm-4 control-label">First Name</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" id="inputFirstName" name="firstName" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputLastName" class="col-sm-4 control-label">Last Name</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" id="inputLastName" name="lastName"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail" class="col-sm-4 control-label">Email</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" id="inputEmail" name="email"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputUserRole" class="col-sm-4 control-label">Email</label>
+                <div class="col-sm-4">
+                    <select class="form-control" name="userRole" id="inputUserRole" style="width:193px;">
+                        <option value="User">User</option>
+                        <option value="Critic">Critic</option>
+                    </select>
+                </div>
+            </div>    
+            <div class="form-group">
+                <div class="col-sm-offset-5 col-sm-10">
+                    <button type="Submit" name="submit" class="btn btn-primary btn-lg">Submit</button>
+                    <input type="hidden" name="action" value="registerForm"/>
+                </div>
+            </div>
         </form>
         <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
         <%@ include file="footer.jsp" %>
