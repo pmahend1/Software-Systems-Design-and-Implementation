@@ -2,8 +2,10 @@ package admin;
 
 import business.ContactUs;
 import business.User;
+import business.Review;
 import data.ContactUsDB;
 import data.UserDB;
+import data.ReviewDB;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -166,7 +168,53 @@ public class ContactUsServlet extends HttpServlet {
                     request.setAttribute("notification", contactUsObj);
                     getServletContext().getRequestDispatcher(url).forward(request, response);
 
-                } else {
+                } 
+ 		case "spamdecision":
+                String spamdesc=request.getParameter("desc");
+                String spambuttonType = request.getParameter("buttonSpam");
+                System.out.println("buttontype = "+spambuttonType);
+                            
+                String spamIDStr = request.getParameter("ID");
+                int IDs=0;
+                try {
+                    IDs = Integer.parseInt(spamIDStr);
+                } catch (Exception e) {
+                    System.out.println("Exception at Integer.parseInt(IDStr) :"+ e);
+                            
+                }
+                if(IDs!=0){
+                    url="/notifications.jsp";
+                    
+                    if (spambuttonType.compareTo("Discard Review") == 0)
+                    {
+                        String[] parts=spamdesc.split("ID= ");
+                        
+                        String[] tempparts=parts[1].split(" by ");
+                        String bookIdstr=tempparts[0];
+                        int bookId=Integer.parseInt(bookIdstr);
+                        
+                        String[] parts2=spamdesc.split("User= ");
+                        String[] tempparts2=parts2[1].split(" ");
+                        String username=tempparts2[0];
+                        
+                        System.out.println("bookid="+bookId+"username"+username);
+                        Review r = new Review(bookId,username,"");
+                        ReviewDB.deleteReview(r);
+                        request.setAttribute("message", "Review has been deleted.");
+                        ContactUsDB.updateContactUsCategory(IDs,"Review deleted");
+                        System.out.println("admin.ContactUsServlet.doPost() deleted"); 
+                    }
+                    else
+                    {
+                        ContactUsDB.updateContactUsCategory(IDs,"Review not spam");
+                        request.setAttribute("message", "Review is not spam.");
+                    }    
+                    
+                    List<ContactUs> contactUsInfoList2 = ContactUsDB.selectAllContactUsDescriptions();
+                    request.setAttribute("contactUsInfoList", contactUsInfoList2);
+                    getServletContext().getRequestDispatcher(url).forward(request, response);
+                    
+                }else {
                     url = "/notifications.jsp";
                     //ContactUs contactUsObj = ContactUsDB.selectContactUsDescription(ID);
                     request.setAttribute("message", "Oops! Something went wrong..");
