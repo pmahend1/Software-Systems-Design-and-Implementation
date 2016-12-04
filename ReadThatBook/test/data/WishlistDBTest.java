@@ -6,6 +6,7 @@
 package data;
 
 import business.Book;
+import java.sql.SQLException;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -43,13 +44,15 @@ public class WishlistDBTest {
      * Test of addBook method, of class WishlistDB.
      */
     @Test
-    public void testAddBook() {
+    public void testAddBook() throws SQLException {
         System.out.println("addBook");
-        String username = "";
-        int bookid = 0;
-        int expResult = 0;
+        String username = "raka";
+        int bookid = 1;
+        
         int result = WishlistDB.addBook(username, bookid);
-        assertEquals(expResult, result);
+        List<Book> rakaWishList  = WishlistDB.viewWishlist(username);
+        int dbBookID = rakaWishList.get(0).getBookID();
+        assertEquals(dbBookID, bookid);
     }
 
     /**
@@ -58,23 +61,37 @@ public class WishlistDBTest {
     @Test
     public void testViewWishlist() throws Exception {
         System.out.println("viewWishlist");
-        String username = "";
-        List<Book> expResult = null;
+        String username = "raka";
         List<Book> result = WishlistDB.viewWishlist(username);
-        assertEquals(expResult, result);
+        int sum=0;
+        if(result!=null){
+            for(Book b : result){
+                System.out.println(b.getBookID());
+                sum = sum + b.getBookID();
+            }
+        }
+        assertTrue(sum>0);
     }
 
     /**
      * Test of deleteWishlist method, of class WishlistDB.
      */
     @Test
-    public void testDeleteWishlist() {
+    public void testDeleteWishlist() throws SQLException {
         System.out.println("deleteWishlist");
-        String username = "";
-        int bookID = 0;
-        int expResult = 0;
+        String username = "raka";
+        int bookID = 1;
+        int sum=0;
         int result = WishlistDB.deleteWishlist(username, bookID);
-        assertEquals(expResult, result);
+        List<Book> wishlist = WishlistDB.viewWishlist(username);
+        if(wishlist!=null){
+            for(Book wish : wishlist){
+                System.out.println(wish.getBookID());
+                sum = sum + wish.getBookID();
+            }
+                    
+        }
+        assertTrue(sum > result);
     }
     
 }
