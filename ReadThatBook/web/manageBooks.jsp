@@ -37,6 +37,14 @@
         <!--#e3e8f8-->
         <%@ include file="defaultNav.jsp" %>
         
+        <c:if test="${message != null}">
+            <div class="row">
+            <div class="alert alert-success alert-dismissible col-md-6 col-md-offset-3">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                <center><strong><c:out value="${message}"/></strong></center> 
+            </div></div>
+        </c:if>
+        
         <h4 class="well well-sm" style="width:450px">Add Books from Google Books Library</h4>
         <form class="form" role="form" action="GoogleBooksApiServlet" method="POST">
             <div class="row">
