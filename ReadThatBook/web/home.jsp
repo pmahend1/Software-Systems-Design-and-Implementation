@@ -44,6 +44,13 @@
                 <center><strong><c:out value="${wishMessage}"/></strong></center> 
             </div></div>
         </c:if>
+         <c:if test="${message != null}">
+            <div class="row">
+            <div class="alert alert-success alert-dismissible col-md-6 col-md-offset-3">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                <center><strong><c:out value="${message}"/></strong></center> 
+            </div></div>
+        </c:if>
         
         <div class="row">
             <c:forEach items="${books}" var="item">
