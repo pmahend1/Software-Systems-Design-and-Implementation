@@ -9,14 +9,16 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="bootstrap.min.css">
-        <script src="jquery.min.js"></script>
-        <script src="bootstrap.min.js"></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+        <script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/jquery-ui.js" type="text/javascript"></script>
+        <link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/themes/blitzer/jquery-ui.css" rel="stylesheet" type="text/css" />      
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/shop-homepage.css" rel="stylesheet">
+        <link href="css/userProfile.css" rel="stylesheet">
+        <script src="js/userProfile.js"></script>
         <title>Contact Us</title>
     </head>
-    <body>
+    <body style="background-color:#F1F4FF;">
         <%@ include file="header.jsp" %>
         <p style="color:white; font-weight:bold; text-align:right;">${cookie.userCookie.value}</p>
         <%@ include file="userLogout.jsp" %>
