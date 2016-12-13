@@ -1,8 +1,10 @@
 package admin;
 
+import business.Book;
 import business.ContactUs;
 import business.User;
 import business.Review;
+import data.BookDB;
 import data.ContactUsDB;
 import data.UserDB;
 import data.ReviewDB;
@@ -95,9 +97,11 @@ public class ContactUsServlet extends HttpServlet {
                     status = ContactUsDB.addContactUsDescription(userName, category, description);
                     if (status != 0) {
                         url = "/home.jsp";
+                        List<Book> books = BookDB.selectAllBooks();
                         message = "Contact Us info has been submitted";
                         request.setAttribute("message", message);
                         request.setAttribute("user", user);
+                        request.setAttribute("books", books);
                         getServletContext().getRequestDispatcher(url).forward(request, response);
                         break;
                     } else {
